@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'scheduler', component: SchedulerComponent },
   { path: 'student-information', component: StudentInformationComponent },
+  { path: '', component: HomePageComponent }
 ];
 
 @NgModule({
