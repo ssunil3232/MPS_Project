@@ -2,3 +2,13 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import 'primeflex/primeflex.scss';
+
+html, body {
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+  }
+
+app-root {
+    flex: 1 1 auto;
+}
