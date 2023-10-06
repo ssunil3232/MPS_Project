@@ -17,6 +17,14 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { MenubarModule } from 'primeng/menubar';
+import { SidebarModule } from 'primeng/sidebar';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { DropdownModule } from 'primeng/dropdown';
+import { MenuModule } from 'primeng/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { TopNavComponent } from './top-nav/top-nav.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +35,9 @@ import { PasswordModule } from 'primeng/password';
     RegistrationComponent,
     StudentInformationComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    TopNavComponent,
+    SideNavComponent
   ],
   imports: [
     FormsModule,
@@ -38,7 +48,13 @@ import { PasswordModule } from 'primeng/password';
     AppRoutingModule,
     ButtonModule,
     InputTextModule,
-    PasswordModule
+    PasswordModule,
+    MenubarModule,
+    SidebarModule,
+    ToggleButtonModule,
+    DropdownModule,
+    MenuModule,
+    MatSidenavModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

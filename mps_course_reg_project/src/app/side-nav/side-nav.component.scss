@@ -1,0 +1,26 @@
+:host {
+::ng-deep{
+  .p-menuitem-icon {
+    padding-right: 15px;
+    font-size: 1.3rem;
+  }
+
+  .p-menu {
+    height: 100%;
+    padding: 0px;
+    border-radius: 0px;
+  }
+
+  .expanding {
+    width: 200px;
+  }
+
+  .not-expanding {
+    width: 60px;
+  }
+  .p-menu .p-menuitem > .p-menuitem-content {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+}

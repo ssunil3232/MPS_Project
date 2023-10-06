@@ -1,0 +1,38 @@
+::ng-deep {
+  // .p-button {
+  //   padding: none;
+  //   border: none;
+  //   background: transparent;
+  //   transition: none;
+  // }    
+  .menu-bar .p-togglebutton.p-button, .p-togglebutton.p-button.p-highlight  {
+    font-size: 1.5rem; 
+    color:rgb(120, 117, 117);
+    border: none;
+    background: transparent;
+  }
+  .menu-bar .p-togglebutton.p-button.p-highlight  {
+    font-size: 1.5rem; 
+    color:rgb(120, 117, 117);
+    border: none;
+    background: transparent;
+  }
+  .menu-bar .p-togglebutton.p-button.p-highlight:hover  {
+    font-size: 1.5rem; 
+    color:rgb(120, 117, 117);
+    border: none;
+    background: transparent;
+  }
+
+  .menu-bar .p-togglebutton.p-button .p-button-icon-left, .p-togglebutton.p-button .p-button-icon-right {
+    font-size: 1.5rem; 
+    color:rgb(120, 117, 117);
+    border: none;
+    background: transparent;
+  }
+
+  .p-menubar-start {
+    flex-direction: row;
+    display: flex;
+  }
+}

@@ -1,2 +1,24 @@
-<p>home-page works!</p>
-<p-button></p-button>
+<h1>Hello, {{userDetails.name}}!</h1>
+<div class="grid flex w-full h-full overflow-auto">
+    <div class="col-8">
+        <div class="flex flex-column">
+            <div class="grid flex w-full">
+                <div class="col-4 p-3">
+                    <button pButton pRipple label="Academics" class="p-button-success w-full" style="height: 200px;"></button>
+                </div>
+                <div class="col-4 p-3">
+                    <button pButton pRipple label="Finances" class="p-button-success w-full" style="height: 200px;"></button>
+                </div>
+                <div class="col-4 p-3">
+                    <button pButton pRipple label="Personal Info" class="p-button-success w-full" style="height: 200px;"></button>
+                </div>
+
+            </div>
+            <div class="pl-3  pt-5 grid flex w-full">
+                <span>This week's schedule</span>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4">Auto</div>
+</div>

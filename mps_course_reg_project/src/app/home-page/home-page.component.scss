@@ -1,0 +1,25 @@
+:host{
+    width: 100%;
+    height: 100%;
+
+    .p-button-success{
+        align-items: start;
+    }
+
+    .p-button.p-button-success, .p-buttonset.p-button-success > .p-button, .p-splitbutton.p-button-success > .p-button {
+        color: #ffffff;
+        background: #ecc33a;
+        border: 1px solid #ecc33a;
+    }
+
+    .p-button.p-button-success:hover {
+        color: #ffffff;
+        background: #ebd17e;
+        border: 1px solid #ebd17e;
+    }
+    .p-button.p-button-success:focus {
+        color: #ffffff;
+        background: #ebd17e;
+        border: 1px solid #e0ae0b;
+    }
+}

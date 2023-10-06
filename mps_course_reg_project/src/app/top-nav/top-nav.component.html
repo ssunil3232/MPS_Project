@@ -1,0 +1,11 @@
+<p-menubar>
+    <ng-template pTemplate="start">
+        <p-toggleButton id="menu-button" class="menu-bar mr-2" (onChange)="onToggle($event)" [(ngModel)]="sidebarVisible" onIcon="pi pi-bars"
+            offIcon="pi pi-bars"></p-toggleButton>
+        <h3>{{universityName}}</h3>
+    </ng-template>
+    <ng-template pTemplate="end">
+        <p-menu #menu [model]="top_nav_items" [popup]="true"></p-menu>
+        <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-user"></button>
+    </ng-template>
+</p-menubar>
