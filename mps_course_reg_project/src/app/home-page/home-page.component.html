@@ -1,24 +1,114 @@
-<h1>Hello, {{userDetails.name}}!</h1>
-<div class="grid flex w-full h-full overflow-auto">
+<h1 class="mt-0">Hello, {{userDetails.name}}!</h1>
+<div class="grid flex w-full home-body">
     <div class="col-8">
         <div class="flex flex-column">
             <div class="grid flex w-full">
                 <div class="col-4 p-3">
-                    <button pButton pRipple label="Academics" class="p-button-success w-full" style="height: 200px;"></button>
+                    <button pButton pRipple class="p-button-success w-full flex-column" style="height: 200px;"
+                        (click)="router.navigate(['/course-catalog'])">
+                        <div class="flex h-full w-full flex-column align-content-between justify-content-between">
+                            <span class="p-button-label">Course Catalog</span>
+                            <i class="pi pi-book p-2 mb-5" style="font-size: 4rem"></i>
+                        </div>
+                    </button>
                 </div>
                 <div class="col-4 p-3">
-                    <button pButton pRipple label="Finances" class="p-button-success w-full" style="height: 200px;"></button>
+                    <button pButton pRipple class="p-button-success w-full flex-column" style="height: 200px;"
+                        (click)="router.navigate(['/registration'])">
+                        <div class="flex h-full w-full flex-column align-content-between justify-content-between">
+                            <span class="p-button-label">Registration</span>
+                            <i class="pi pi-shopping-cart p-2 mb-5" style="font-size: 4rem"></i>
+                        </div>
+                    </button>
                 </div>
                 <div class="col-4 p-3">
-                    <button pButton pRipple label="Personal Info" class="p-button-success w-full" style="height: 200px;"></button>
+                    <button pButton pRipple class="p-button-success w-full flex-column" style="height: 200px;"
+                        (click)="router.navigate(['/student-information'])">
+                        <div class="flex h-full w-full flex-column align-content-between justify-content-between">
+                            <span class="p-button-label">Personal Info</span>
+                            <i class="pi pi-user p-2 mb-5" style="font-size: 4rem"></i>
+                        </div>
+                    </button>
                 </div>
 
             </div>
             <div class="pl-3  pt-5 grid flex w-full">
-                <span>This week's schedule</span>
+                <span class="font-semibold">This week's schedule</span>
+                <p-table [value]="schedule" [tableStyle]="{'width': '100%'}" [scrollable]="true" scrollHeight="290px"
+                    class="w-full pt-3 pr-5">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th rowspan="2" style="width: 30%;">Course</th>
+                            <th colspan="3">Schedule</th>
+                        </tr>
+                        <tr>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-item>
+                        <tr>
+                            <td>
+                                <div class="flex flex-column">
+                                    <span>{{item.courseId}}</span>
+                                    <span>{{item.type}} ({{item.id}})</span>
+                                </div>
+                            </td>
+                            <td>                               
+                                <span>{{item.day}}</span>
+                            </td>
+                            <td>                               
+                                <span>{{item.start}} - {{item.end}}</span>
+                            </td>
+                            <td>                               
+                                <span>{{item.location}}</span>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
 
             </div>
         </div>
     </div>
-    <div class="col-4">Auto</div>
+    <div class="col-4">
+        <div class="grid flex h-full">
+            <div class="col-12 flex align-items-start" style="height: fit-content;">
+                <p-virtualScroller [value]="tasks" class="w-full border-2 surface-border border-round-lg pb-1"
+                    [style]="{width: '100%', height: 'fit-content'}" scrollHeight="130px" [itemSize]="50">
+                    <ng-template pTemplate="header">Pending Tasks</ng-template>
+                    <ng-template pTemplate="tasks" let-item>
+                        <div class="flex flex-column justify-content-start p-1 h-full" (click)="dialogClick(item)">
+                            {{ item.name }}
+                            <span class="task-description" style="font-size: small;"> {{ item.description }}</span>
+                        </div>
+                    </ng-template>
+                </p-virtualScroller>
+            </div>
+            <div class="col-12 flex align-items-start" style="height: fit-content;">
+                <p-virtualScroller [value]="announcements" class="w-full border-2 surface-border border-round-lg pb-1"
+                    [style]="{width: '100%', height: 'fit-content'}" scrollHeight="130px" [itemSize]="50">
+                    <ng-template pTemplate="header">Announcements</ng-template>
+                    <ng-template pTemplate="announcements" let-item>
+                        <div class="flex flex-column justify-content-start p-1 h-full" (click)="dialogClick(item)">
+                            {{ item.name }}
+                            <span class="task-description" style="font-size: small;"> {{ item.description }}</span>
+                        </div>
+                    </ng-template>
+                </p-virtualScroller>
+            </div>
+            <div class="col-12 flex align-items-start" style="height: fit-content;">
+                <p-virtualScroller [value]="quickLinks" class="w-full border-2 surface-border border-round-lg pb-1"
+                    [style]="{width: '100%', height: 'fit-content'}" scrollHeight="130px" [itemSize]="50">
+                    <ng-template pTemplate="header">Quick links</ng-template>
+                    <ng-template pTemplate="quickLinks" let-item>
+                        <div class="flex flex-column justify-content-center p-1 h-full" (click)="redirectToUrl(item)">
+                            {{ item.name }}
+                        </div>
+                    </ng-template>
+                </p-virtualScroller>
+            </div>
+        </div>
+        <dialog-modal [isVisible]="dialogOpen" [message]="dialogBody" (onClose)="dialogOpen = false"></dialog-modal>
+    </div>
 </div>

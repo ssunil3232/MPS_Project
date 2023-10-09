@@ -22,4 +22,63 @@
         background: #ebd17e;
         border: 1px solid #e0ae0b;
     }
+
+    ::ng-deep{
+        .p-virtualscroller-header {
+            padding: 8px;
+            background: #e0ae0b;
+            color: #ffffff;
+            position: relative;
+            top: -2px;
+            left: -1.5px;
+            width: 100.5%;
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+        .p-virtualscroller-header:hover {
+            background: #ebd17e;
+            color: #ffffff;
+        }
+
+        .p-scroller-content {
+            width: 100%;
+        }
+
+        .p-virtualscroller-item {
+            border-bottom: solid;
+            border-bottom-color: #f8f6f9;
+        }
+
+        .p-virtualscroller .p-virtualscroller-content {
+            color: #8b99a8;
+        }
+
+        .task-description {
+            width: inherit;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+        .home-body {
+            height: 96%;
+        }
+
+        .p-button-label {
+            flex: none;
+        }
+        .p-datatable .p-datatable-thead > tr > th {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .p-datatable .p-datatable-tbody > tr > td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .p-datatable-wrapper {
+            border: solid;
+            border-radius: 5px;
+            border-color: var(--surface-border)
+        }
+    }
 }

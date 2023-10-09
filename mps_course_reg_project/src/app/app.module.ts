@@ -25,6 +25,10 @@ import { MenuModule } from 'primeng/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
+import { DialogModule } from 'primeng/dialog';
+import { DialogModalComponent } from './common/components/dialog-modal/dialog-modal.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,8 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     LoginComponent,
     RegisterComponent,
     TopNavComponent,
-    SideNavComponent
+    SideNavComponent,
+    DialogModalComponent
   ],
   imports: [
     FormsModule,
@@ -54,7 +59,10 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     ToggleButtonModule,
     DropdownModule,
     MenuModule,
-    MatSidenavModule
+    MatSidenavModule,
+    VirtualScrollerModule,
+    DialogModule,
+    TableModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
