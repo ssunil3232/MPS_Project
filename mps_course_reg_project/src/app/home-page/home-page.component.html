@@ -4,29 +4,29 @@
         <div class="flex flex-column h-full justify-content-evenly">
             <div class="grid flex w-full">
                 <div class="col-4 p-3">
-                    <button pButton pRipple class="p-button-success w-full flex-column" style="height: 200px;"
+                    <button pButton pRipple class="p-button-success w-full flex-column course-catalog" style="height: 200px;"
                         (click)="router.navigate(['/course-catalog'])">
                         <div class="flex h-full w-full flex-column align-content-between justify-content-between">
                             <span class="p-button-label">Course Catalog</span>
-                            <i class="pi pi-book p-2 mb-5" style="font-size: 4rem"></i>
+                            <i class="pi pi-book p-2 mb-5" style="font-size: 4rem; color: white"></i>
                         </div>
                     </button>
                 </div>
                 <div class="col-4 p-3">
-                    <button pButton pRipple class="p-button-success w-full flex-column" style="height: 200px;"
+                    <button pButton pRipple class="p-button-success w-full flex-column registration" style="height: 200px;"
                         (click)="router.navigate(['/registration'])">
                         <div class="flex h-full w-full flex-column align-content-between justify-content-between">
                             <span class="p-button-label">Registration</span>
-                            <i class="pi pi-shopping-cart p-2 mb-5" style="font-size: 4rem"></i>
+                            <i class="pi pi-shopping-cart p-2 mb-5" style="font-size: 4rem; color: white"></i>
                         </div>
                     </button>
                 </div>
                 <div class="col-4 p-3">
-                    <button pButton pRipple class="p-button-success w-full flex-column" style="height: 200px;"
+                    <button pButton pRipple class="p-button-success w-full flex-column personal-info" style="height: 200px;"
                         (click)="router.navigate(['/student-information'])">
                         <div class="flex h-full w-full flex-column align-content-between justify-content-between">
-                            <span class="p-button-label">Personal Info</span>
-                            <i class="pi pi-user p-2 mb-5" style="font-size: 4rem"></i>
+                            <span class="p-button-label">Student Info</span>
+                            <i class="pi pi-user p-2 mb-5" style="font-size: 4rem; color: white"></i>
                         </div>
                     </button>
                 </div>
@@ -81,8 +81,8 @@
     </div>
     <div class="col-4">
         <div class="grid flex h-full">
-            <div class="col-12 flex align-items-start" style="height: fit-content;">
-                <p-virtualScroller [value]="tasks" class="w-full border-2 surface-border border-round-lg pb-1"
+            <div class="col-12 flex align-items-start virtual-scroll-component" style="height: fit-content;">
+                <p-virtualScroller [value]="tasks" class="w-full pb-1"
                     [style]="{width: '100%', height: 'fit-content'}" scrollHeight="130px" [itemSize]="50">
                     <ng-template pTemplate="header">Pending Tasks</ng-template>
                     <ng-template pTemplate="tasks" let-item>
@@ -93,8 +93,8 @@
                     </ng-template>
                 </p-virtualScroller>
             </div>
-            <div class="col-12 flex align-items-start" style="height: fit-content;">
-                <p-virtualScroller [value]="announcements" class="w-full border-2 surface-border border-round-lg pb-1"
+            <div class="col-12 flex align-items-start virtual-scroll-component" style="height: fit-content;">
+                <p-virtualScroller [value]="announcements" class="w-full pb-1"
                     [style]="{width: '100%', height: 'fit-content'}" scrollHeight="130px" [itemSize]="50">
                     <ng-template pTemplate="header">Announcements</ng-template>
                     <ng-template pTemplate="announcements" let-item>
@@ -105,8 +105,8 @@
                     </ng-template>
                 </p-virtualScroller>
             </div>
-            <div class="col-12 flex align-items-start" style="height: fit-content;">
-                <p-virtualScroller [value]="quickLinks" class="w-full border-2 surface-border border-round-lg pb-1"
+            <div class="col-12 flex align-items-start virtual-scroll-component" style="height: fit-content;">
+                <p-virtualScroller [value]="quickLinks" class="w-full pb-1"
                     [style]="{width: '100%', height: 'fit-content'}" scrollHeight="130px" [itemSize]="50">
                     <ng-template pTemplate="header">Quick links</ng-template>
                     <ng-template pTemplate="quickLinks" let-item>

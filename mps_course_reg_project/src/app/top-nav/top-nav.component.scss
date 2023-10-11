@@ -34,5 +34,12 @@
   .p-menubar-start {
     flex-direction: row;
     display: flex;
+    align-items: center;
+  }
+  .p-menubar{
+    background: #B31B1B;
+    color: white;
+    border: none;
+    border-radius: 0px;
   }
 }
