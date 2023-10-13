@@ -1,1 +1,22 @@
-<p>course-catalog works!</p>
+<h1 class="mt-0 ml-1">Search for courses</h1>
+<div class="grid flex w-full home-body">
+    <div class="col-8">
+        <div class="flex flex-column h-full">
+            <div class="grid flex w-full ml-2">
+                <span class="p-input-icon-left w-full">
+                    <i class="pi pi-search"></i>
+                    <input class="w-full search-field" type="text" pInputText [(ngModel)]="searchValue" placeholder="{{searchPlaceholder}}" />
+                </span>
+                <span class="mt-3 text-field flex w-full justify-content-end">{{courseList.size}} Courses found</span>
+                <div class="mt-3 flex w-full" *ngFor="let item of courseList.data">
+                    <course-detail [courseDetail]="item" class="flex w-full"></course-detail>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="grid flex h-full">
+            
+        </div>
+    </div>
+</div>

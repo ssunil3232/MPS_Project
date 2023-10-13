@@ -1,0 +1,27 @@
+:host {
+  width: 100%;
+  height: 100%;
+
+  ::ng-deep {
+    .home-body {
+      height: 96%;
+    }
+
+    .text-field {
+      color:darkgrey;
+      font-size: small;
+    }
+
+    .search-field {
+      background: #ECF1F4 20%;
+      border: none;
+    }
+
+    .p-inputtext:enabled:focus {
+        outline: 0 none;
+        outline-offset: 0;
+        box-shadow: 0 0 0 1px #BFDBFE;
+        border-color: #b9d0f4;
+    }
+  }
+}

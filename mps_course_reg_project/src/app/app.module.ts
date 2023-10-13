@@ -16,6 +16,7 @@ import { StudentInformationComponent } from './student-information/student-infor
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
 import { MenubarModule } from 'primeng/menubar';
 import { SidebarModule } from 'primeng/sidebar';
@@ -29,6 +30,8 @@ import { VirtualScrollerModule } from 'primeng/virtualscroller';
 import { DialogModule } from 'primeng/dialog';
 import { DialogModalComponent } from './common/components/dialog-modal/dialog-modal.component';
 import { TableModule } from 'primeng/table';
+import { CourseDetailComponent } from './course-catalog/course-detail/course-detail.component';
+import { CourseFullDetailComponent } from './course-catalog/course-full-detail/course-full-detail.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import { TableModule } from 'primeng/table';
     RegisterComponent,
     TopNavComponent,
     SideNavComponent,
-    DialogModalComponent
+    DialogModalComponent,
+    CourseDetailComponent,
+    CourseFullDetailComponent
   ],
   imports: [
     FormsModule,
@@ -54,6 +59,7 @@ import { TableModule } from 'primeng/table';
     ButtonModule,
     InputTextModule,
     PasswordModule,
+    PanelModule,
     MenubarModule,
     SidebarModule,
     ToggleButtonModule,
