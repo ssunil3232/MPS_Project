@@ -1,0 +1,23 @@
+<div class="card flex h-full w-full justify-content-center">
+    <div class="flex justify-content-center align-items-center">
+        
+        <div class="flex flex-column">
+            <div class="pb-3 font-bold text-3xl flex justify-content-center">Login</div>
+            <form [formGroup]="loginForm">
+                <div class="flex flex-column gap-2 pb-3">
+                    <label htmlFor="username">Username</label>
+                    <input id="username" pInputText formControlName="username"/>
+                </div>
+                <div class="flex flex-column gap-2 pb-3">
+                    <label htmlFor="password">Password</label>
+                    <p-password formControlName="password" [toggleMask]="true"></p-password>
+                </div>
+            </form>
+            <div class="flex flex-row justify-content-evenly pt-3 relative">
+                <p-button label="Login" [loading]="loading" (onClick)="onSubmit()"></p-button>
+                <p-button id="register" label="Register" routerLink="/register" routerLinkActive="active"></p-button>
+                <p class="text-xs absolute text-600" style="top:-15px; right:-15px;" label="register-help">Don't have an account?</p>
+            </div>
+        </div>
+    </div>
+</div>

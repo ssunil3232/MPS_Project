@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<top-nav [universityName]="userDetails.university" (toggle)="onToggle($event)"></top-nav>
+<div class="app-body flex flex-row w-full">
+    <side-nav [sidebarVisible]="sidebarVisible"></side-nav>
+    <div class="flex w-full h-full p-3 overflow-scroll">
+        <router-outlet></router-outlet>
+    </div>
+</div>

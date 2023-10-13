@@ -1,0 +1,99 @@
+:host {
+  ::ng-deep {
+
+    .p-sidebar-close {
+      visibility: hidden;
+    }
+
+    .line {
+      background-color: var(--surface-border);
+      height: 1px;
+      border: 0;
+      color: var(--surface-border);
+    }
+
+    .breakdown-lecture {
+      width: 50px;
+      height: 20px;
+      background-color: #0085CA;
+      display: inline-block;
+      justify-content: between;
+    }
+
+    .breakdown-assignment {
+      width: 50px;
+      height: 20px;
+      background-color: rgba(#0085CA, 0.5);
+      display: inline-block;
+      justify-content: between;
+    }
+
+    .breakdown-project {
+      width: 50px;
+      height: 20px;
+      background-color: rgba(#0085CA, 0.15);
+      display: inline-block;
+      justify-content: between;
+    }
+
+    .p-sidebar-footer {
+      height: 70px;
+      display: flex;
+      justify-content: end;
+    }
+
+    .p-togglebutton {
+      width: fit-content;
+      font-size: small;
+    }
+    .add-course {
+      .p-togglebutton.p-button.p-highlight {
+        background: transparent;
+        border-color: brown;
+        color: brown;
+      }
+  
+      .p-togglebutton.p-button.p-highlight .p-button-icon-left,
+      .p-togglebutton.p-button.p-highlight .p-button-icon-right {
+        color: brown;
+      }
+  
+      .p-togglebutton.p-button {
+        background: transparent;
+        border-color: #6EB43F;
+        color: #6EB43F;
+      }
+  
+      .p-togglebutton.p-button .p-button-icon-left,
+      .p-togglebutton.p-button .p-button-icon-right {
+        color: #6EB43F;
+      }
+    }
+
+    .wishlist-course {
+      .p-togglebutton.p-button.p-highlight {
+        background: transparent;
+        border-color: rgb(168, 35, 126);
+        color: rgb(168, 35, 126);
+      }
+  
+      .p-togglebutton.p-button.p-highlight .p-button-icon-left,
+      .p-togglebutton.p-button.p-highlight .p-button-icon-right {
+        color: rgb(168, 35, 126);
+      }
+  
+      .p-togglebutton.p-button {
+        background: transparent;
+        border-color: rgb(236, 107, 195);
+        color: rgb(236, 107, 195);
+      }
+  
+      .p-togglebutton.p-button .p-button-icon-left,
+      .p-togglebutton.p-button .p-button-icon-right {
+        color: rgb(236, 107, 195);
+      }
+    }
+    
+
+  }
+}

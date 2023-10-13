@@ -1,0 +1,180 @@
+<p-sidebar [(visible)]="sidebarVisible" position="right" [style]="{width: '50%'}" (onHide)="onDialogClose()">
+    <ng-template pTemplate="header">
+
+        <button class="sidebar-button align-items-center" (click)="onDialogClose()">
+            <span class="subject-code" style="font-size:small; font-weight:800; color:brown;">
+                Hide Details
+            </span>
+            <i class="pi pi-angle-right" style="color:brown;"></i>
+        </button>
+    </ng-template>
+    <div class="flex flex-column w-full">
+        <div class="flex flex-row justify-content-between align-items-center w-full">
+            <div class="flex flex-row">
+                <h1 class="subject-code" style="text-decoration:underline;font-weight: 500;margin:0px;">
+                    {{courseDetail.subjectCode}}
+                </h1>
+                <h1 style="text-decoration:underline;font-weight: 500;margin:0px;">
+                    {{courseDetail.courseCode}}
+                </h1>
+            </div>
+            <div class="flex flex-column align-items-end">
+                <span class="subject-code" style="font-size:small; font-weight:800; text-decoration:underline;">
+                    Syllabi
+                </span>
+                <span style="font-size:small; font-weight:800;">
+                    {{courseDetail.credits}} Credits
+                </span>
+                <span style="font-size:small; font-weight:800;">
+                    {{courseDetail.offered}}
+                </span>
+                &nbsp;
+            </div>
+        </div>
+        <h2 style="margin-top:0px;">
+            {{courseDetail.title}}
+        </h2>
+        <!--course description-->
+        <p-panel header="Course Description" class="flex flex-row w-full" [toggleable]="true">
+            <p style="font-size: small;">
+                {{ courseDetail.description }}
+            </p>
+        </p-panel>
+
+        <h3 style="margin-bottom:0px;">
+            Enrollment Information
+        </h3>
+        <!--lecture details-->
+        <div class="flex flex-row justify-content-between mt-3 grid">
+            <div class="flex flex-row col w-full justify-content-between">
+                <div class="grid flex flex-row w-full">
+                    <div class="flex flex-column col-3">
+                        <span style="font-size:small; font-weight:800;">
+                            {{courseDetail.lectureDetail.prefix}} {{courseDetail.lectureDetail.lectureId}}
+                        </span>
+                        <div style="font-size: smaller;" class="flex flex-row">
+                            <div class="flex align-items-start justify-content-start flex-column">
+                                {{courseDetail.lectureDetail.lecturers}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-column col-3">
+                        <div style="font-size: smaller;" *ngFor="let item of courseDetail.lectureDetail.dayTimes">
+                            <span>{{item.location}}</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-column col-1">
+                        <div style="font-size: smaller;" *ngFor="let item of courseDetail.lectureDetail.dayTimes">
+                            <span>{{item.day}}</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-column col-3">
+                        <div style="font-size: smaller;" *ngFor="let item of courseDetail.lectureDetail.dayTimes">
+                            <span>{{item.startTime}}-{{item.endTime}}</span>
+                        </div>
+                    </div>
+                    <div style="font-size: smaller; color:darkgrey" class="flex align-items-center col-2">
+                        {{courseDetail.lectureDetail.classFormat}} expectation
+                    </div>
+                </div>
+            </div>
+            <div class="flex align-items-center col-fixed justify-content-end m-0 pl-0" style="width: 100px;">
+                <span style="font-size: smaller;">{{checkCapacity(courseDetail.lectureDetail.vacancy,
+                    courseDetail.lectureDetail.capacity)}}</span>
+                &nbsp;
+                <span
+                    [ngClass]="(courseDetail.lectureDetail.vacancy === courseDetail.lectureDetail.capacity) ? 'full-dot' : 'vacancy-dot'"></span>
+            </div>
+        </div>
+        <!--discussion details-->
+        <div class="flex flex-row justify-content-between mt-1 grid">
+            <div class="flex flex-row col w-full justify-content-between">
+                <div class="grid flex flex-row w-full">
+                    <div class="flex flex-column col-3">
+                        <span style="font-size:small; font-weight:800;">
+                            {{courseDetail.discussionDetail.prefix}} {{courseDetail.discussionDetail.discussionId}}
+                        </span>
+                        <div style="font-size: smaller;" class="flex flex-row">
+                            <div class="flex align-items-start justify-content-start flex-column">
+                                {{courseDetail.discussionDetail.lecturers}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-column col-3">
+                        <div style="font-size: smaller;" *ngFor="let item of courseDetail.discussionDetail.dayTimes">
+                            <span>{{item.location}}</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-column col-1">
+                        <div style="font-size: smaller;" *ngFor="let item of courseDetail.discussionDetail.dayTimes">
+                            <span>{{item.day}}</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-column col-3">
+                        <div style="font-size: smaller;" *ngFor="let item of courseDetail.discussionDetail.dayTimes">
+                            <span>{{item.startTime}}-{{item.endTime}}</span>
+                        </div>
+                    </div>
+                    <div style="font-size: smaller; color:darkgrey" class="flex align-items-center col-2">
+                        {{courseDetail.discussionDetail.classFormat}} expectation
+                    </div>
+                </div>
+            </div>
+            <div class="flex align-items-center col-fixed justify-content-end m-0 pl-0" style="width: 100px;">
+                <span style="font-size:smaller;">{{checkCapacity(courseDetail.discussionDetail.vacancy,
+                    courseDetail.discussionDetail.capacity)}}</span>
+                &nbsp;
+                <span
+                    [ngClass]="(courseDetail.discussionDetail.vacancy === courseDetail.discussionDetail.capacity) ? 'full-dot' : 'vacancy-dot'"></span>
+            </div>
+        </div>
+        <hr class="line" width="100%"/>
+        <!--workload breakdown-->
+        <h3 style="margin-bottom:0px;">
+            Workload: {{courseDetail.workload.hours}} Hrs
+        </h3>
+        <div class="flex flex-row mt-3">
+            <!--lecture breakdown-->
+            <div class="flex flex-column">
+                <span style="font-size:small; font-weight:500;">
+                    Lecture
+                </span>
+                <div class="mt-1" style="display: inherit;">
+                    <div *ngFor="let _ of [].constructor(courseDetail.workload.lecture)" class="flex flex-row mr-1">
+                        <div class="breakdown-lecture"></div>
+                    </div>
+                </div>
+                
+            </div>
+            <!--assignment breakdown-->
+            <div class="flex flex-column">
+                <span style="font-size:small; font-weight:500;">
+                    Individual Assignments
+                </span> 
+                <div class="mt-1" style="display: inherit;">
+                    <div *ngFor="let _ of [].constructor(courseDetail.workload.assignment)" class="flex flex-row mr-1">
+                        <div class="breakdown-assignment"></div>
+                    </div>
+                </div>
+
+            </div>
+            <!--project breakdown-->
+            <div class="flex flex-column">
+                <span style="font-size:small; font-weight:500;">
+                    Group Projects
+                </span>
+                <div class="mt-1" style="display: inherit;">
+                    <div *ngFor="let _ of [].constructor(courseDetail.workload.project)" class="flex flex-row mr-1">
+                        <div class="breakdown-project"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-toggleButton [(ngModel)]="wishlisted" offLabel="Add to Wishlist" onLabel="Remove from Wishlist" offIcon="pi pi-heart" onIcon="pi pi-heart-fill" [style]="{ width: 'fit-content' }" class="pr-5 wishlist-course"></p-toggleButton>
+        <p-toggleButton [(ngModel)]="added" offLabel="Add Course to Planner" onLabel="Remove Course from Planner" offIcon="pi pi-calendar-plus" onIcon="pi pi-calendar-times" [style]="{ width: 'fit-content' }" class="add-course"></p-toggleButton>
+    </ng-template>
+</p-sidebar>

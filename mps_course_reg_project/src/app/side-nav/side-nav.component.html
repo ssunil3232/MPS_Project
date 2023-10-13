@@ -1,0 +1,10 @@
+<div class="h-full side-menu" style="height: 90vh;">
+    <p-menu [model]="sidebarVisible ? side_nav_items : side_nav_items_icons"
+        [styleClass]="sidebarVisible ? 'expanding': 'not-expanding'">
+        <ng-template let-item pTemplate="side_nav_items">
+            <div [pTooltip]="item.label" tooltipPosition="right">
+                {{ item.label }}
+            </div>
+        </ng-template>
+    </p-menu>
+</div>
