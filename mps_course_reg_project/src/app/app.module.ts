@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../authentication/helpers/token.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -52,6 +52,7 @@ import { CourseFullDetailComponent } from './course-catalog/course-full-detail/c
   imports: [
     FormsModule,
     BrowserAnimationsModule,
+    FullCalendarModule,
     ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,

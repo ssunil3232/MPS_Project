@@ -1,1 +1,8 @@
-<p>scheduler works!</p>
+<full-calendar [options]="calendarOptions">
+    <ng-template #eventContent let-arg>
+            <span style="font-size: smaller;">{{arg.event.extendedProps.subjectCode}}{{arg.event.extendedProps.courseCode}} {{arg.event.title}}</span><br>
+            <span style="font-size: smaller;">{{arg.event.extendedProps.lectureDetail.prefix}} {{arg.event.extendedProps.lectureDetail.lectureId}}</span>&nbsp;
+            <b style="font-size: small;">{{arg.timeText}}</b>    
+        
+      </ng-template>
+</full-calendar>

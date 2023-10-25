@@ -9,7 +9,7 @@
                 </span>
                 <span class="mt-3 text-field flex w-full justify-content-end">{{courseList.size}} Courses found</span>
                 <div class="mt-3 flex w-full" *ngFor="let item of courseList.data">
-                    <course-detail [courseDetail]="item" class="flex w-full"></course-detail>
+                    <course-detail [courseDetail]="item" class="flex w-full" (addedCourse)="addedCourse($event)" (wishlistedCourse)="wishlistedCourse($event)"></course-detail>
                 </div>
             </div>
         </div>

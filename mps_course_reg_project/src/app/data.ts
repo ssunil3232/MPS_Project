@@ -6,6 +6,7 @@ export const course_catalog = {
             courseCode: "1050",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
+            prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
                 lecture: 2,
@@ -20,15 +21,17 @@ export const course_catalog = {
                 dayTimes: [
                     {
                         day: "Mon",
-                        startTime: "1:15pm",
-                        endTime: "2:15pm",
+                        startTime: "13:15",
+                        endTime: "14:15",
                         location: "Rhodes Hall 185-Aud",
+                        selected: false
                     },
                     {
                         day: "Wed",
-                        startTime: "1:25pm",
-                        endTime: "2:15pm",
+                        startTime: "13:25",
+                        endTime: "14:15",
                         location: "Statler Hall 185-Aud",
+                        selected: true
                     }
                 ],
                 lecturers: ["Susser, D", "Diana, N"],
@@ -42,28 +45,33 @@ export const course_catalog = {
                 dayTimes: [
                     {
                         day: "Tue",
-                        startTime: "10:10am",
-                        endTime: "11:00am",
-                        location: "Hollister Hall 401"
+                        startTime: "10:10",
+                        endTime: "11:00",
+                        location: "Hollister Hall 401",
+                        selected: true
                     },
                     {
                         day: "Thu",
-                        startTime: "10:10am",
-                        endTime: "11:00am",
-                        location: "Hollister Hall 401"
+                        startTime: "10:10",
+                        endTime: "11:00",
+                        location: "Hollister Hall 401",
+                        selected: false
                     }
                 ],
                 lecturers: ["Susser, D", "Vidan, G"],
                 classFormat: "In-person",
                 capacity: 50,
-                vacancy: 50
-            }
+                vacancy: 50,
+            },
+            wishlisted: true,
+            added: false
         },
         {
             subjectCode: "INFO",
             courseCode: "1200",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
+            prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
                 lecture: 2,
@@ -78,15 +86,17 @@ export const course_catalog = {
                 dayTimes: [
                     {
                         day: "Mon",
-                        startTime: "1:25pm",
-                        endTime: "2:15pm",
+                        startTime: "10:25",
+                        endTime: "11:15",
                         location: "Statler Hall 185-Aud",
+                        selected: true
                     },
                     {
                         day: "Wed",
-                        startTime: "1:25pm",
-                        endTime: "2:15pm",
+                        startTime: "15:25",
+                        endTime: "17:15",
                         location: "Statler Hall 185-Aud",
+                        selected: true
                     }
                 ],
                 lecturers: ["Susser, D", "Vidan, G"],
@@ -99,29 +109,34 @@ export const course_catalog = {
                 discussionId: "201",
                 dayTimes: [
                     {
-                        day: "Tue",
-                        startTime: "10:10am",
-                        endTime: "11:00am",
-                        location: "Hollister Hall 401"
+                        day: "Wed",
+                        startTime: "10:10",
+                        endTime: "11:00",
+                        location: "Hollister Hall 401",
+                        selected: true
                     },
                     {
-                        day: "Thu",
-                        startTime: "10:10am",
-                        endTime: "11:00am",
-                        location: "Hollister Hall 401"
+                        day: "Fri",
+                        startTime: "10:10",
+                        endTime: "11:00",
+                        location: "Hollister Hall 401",
+                        selected: false
                     }
                 ],
                 lecturers: ["Melody, B", "Vidan, G"],
                 classFormat: "In-person",
                 capacity: 50,
                 vacancy: 50
-            }
+            },
+            wishlisted: false,
+            added: false
         },
         {
             subjectCode: "INFO",
             courseCode: "1200",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
+            prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
                 lecture: 2,
@@ -136,15 +151,17 @@ export const course_catalog = {
                 dayTimes: [
                     {
                         day: "Mon",
-                        startTime: "1:25pm",
-                        endTime: "2:15pm",
+                        startTime: "13:25",
+                        endTime: "14:15",
                         location: "Statler Hall 185-Aud",
+                        selected: true
                     },
                     {
                         day: "Wed",
-                        startTime: "1:25pm",
-                        endTime: "2:15pm",
+                        startTime: "13:25",
+                        endTime: "14:15",
                         location: "Statler Hall 185-Aud",
+                        selected: true
                     }
                 ],
                 lecturers: ["Susser, D", "Vidan, G"],
@@ -158,28 +175,33 @@ export const course_catalog = {
                 dayTimes: [
                     {
                         day: "Tue",
-                        startTime: "10:10am",
-                        endTime: "11:00am",
-                        location: "Hollister Hall 401"
+                        startTime: "10:10",
+                        endTime: "11:00",
+                        location: "Hollister Hall 401",
+                        selected: true
                     },
                     {
                         day: "Thu",
-                        startTime: "10:10am",
-                        endTime: "11:00am",
-                        location: "Hollister Hall 401"
+                        startTime: "10:10",
+                        endTime: "11:00",
+                        location: "Hollister Hall 401",
+                        selected: false
                     }
                 ],
                 lecturers: ["Susser, D", "Vidan, G"],
                 classFormat: "In-person",
                 capacity: 50,
                 vacancy: 50
-            }
+            },
+            wishlisted: false,
+            added: false
         },
         {
             subjectCode: "INFO",
             courseCode: "1250",
             title: "Computer Graphics",
             credits: 3,
+            prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
                 lecture: 2,
@@ -194,15 +216,17 @@ export const course_catalog = {
                 dayTimes: [
                     {
                         day: "Mon",
-                        startTime: "1:25pm",
-                        endTime: "2:15pm",
+                        startTime: "13:25",
+                        endTime: "14:15",
                         location: "Statler Hall 185-Aud",
+                        selected: true
                     },
                     {
                         day: "Wed",
-                        startTime: "1:25pm",
-                        endTime: "2:15pm",
+                        startTime: "13:25",
+                        endTime: "14:15",
                         location: "Statler Hall 185-Aud",
+                        selected: true
                     }
                 ],
                 lecturers: ["Susser, D", "Vidan, G"],
@@ -216,22 +240,26 @@ export const course_catalog = {
                 dayTimes: [
                     {
                         day: "Tue",
-                        startTime: "10:10am",
-                        endTime: "11:00am",
-                        location: "Hollister Hall 401"
+                        startTime: "15:10",
+                        endTime: "16:00",
+                        location: "Hollister Hall 401",
+                        selected: true
                     },
                     {
                         day: "Thu",
-                        startTime: "10:10am",
-                        endTime: "11:00am",
-                        location: "Hollister Hall 401"
+                        startTime: "15:10",
+                        endTime: "16:00",
+                        location: "Hollister Hall 401",
+                        selected: false
                     }
                 ],
                 lecturers: ["Susser, D", "Vidan, G"],
                 classFormat: "In-person",
                 capacity: 50,
                 vacancy: 50
-            }
+            },
+            wishlisted: false,
+            added: false
         }
     ]
 }

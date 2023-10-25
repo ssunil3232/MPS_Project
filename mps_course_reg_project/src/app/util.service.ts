@@ -9,6 +9,14 @@ export class UtilService {
 
   user:any;
 
+  public saveDataLocal(key:string, value:string){
+    localStorage.setItem(key, value);
+  }
+
+  public getDataLocal(key:string){
+    return localStorage.getItem(key);
+  }
+
   getUserInfo(){
     this.user = {
       name: "Claire",

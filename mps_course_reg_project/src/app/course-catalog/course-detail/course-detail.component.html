@@ -32,7 +32,9 @@
                 </span> -->
                 <i class="pi pi-angle-right" style="color: darkgrey;"></i>
             </button>
-            <course-full-detail [sidebarVisible]="sidebarVisible" [courseDetail]="courseDetail" (onClose)="sidebarVisible = false"></course-full-detail>
+            <course-full-detail [sidebarVisible]="sidebarVisible" [courseDetail]="courseDetail"
+                (onWishlistChange)="onWishlistChange($event)" (onAddChange)="onAddChange($event)"
+                (onClose)="sidebarVisible = false"></course-full-detail>
         </div>
     </div>
     <div class="flex flex-row w-full pr-4" style="font-size: small;">

@@ -40,6 +40,12 @@
                 {{ courseDetail.description }}
             </p>
         </p-panel>
+        <h3>
+            Prerequisites
+        </h3>
+        <span style="font-size:small; font-weight:600;">
+            {{courseDetail.prerequisites}}
+        </span>
 
         <h3 style="margin-bottom:0px;">
             Enrollment Information
@@ -174,7 +180,7 @@
         </div>
     </div>
     <ng-template pTemplate="footer">
-        <p-toggleButton [(ngModel)]="wishlisted" offLabel="Add to Wishlist" onLabel="Remove from Wishlist" offIcon="pi pi-heart" onIcon="pi pi-heart-fill" [style]="{ width: 'fit-content' }" class="pr-5 wishlist-course"></p-toggleButton>
-        <p-toggleButton [(ngModel)]="added" offLabel="Add Course to Planner" onLabel="Remove Course from Planner" offIcon="pi pi-calendar-plus" onIcon="pi pi-calendar-times" [style]="{ width: 'fit-content' }" class="add-course"></p-toggleButton>
+        <p-toggleButton (onChange)="addRemoveWishlist()" [(ngModel)]="wishlisted" offLabel="Add to Wishlist" onLabel="Remove from Wishlist" offIcon="pi pi-heart" onIcon="pi pi-heart-fill" [style]="{ width: 'fit-content' }" class="pr-5 wishlist-course"></p-toggleButton>
+        <p-toggleButton (onChange)="addRemoveCourse()" [(ngModel)]="added" offLabel="Add Course to Planner" onLabel="Remove Course from Planner" offIcon="pi pi-calendar-plus" onIcon="pi pi-calendar-times" [style]="{ width: 'fit-content' }" class="add-course"></p-toggleButton>
     </ng-template>
 </p-sidebar>
