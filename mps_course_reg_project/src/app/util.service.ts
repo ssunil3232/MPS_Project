@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,11 @@ export class UtilService {
       ]
     }
     return this.user;
+  }
+
+  formatTime(item:any){
+    let newItem = moment(item, "HH:mm").format('h:mma');
+    return newItem
   }
 }
 

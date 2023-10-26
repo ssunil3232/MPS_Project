@@ -21,15 +21,15 @@ export const course_catalog = {
                 dayTimes: [
                     {
                         day: "Mon",
-                        startTime: "13:15",
+                        startTime: "13:25",
                         endTime: "14:15",
-                        location: "Rhodes Hall 185-Aud",
-                        selected: false
+                        location: "Statler Hall 185-Aud",
+                        selected: true
                     },
                     {
                         day: "Wed",
                         startTime: "13:25",
-                        endTime: "14:15",
+                        endTime: "14:25",
                         location: "Statler Hall 185-Aud",
                         selected: true
                     }
@@ -93,8 +93,8 @@ export const course_catalog = {
                     },
                     {
                         day: "Wed",
-                        startTime: "15:25",
-                        endTime: "17:15",
+                        startTime: "10:25",
+                        endTime: "11:15",
                         location: "Statler Hall 185-Aud",
                         selected: true
                     }

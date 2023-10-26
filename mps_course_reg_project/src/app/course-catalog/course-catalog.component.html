@@ -1,22 +1,61 @@
-<h1 class="mt-0 ml-1">Search for courses</h1>
 <div class="grid flex w-full home-body">
-    <div class="col-8">
+    <div class="col-9">
+        <h1 class="mt-0 ml-1">Search for courses</h1>
         <div class="flex flex-column h-full">
             <div class="grid flex w-full ml-2">
                 <span class="p-input-icon-left w-full">
                     <i class="pi pi-search"></i>
-                    <input class="w-full search-field" type="text" pInputText [(ngModel)]="searchValue" placeholder="{{searchPlaceholder}}" />
+                    <input class="w-full search-field" type="text" pInputText [(ngModel)]="searchValue"
+                        placeholder="{{searchPlaceholder}}" />
                 </span>
                 <span class="mt-3 text-field flex w-full justify-content-end">{{courseList.size}} Courses found</span>
                 <div class="mt-3 flex w-full" *ngFor="let item of courseList.data">
-                    <course-detail [courseDetail]="item" class="flex w-full" (addedCourse)="addedCourse($event)" (wishlistedCourse)="wishlistedCourse($event)"></course-detail>
+                    <course-detail [courseDetail]="item" class="flex w-full" (addedCourse)="addedCourse($event)"
+                        (wishlistedCourse)="wishlistedCourse($event)"></course-detail>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-4">
-        <div class="grid flex h-full">
-            
+    <div class="col-3">
+        <div class="main-filter">
+            <span class="pl-2" style="font-weight: 600;">Refine By</span>
+            <p-button label="Clear All" (onClick)="clearAll()" styleClass="p-button-secondary p-button-text no-ripple"></p-button>
+        </div>
+        <div class="grid flex h-full" style="width: 100%;">
+            <p-accordion [activeIndex]="0" class="filter-accordian pl-3">
+                <li *ngFor="let item of items" style="list-style-type: none;">
+                    <p-accordionTab>
+                        <ng-template pTemplate="header">
+                            <div class="flex align-items-center">
+                                <span class="vertical-align-middle">{{item.label}}</span>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="content">
+                            <ng-container *ngIf="item.options.length === 0">
+                                <p-autoComplete [(ngModel)]="item.selectedGroup" [suggestions]="instructors"
+                                    (completeMethod)="searchInstructors($event)" (onSelect)="filterChanged(item)"
+                                    (onClear)="filterChanged(item)" placeholder="Enter {{item.label}}"></p-autoComplete>
+                            </ng-container>
+                            <ng-container *ngIf="item.options.length !== 0">
+                                <div class="flex flex-row">
+                                    <p-checkbox class="pr-2" [(ngModel)]="item.selectAllItems" [binary]="true"
+                                        inputId="binary" (onChange)="selectAll(item)"></p-checkbox>
+                                    <p-chips [(ngModel)]="item.selectedGroup" field="code" class="filter-chips"
+                                        (onAdd)="onAddRemoveChip(item)" (onRemove)="onAddRemoveChip(item)"></p-chips>
+                                </div>
+
+                                <div class="pt-3">
+                                    <div *ngFor="let opt of item.options" class="field-checkbox">
+                                        <p-checkbox name="group" [value]="opt" [(ngModel)]="item.selectedGroup"
+                                            [inputId]="opt.code" (onChange)="filterChanged(item)"></p-checkbox>
+                                        <label [for]="opt.code">{{ opt.name }}</label>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-template>
+                    </p-accordionTab>
+                </li>
+            </p-accordion>
         </div>
     </div>
 </div>

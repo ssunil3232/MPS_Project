@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { UtilService } from 'src/app/util.service';
 
 @Component({
   selector: 'course-full-detail',
@@ -13,6 +14,8 @@ export class CourseFullDetailComponent implements OnChanges {
   @Input() courseDetail: any;
   added: boolean = false;
   wishlisted: boolean = false;
+
+  constructor(public util:UtilService){}
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes){

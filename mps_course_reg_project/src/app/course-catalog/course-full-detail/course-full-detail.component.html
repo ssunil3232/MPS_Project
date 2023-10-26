@@ -76,7 +76,7 @@
                     </div>
                     <div class="flex flex-column col-3">
                         <div style="font-size: smaller;" *ngFor="let item of courseDetail.lectureDetail.dayTimes">
-                            <span>{{item.startTime}}-{{item.endTime}}</span>
+                            <span>{{util.formatTime(item.startTime)}}-{{util.formatTime(item.endTime)}}</span>
                         </div>
                     </div>
                     <div style="font-size: smaller; color:darkgrey" class="flex align-items-center col-2">
@@ -118,7 +118,7 @@
                     </div>
                     <div class="flex flex-column col-3">
                         <div style="font-size: smaller;" *ngFor="let item of courseDetail.discussionDetail.dayTimes">
-                            <span>{{item.startTime}}-{{item.endTime}}</span>
+                            <span>{{util.formatTime(item.startTime)}}-{{util.formatTime(item.endTime)}}</span>
                         </div>
                     </div>
                     <div style="font-size: smaller; color:darkgrey" class="flex align-items-center col-2">

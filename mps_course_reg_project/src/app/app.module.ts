@@ -32,6 +32,12 @@ import { DialogModalComponent } from './common/components/dialog-modal/dialog-mo
 import { TableModule } from 'primeng/table';
 import { CourseDetailComponent } from './course-catalog/course-detail/course-detail.component';
 import { CourseFullDetailComponent } from './course-catalog/course-full-detail/course-full-detail.component';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { AccordionModule } from 'primeng/accordion';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ChipsModule } from 'primeng/chips';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [
@@ -69,6 +75,12 @@ import { CourseFullDetailComponent } from './course-catalog/course-full-detail/c
     MatSidenavModule,
     VirtualScrollerModule,
     DialogModule,
+    MultiSelectModule,
+    PanelMenuModule,
+    AccordionModule,
+    AutoCompleteModule,
+    CheckboxModule,
+    ChipsModule,
     TableModule
   ],
   providers: [

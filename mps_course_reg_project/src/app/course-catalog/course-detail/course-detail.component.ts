@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'course-detail',
@@ -22,6 +23,11 @@ export class CourseDetailComponent implements OnChanges{
 
   onWishlistChange(event:any){
     this.wishlistedCourse.emit(event);
+  }
+
+  formatTime(item:any){
+    let newItem = moment(item, "HH:mm").format('h:mma');
+    return newItem
   }
 
 
