@@ -19,6 +19,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
 import { MenubarModule } from 'primeng/menubar';
+import { TabMenuModule } from 'primeng/tabmenu';
 import { SidebarModule } from 'primeng/sidebar';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DropdownModule } from 'primeng/dropdown';
@@ -36,8 +37,17 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { AccordionModule } from 'primeng/accordion';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ChipsModule } from 'primeng/chips';
+import { CardModule } from 'primeng/card';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ScheduleCardComponent } from './registration/schedule-card/schedule-card.component';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { RegisteredCardComponent } from './registration/registered-card/registered-card.component';
+import { WaitlistedCardComponent } from './registration/waitlisted-card/waitlisted-card.component';
+import { RegistrationHelperComponent } from './registration/registration-helper/registration-helper.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +63,11 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     SideNavComponent,
     DialogModalComponent,
     CourseDetailComponent,
-    CourseFullDetailComponent
+    CourseFullDetailComponent,
+    ScheduleCardComponent,
+    RegisteredCardComponent,
+    WaitlistedCardComponent,
+    RegistrationHelperComponent
   ],
   imports: [
     FormsModule,
@@ -69,9 +83,14 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     PanelModule,
     MenubarModule,
     SidebarModule,
+    TabMenuModule,
     ToggleButtonModule,
     DropdownModule,
     MenuModule,
+    ConfirmDialogModule,
+    CardModule,
+    ToastModule,
+    MessagesModule,
     MatSidenavModule,
     VirtualScrollerModule,
     DialogModule,
@@ -85,6 +104,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    MessageService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

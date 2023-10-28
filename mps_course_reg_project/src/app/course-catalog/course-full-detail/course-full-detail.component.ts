@@ -8,6 +8,7 @@ import { UtilService } from 'src/app/util.service';
 })
 export class CourseFullDetailComponent implements OnChanges {
   @Input() sidebarVisible: boolean = false;
+  @Input() showAddButton?: boolean = true;
   @Output() onClose = new EventEmitter<any>();
   @Output() onWishlistChange = new EventEmitter<any>();
   @Output() onAddChange = new EventEmitter<any>();

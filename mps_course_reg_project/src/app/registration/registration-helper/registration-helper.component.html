@@ -1,0 +1,58 @@
+<p-sidebar [(visible)]="sidebarVisible" position="right" [style]="{width: '50%'}" (onHide)="onDialogClose()">
+    <ng-template pTemplate="header">
+
+        <button class="sidebar-button align-items-center" (click)="onDialogClose()">
+            <span class="subject-code" style="font-size:small; font-weight:800; color:brown;">
+                Hide Help Page
+            </span>
+            <i class="pi pi-angle-right" style="color:brown;"></i>
+        </button>
+    </ng-template>
+    <div class="flex flex-column w-full">
+        <div class="flex flex-row justify-content-start align-items-center w-full">
+            <h1 style="margin-top: 0px; color: black;">Registration Help Page</h1>
+        </div>
+        <h3>Enrollment</h3>
+        <div class="pb-5 text-xs">
+            Use <a href="http://studentcenter.cornell.edu/">Student Center</a> to request classes for the upcoming semester during your three-day pre-enrollment appointment, 
+            and to add, drop or swap classes for the current semester during the add/drop period. For detailed instructions see 
+            how to <a href="https://registrar.cornell.edu/sites/registrar/files/Related-files/Add%20a%20Class_3.pdf">add a class</a>, or 
+            <a href="https://registrar.cornell.edu/sites/registrar/files/Related-files/How%20to%20Make%20Changes%20to%20Your%20Class%20Requests_0.pdf">make changes to your class requests</a>.
+        </div>
+        <p-panel header="Choose your classes" class="flex flex-column w-full" [toggleable]="true">
+            <p style="font-size: small;">
+                If you are a new student enrolling over the summer, follow the guidelines sent by your college about choosing classes. You will have an opportunity to meet with your advisor when you arrive on campus.
+            </p>
+            <p style="font-size: small;">
+                Continuing students enrolling during the fall or spring semester for the next semester should contact their advisors. Advisors approach course enrollment and add/drop differently. 
+                Some may want to work with you to enter classes, others may want you to have already entered your class requests before you see them. Be sure that you know your advisor's preferences.
+            </p>
+        </p-panel>
+        <p-panel header="Enroll through Student Center" [collapsed]="true" class="flex flex-column w-full" [toggleable]="true">
+            <p style="font-size: small;">
+                If you are a new student enrolling over the summer, follow the guidelines sent by your college about choosing classes. You will have an opportunity to meet with your advisor when you arrive on campus.
+            </p>
+            <p style="font-size: small;">
+                Continuing students enrolling during the fall or spring semester for the next semester should contact their advisors. Advisors approach course enrollment and add/drop differently. 
+                Some may want to work with you to enter classes, others may want you to have already entered your class requests before you see them. Be sure that you know your advisor's preferences.
+            </p>
+        </p-panel>
+        <p-panel header="Make changes to your class requests" [collapsed]="true" class="flex flex-column w-full" [toggleable]="true">
+            <p style="font-size: small;">
+                If you are a new student enrolling over the summer, follow the guidelines sent by your college about choosing classes. You will have an opportunity to meet with your advisor when you arrive on campus.
+            </p>
+            <p style="font-size: small;">
+                Continuing students enrolling during the fall or spring semester for the next semester should contact their advisors. Advisors approach course enrollment and add/drop differently. 
+                Some may want to work with you to enter classes, others may want you to have already entered your class requests before you see them. Be sure that you know your advisor's preferences.
+            </p>
+        </p-panel>
+        <h3>Important Tips</h3>
+        <div class="pb-5 text-xs">
+            <li>Plan your semester in advance using the <a href="https://classes.cornell.edu/scheduler">Scheduler</a> tool in Class Roster. Review your proposed schedule with your advisor.</li>
+            <li>During your enrollment appointment, submit your enrollment requests through Student Center.</li>
+            <li>Do not log in to Student Center from multiple windows, browsers, or multiple devices; doing so may terminate your browser sessions.</li>
+            <li>Clear your browser cache, quit the browser and all windows, and clear any saved credentials before pre-enrolling. Visit <a href="https://it.cornell.edu/security-and-policy/clear-your-browser-cookies-cache-and-history">IT Service's website</a> if you need help clearing your cache.</li>
+            <li>Complete all necessary steps to add your course requests. In "Step 3: View Results," a green check mark in the "Status" column indicates successful enrollment.</li>
+        </div>
+    </div>
+</p-sidebar>

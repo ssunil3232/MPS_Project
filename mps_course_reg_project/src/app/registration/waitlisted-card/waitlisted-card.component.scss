@@ -1,0 +1,58 @@
+:host {
+    ::ng-deep {
+      .subject-code {
+        color: #0085CA;
+      }
+  
+      .transparent-button {
+        background: transparent !important;
+        border: none !important;
+        outline: none !important;
+        color: #7e7a7a;
+      }
+  
+      .p-button.p-button-icon-only {
+        color: #7e7a7a;
+        width: 2rem;
+        height: 2rem;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        //margin-top: 0.4rem;
+      }
+  
+      .p-dialog .p-dialog-footer button {
+        color: black
+      }
+  
+      .vacancy-dot {
+        height: 13px;
+        width: 13px;
+        background-color: #48d336;
+        border-radius: 50%;
+        display: inline-block;
+      }
+  
+      .full-dot {
+        height: 13px;
+        width: 13px;
+        background-color: #d81818;
+        border-radius: 50%;
+        display: inline-block;
+      }
+  
+      .sidebar-button {
+        background: transparent;
+        outline: none;
+        border: none;
+        cursor: pointer;
+      }
+  
+      .course-detail {
+        border: 1px solid var(--surface-border);
+        padding-left: 13px;
+        padding-right: 13px;
+        border-radius: 5px;
+      }
+    }
+  }
+  

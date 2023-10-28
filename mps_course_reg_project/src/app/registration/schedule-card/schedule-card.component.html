@@ -1,0 +1,129 @@
+<div class="course-detail flex flex-column w-full">
+
+    <div class="flex flex-row justify-content-between align-items-center w-full">
+        <div class="flex flex-row">
+            <p-checkbox name="group" [value]="courseDetail" [(ngModel)]="courseSelected"
+            [binary]="true" inputId="binary" (onChange)="courseSelect(courseDetail)" class="pr-2"></p-checkbox>
+            <h3 class="subject-code" style="text-decoration:underline;">
+                {{courseDetail.subjectCode}}
+            </h3>
+            <h3 style="text-decoration:underline;">
+                {{courseDetail.courseCode}}
+            </h3>
+            &nbsp;&nbsp;
+            <h3>
+                {{courseDetail.title}}
+            </h3>
+        </div>
+        <div>
+            <span style="font-size:small; font-weight:800;">
+                {{courseDetail.credits}} Credits
+            </span>
+            &nbsp;
+            |
+            &nbsp;
+            <span style="font-size:small; font-weight:800;">
+                {{courseDetail.offered}}
+            </span>
+            &nbsp;
+            <!-- <span (click)="openFullDetail()" class="subject-code" style="font-size:small; font-weight:800; text-decoration:underline;">
+                    Syllabi
+                </span> -->
+            <button class="sidebar-button" (click)="openFullDetail()">
+                <!-- <span class="subject-code" style="font-size:small; font-weight:800; text-decoration:underline;">
+                        Syllabi
+                    </span> -->
+                <i class="pi pi-angle-right" style="color: darkgrey;"></i>
+            </button>
+            <course-full-detail [sidebarVisible]="sidebarVisible" [courseDetail]="courseDetail"
+                (onClose)="sidebarVisible = false" [showAddButton]="false"></course-full-detail>
+        </div>
+    </div>
+
+    <!--lecture details-->
+    <div class="flex flex-row justify-content-between mt-3 grid">
+        <div class="flex flex-row col w-full justify-content-between">
+            <div class="grid flex flex-row w-full">
+                <div class="flex flex-column col-3">
+                    <span style="font-size:small; font-weight:800;">
+                        {{courseDetail.lectureDetail.prefix}} {{courseDetail.lectureDetail.lectureId}}
+                    </span>
+                    <div style="font-size: smaller;" class="flex flex-row">
+                        <div class="flex align-items-start justify-content-start flex-column">
+                            {{courseDetail.lectureDetail.lecturers}}
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-column col-3">
+                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.lectureDetail.dayTimes">
+                        <span>{{item.location}}</span>
+                    </div>
+                </div>
+                <div class="flex flex-column col-1">
+                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.lectureDetail.dayTimes">
+                        <span>{{item.day}}</span>
+                    </div>
+                </div>
+                <div class="flex flex-column col-3">
+                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.lectureDetail.dayTimes">
+                        <span>{{formatTime(item.startTime)}}-{{formatTime(item.endTime)}}</span>
+                    </div>
+                </div>
+                <div style="font-size: smaller; color:darkgrey" class="flex align-items-center col-2">
+                    {{courseDetail.lectureDetail.classFormat}} expectation
+                </div>
+            </div>
+        </div>
+        <div class="flex align-items-center col-fixed justify-content-end m-0 pl-0" style="width: 100px;">
+            <span style="font-size: smaller;">{{checkCapacity(courseDetail.lectureDetail.vacancy,
+                courseDetail.lectureDetail.capacity)}}</span>
+            &nbsp;
+            <span
+                [ngClass]="(courseDetail.lectureDetail.vacancy === courseDetail.lectureDetail.capacity) ? 'full-dot' : 'vacancy-dot'"></span>
+        </div>
+    </div>
+    <!--discussion details-->
+    <div class="flex flex-row justify-content-between mt-1 grid">
+        <div class="flex flex-row col w-full justify-content-between">
+            <div class="grid flex flex-row w-full">
+                <div class="flex flex-column col-3">
+                    <span style="font-size:small; font-weight:800;">
+                        {{courseDetail.discussionDetail.prefix}} {{courseDetail.discussionDetail.discussionId}}
+                    </span>
+                    <div style="font-size: smaller;" class="flex flex-row">
+                        <div class="flex align-items-start justify-content-start flex-column">
+                            {{courseDetail.discussionDetail.lecturers}}
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-column col-3">
+                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.discussionDetail.dayTimes">
+                        <span>{{item.location}}</span>
+                    </div>
+                </div>
+                <div class="flex flex-column col-1">
+                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.discussionDetail.dayTimes">
+                        <span>{{item.day}}</span>
+                    </div>
+                </div>
+                <div class="flex flex-column col-3">
+                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.discussionDetail.dayTimes">
+                        <span>{{formatTime(item.startTime)}}-{{formatTime(item.endTime)}}</span>
+                    </div>
+                </div>
+                <div style="font-size: smaller; color:darkgrey" class="flex align-items-center col-2">
+                    {{courseDetail.discussionDetail.classFormat}} expectation
+                </div>
+            </div>
+        </div>
+        <div class="flex align-items-center col-fixed justify-content-end m-0 pl-0" style="width: 100px;">
+            <span style="font-size:smaller;">{{checkCapacity(courseDetail.discussionDetail.vacancy,
+                courseDetail.discussionDetail.capacity)}}</span>
+            &nbsp;
+            <span
+                [ngClass]="(courseDetail.discussionDetail.vacancy === courseDetail.discussionDetail.capacity) ? 'full-dot' : 'vacancy-dot'"></span>
+        </div>
+
+    </div>
+
+</div>
