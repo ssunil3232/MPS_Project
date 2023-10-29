@@ -6,7 +6,8 @@ export const course_catalog = {
             courseCode: "1050",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
-            prerequisites: ["INFO 3200", "INFO 2001"],
+            restrictions: ["CIS"],
+            prerequisites: ["INFO 3200 and INFO 1100", "INFO 2001"],
             workload: {
                 hours: 10,
                 lecture: 2,
@@ -71,7 +72,8 @@ export const course_catalog = {
             courseCode: "1200",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
-            prerequisites: ["INFO 3200", "INFO 2001"],
+            restrictions: ["CIS", "MENG"],
+            prerequisites: ["INFO 3200 and INFO 2500", "INFO 2001"],
             workload: {
                 hours: 10,
                 lecture: 2,
@@ -136,6 +138,7 @@ export const course_catalog = {
             courseCode: "1200",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
+            restrictions: ["MENG"],
             prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
@@ -201,6 +204,7 @@ export const course_catalog = {
             courseCode: "1250",
             title: "Computer Graphics",
             credits: 3,
+            restrictions: ["CIS", "MENG"],
             prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
@@ -271,7 +275,8 @@ export const user_schedules:any = {
             courseCode: "1050",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
-            prerequisites: ["INFO 3200", "INFO 2001"],
+            restrictions: ["CIS"],
+            prerequisites: ["INFO 3200 and INFO 1100", "INFO 2001"],
             workload: {
                 hours: 10,
                 lecture: 2,
@@ -336,7 +341,8 @@ export const user_schedules:any = {
             courseCode: "1200",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
-            prerequisites: ["INFO 3200", "INFO 2001"],
+            restrictions: ["CIS", "MENG"],
+            prerequisites: ["INFO 3200 and INFO 2500", "INFO 2001"],
             workload: {
                 hours: 10,
                 lecture: 2,
@@ -401,6 +407,7 @@ export const user_schedules:any = {
             courseCode: "1200",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
+            restrictions: ["MENG"],
             prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
@@ -466,6 +473,7 @@ export const user_schedules:any = {
             courseCode: "1250",
             title: "Computer Graphics",
             credits: 3,
+            restrictions: ["CIS"],
             prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
@@ -533,6 +541,7 @@ export const user_schedules:any = {
             courseCode: "1050",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
+            restrictions: ["CIS"],
             prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
@@ -598,6 +607,7 @@ export const user_schedules:any = {
             courseCode: "1200",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
+            restrictions: ["CIS"],
             prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
@@ -665,6 +675,7 @@ export const user_schedules:any = {
             courseCode: "1200",
             title: "Information, Ethics, Law, and Policy",
             credits: 3,
+            restrictions: ["CIS"],
             prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
@@ -730,6 +741,7 @@ export const user_schedules:any = {
             courseCode: "1250",
             title: "Computer Graphics",
             credits: 3,
+            restrictions: ["CIS"],
             prerequisites: ["INFO 3200", "INFO 2001"],
             workload: {
                 hours: 10,
@@ -1003,7 +1015,10 @@ export const registration_course:any = [
     },
     {
         status: "unsuccess",
-        message: "You do not meet the prerequisite for the course. Please contact the professor.",
+        message: [
+            "You do not meet the prerequisite for the course. Please contact the professor.",
+            "This course is restricted to CIS Students."
+        ],
         data: [
             {
                 subjectCode: "INFO",

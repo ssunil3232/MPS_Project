@@ -5,6 +5,18 @@
       visibility: hidden;
     }
 
+    .p-inline-message.p-inline-message-info {
+      width: 100%;
+      justify-content: start;
+      background: #F8981D;
+      border: none;
+      color: white;
+    }
+
+    .p-inline-message-icon{
+      color: white;
+    }
+
     .line {
       background-color: var(--surface-border);
       height: 1px;

@@ -15,6 +15,9 @@ export class CourseFullDetailComponent implements OnChanges {
   @Input() courseDetail: any;
   added: boolean = false;
   wishlisted: boolean = false;
+  meetsPrereq: boolean = false;
+  meetsRestrictions: boolean = false;
+  restrictionMessage:any;
 
   constructor(public util:UtilService){}
 
@@ -23,6 +26,8 @@ export class CourseFullDetailComponent implements OnChanges {
       let courseD = this.courseDetail;
       this.added = courseD.added;
       this.wishlisted = courseD.wishlisted;
+      this.checkingPrerequisite();
+      this.checkRestrictions();
     }
   }
 
@@ -37,6 +42,40 @@ export class CourseFullDetailComponent implements OnChanges {
     }
     else 
       return a+"/"+b+" Open";
+  }
+
+  checkingPrerequisite(){
+    let user:any = this.util.getUserInfo();
+    let coursesTaken:any = user.coursesTaken;
+    let coursePrerequisite:any = this.courseDetail.prerequisites;
+    let containsBoth = true;
+    let containsItem = true;
+    for(let i=0; i<coursePrerequisite.length; i++){
+      let item:any = coursePrerequisite[i];
+      if (item.includes('and')) {
+        const elements = item.split('and').map((it:any) => it.trim());
+        containsBoth = elements.every((it:any) => coursesTaken.includes(it));
+      }
+      else {
+        containsItem = coursesTaken.includes(item);
+      }
+    }
+    if(containsBoth || containsItem)
+      this.meetsPrereq = true;
+  }
+
+  checkRestrictions(){
+    let user:any = this.util.getUserInfo();
+    let department:any = user.department;
+    let courseRestriction:any = this.courseDetail.restrictions;
+    this.restrictionMessage = "This course is only for "+courseRestriction+ " students."
+    for(let i=0; i<courseRestriction?.length; i++){
+      let item:any = courseRestriction[i];
+      if(item === department){
+        this.meetsRestrictions = true;
+        break;
+      }
+    }
   }
 
   addRemoveWishlist(){

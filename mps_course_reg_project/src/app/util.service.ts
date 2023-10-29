@@ -22,7 +22,9 @@ export class UtilService {
     this.user = {
       name: "Claire",
       course: "MPS Information Science",
+      department: "CIS",
       university: "Cornell University",
+      coursesTaken: ["INFO 3200", "INFO 2500"],
       registrationStartDateTime: "2023-08-27 07:30:00",
       registrationEndDateTime: "2023-12-02 07:30:00",
       registeredClasses: [

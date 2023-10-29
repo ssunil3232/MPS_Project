@@ -42,6 +42,7 @@ import { ChipsModule } from 'primeng/chips';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ScheduleCardComponent } from './registration/schedule-card/schedule-card.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -91,6 +92,7 @@ import { WeeklyScheduleComponent } from './home-page/weekly-schedule/weekly-sche
     MenuModule,
     ConfirmDialogModule,
     CardModule,
+    MessageModule,
     ToastModule,
     MessagesModule,
     MatSidenavModule,

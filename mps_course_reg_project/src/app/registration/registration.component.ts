@@ -17,6 +17,10 @@ export class RegistrationComponent implements OnInit {
   registrationEndDateTime: any;
   nowDateTime: any;
 
+  meetsPrereq: boolean = false;
+  meetsRestrictions: boolean = false;
+  restrictionMessage:any;
+
   registeredCourses: any = [] //need to remove once we can populate from backend
   waitlistedCourses: any = []  //this too
 
@@ -78,6 +82,47 @@ export class RegistrationComponent implements OnInit {
 
   }
 
+  checkingPrerequisite(){
+    let user:any = this.util.getUserInfo();
+    let coursesTaken:any = user.coursesTaken;
+    let containsBoth = true;
+    let containsItem = true;
+    for(let i=0; i<this.selectedCoursesToRegister.length; i++) {
+      let course:any = this.selectedCoursesToRegister[i];
+      let coursePrerequisite:any = course.prerequisites;
+      for(let i=0; i<coursePrerequisite.length; i++){
+        let item:any = coursePrerequisite[i];
+        if (item.includes('and')) {
+          const elements = item.split('and').map((it:any) => it.trim());
+          containsBoth = elements.every((it:any) => coursesTaken.includes(it));
+        }
+        else {
+          containsItem = coursesTaken.includes(item);
+        }
+      }
+      if(containsBoth || containsItem)
+        this.meetsPrereq = true;
+
+      if(!this.meetsPrereq)
+        break;
+    
+    }
+  }
+
+  // checkRestrictions(){
+  //   let user:any = this.util.getUserInfo();
+  //   let department:any = user.department;
+  //   let courseRestriction:any = this.courseDetail.restrictions;
+  //   this.restrictionMessage = "This course is only for "+courseRestriction+ " students."
+  //   for(let i=0; i<courseRestriction.length; i++){
+  //     let item:any = courseRestriction[i];
+  //     if(item === department){
+  //       this.meetsRestrictions = true;
+  //       break;
+  //     }
+  //   }
+  // }
+
   registering() {
     if (this.selectedCoursesToRegister.length > 0) {
       if (this.validRegistrationWindow) {
@@ -86,7 +131,7 @@ export class RegistrationComponent implements OnInit {
         setTimeout(() => {
           //post request
           //based on capacity evaluation,
-
+          console.log("this.selectedCoursesToRegister", this.selectedCoursesToRegister)
 
           let returnData = registration_course;
           //success
@@ -108,8 +153,14 @@ export class RegistrationComponent implements OnInit {
 
           //unsuccess
           let unsuccess = returnData.filter((obj: any) => obj["status"] === "unsuccess")
+          this.errorMessage = [];
           if (unsuccess.length > 0) {
-            this.errorMessage = [{ severity: 'error', detail: unsuccess[0]["message"] }];
+            for(let i=0; i< unsuccess[0]["message"].length; i++){
+              let error = unsuccess[0]["message"][i];
+              this.errorMessage.push({ severity: 'error', detail: error });
+
+            }
+            //this.errorMessage = [{ severity: 'error', detail: unsuccess[0]["message"] }];
           }
           //on success, waitlist --> remove from scheduler view? but would that impact scheduler? if i
           //click sccheduler again will it show? --> scheduler dropdown show the DIFF between registered &

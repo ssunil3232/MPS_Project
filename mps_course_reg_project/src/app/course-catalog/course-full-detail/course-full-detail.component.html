@@ -34,6 +34,8 @@
         <h2 style="margin-top:0px;">
             {{courseDetail.title}}
         </h2>
+        <p-message class="pb-2" *ngIf="!meetsPrereq" severity="info" text="You do not meet the prerequisites for this course."></p-message>
+        <p-message class="pb-2" *ngIf="!meetsRestrictions" severity="info" [text]="restrictionMessage"></p-message>
         <!--course description-->
         <p-panel header="Course Description" class="flex flex-row w-full" [toggleable]="true">
             <p style="font-size: small;">
