@@ -15,7 +15,6 @@ export class CourseCatalogComponent implements OnInit {
   courseList = course_catalog;
 
   ngOnInit(): void {
-    console.log("data", this.courseList)
   }
 
   constructor(public util: UtilService) { }
@@ -159,7 +158,6 @@ export class CourseCatalogComponent implements OnInit {
   }
 
   filterChanged(item: any) {
-    console.log("items", this.items)
     if (item.selectedGroup.length !== item.options.length) {
       item.selectAllItems = false;
     }
@@ -180,7 +178,6 @@ export class CourseCatalogComponent implements OnInit {
   //selectAllItems: any
 
   selectAll(item: any) {
-    console.log("seelecttt", item)
     if (item.selectAllItems) {
       this.items.filter((el: any) => {
         if (el.label === item.label) {
@@ -235,7 +232,6 @@ export class CourseCatalogComponent implements OnInit {
       if (item_index !== -1)
         wishlistData = wishlistData.splice(item_index, 1)
     }
-    console.log("wishlistAdded", wishlistData)
     this.util.saveDataLocal('wishlist', JSON.stringify(wishlistData));
   }
 

@@ -45,7 +45,6 @@ export class RegistrationComponent implements OnInit {
 
   onActiveItemChange(event: any) {
     this.selectedMenuItem = event;
-    console.log("sekec", this.selectedMenuItem)
   }
 
   ngOnInit(): void {
@@ -54,7 +53,6 @@ export class RegistrationComponent implements OnInit {
     this.registrationEndDateTime = moment(this.user.registrationEndDateTime, "YYYY-MM-DD HH:mm:ss").format();
     this.nowDateTime = moment();
     this.validRegistrationWindow = this.nowDateTime.isBetween(this.registrationStartDateTime, this.registrationEndDateTime)
-    console.log(this.validRegistrationWindow)
 
     this.registeredCourses = this.user.registeredClasses;
     this.waitlistedCourses = this.user.waitlistedClasses;

@@ -1,0 +1,8 @@
+<full-calendar [options]="calendarOptions">
+    <ng-template #eventContent let-arg>
+            <span style="font-size: smaller;">{{arg.event.extendedProps.subjectCode}}{{arg.event.extendedProps.courseCode}} {{arg.event.title}}</span><br>
+            <span style="font-size: smaller;">{{arg.event.extendedProps.prefix}} {{arg.event.extendedProps.id}}</span>&nbsp;
+            <b style="font-size: small;">{{arg.timeText}}</b>    
+        
+      </ng-template>
+</full-calendar>

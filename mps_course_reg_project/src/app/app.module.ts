@@ -48,6 +48,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { RegisteredCardComponent } from './registration/registered-card/registered-card.component';
 import { WaitlistedCardComponent } from './registration/waitlisted-card/waitlisted-card.component';
 import { RegistrationHelperComponent } from './registration/registration-helper/registration-helper.component';
+import { WeeklyScheduleComponent } from './home-page/weekly-schedule/weekly-schedule.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { RegistrationHelperComponent } from './registration/registration-helper/
     ScheduleCardComponent,
     RegisteredCardComponent,
     WaitlistedCardComponent,
-    RegistrationHelperComponent
+    RegistrationHelperComponent,
+    WeeklyScheduleComponent
   ],
   imports: [
     FormsModule,
