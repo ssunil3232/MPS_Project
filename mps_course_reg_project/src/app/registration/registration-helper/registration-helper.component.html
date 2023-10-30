@@ -55,4 +55,8 @@
             <li>Complete all necessary steps to add your course requests. In "Step 3: View Results," a green check mark in the "Status" column indicates successful enrollment.</li>
         </div>
     </div>
+    <ng-template pTemplate="footer">
+        <span style="font-weight: 500;">Was this information helpful?</span>
+        <button pButton pRipple label="Email Registrar" icon="pi pi-send" class="email-button" (click)="openEmailDraft()"></button>
+    </ng-template>
 </p-sidebar>

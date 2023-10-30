@@ -5,6 +5,13 @@
       visibility: hidden;
     }
 
+    .email-button {
+      background: #B31B1B;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
     .sidebar-button {
       outline: none;
       border: none;
@@ -45,7 +52,8 @@
     .p-sidebar-footer {
       height: 70px;
       display: flex;
-      justify-content: end;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .p-togglebutton {

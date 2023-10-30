@@ -123,6 +123,15 @@ export class RegistrationComponent implements OnInit {
   //   }
   // }
 
+  calculateTotalCredits(){
+    let sum = 0;
+    for(let i=0; i< this.registeredCourses.length; i++){
+      let course = this.registeredCourses[i];
+      sum += course.credits;
+    }
+    return sum;
+  }
+
   registering() {
     if (this.selectedCoursesToRegister.length > 0) {
       if (this.validRegistrationWindow) {

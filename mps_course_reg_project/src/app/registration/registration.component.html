@@ -40,9 +40,11 @@
             </ng-template>
             
         </div>
-        <div class="official-waitlist">
+        <div class="official-waitlist tab-menu">
             <div class="line-2 mt-3"></div>
-            <p-tabMenu [model]="menuItems" [activeItem]="selectedMenuItem" (activeItemChange)="onActiveItemChange($event)"></p-tabMenu>
+            <p-tabMenu [model]="menuItems" [activeItem]="selectedMenuItem" (activeItemChange)="onActiveItemChange($event)">
+            </p-tabMenu>
+            <span class="credits-label">{{calculateTotalCredits()}} Credits</span>
             <div *ngIf="selectedMenuItem.key === 'R'">
                 <div  class="mt-2" *ngFor="let item of registeredCourses">
                     <registered-card [courseDetail]="item" (courseRemoval)="courseRemoval($event)" class="flex w-full" ></registered-card>

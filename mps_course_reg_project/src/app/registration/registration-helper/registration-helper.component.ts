@@ -19,5 +19,13 @@ export class RegistrationHelperComponent {
     this.onClose.emit(this.sidebarVisible);
   }
 
+  openEmailDraft() {
+    const email = 'univreg@cornell.edu';
+    const subject = 'Course Registration Help';
+    const body = '';
+    const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
+    window.open(mailtoLink);
+  }
+
 }
 

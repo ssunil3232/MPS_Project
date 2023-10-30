@@ -17,6 +17,18 @@
       overflow: scroll;
     }
 
+    .tab-menu {
+      position: relative;
+    }
+
+    .credits-label{
+      position: absolute;
+      top: 20px;
+      right: 15px;
+      color: darkgray;
+      font-weight: 600;
+    }
+
     .p-dropdown .p-component .p-focus {
       outline: none;
     }
