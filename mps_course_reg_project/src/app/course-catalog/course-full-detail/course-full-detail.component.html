@@ -1,4 +1,5 @@
-<p-sidebar [(visible)]="sidebarVisible" position="right" [style]="{width: '50%'}" (onHide)="onDialogClose()">
+<p-sidebar [(visible)]="sidebarVisible" position="right" [style]="{width: '50%'}" [baseZIndex]="10000"
+    (onHide)="onDialogClose()">
     <ng-template pTemplate="header">
 
         <button class="sidebar-button align-items-center" (click)="onDialogClose()">
@@ -34,7 +35,8 @@
         <h2 style="margin-top:0px;">
             {{courseDetail.title}}
         </h2>
-        <p-message class="pb-2" *ngIf="!meetsPrereq" severity="info" text="You do not meet the prerequisites for this course."></p-message>
+        <p-message class="pb-2" *ngIf="!meetsPrereq" severity="info"
+            text="You do not meet the prerequisites for this course."></p-message>
         <p-message class="pb-2" *ngIf="!meetsRestrictions" severity="info" [text]="restrictionMessage"></p-message>
         <!--course description-->
         <p-panel header="Course Description" class="flex flex-row w-full" [toggleable]="true">
@@ -45,8 +47,8 @@
         <h3>
             Prerequisites
         </h3>
-        <span style="font-size:small; font-weight:600;">
-            {{courseDetail.prerequisites}}
+        <span id="prereq" style="font-size:small; font-weight:600;">
+            {{prerequisites}}
         </span>
 
         <h3 style="margin-bottom:0px;">
@@ -136,7 +138,7 @@
                     [ngClass]="(courseDetail.discussionDetail.vacancy === courseDetail.discussionDetail.capacity) ? 'full-dot' : 'vacancy-dot'"></span>
             </div>
         </div>
-        <hr class="line" width="100%"/>
+        <hr class="line" width="100%" />
         <!--workload breakdown-->
         <h3 style="margin-bottom:0px;">
             Workload: {{courseDetail.workload.hours}} Hrs
@@ -152,13 +154,13 @@
                         <div class="breakdown-lecture"></div>
                     </div>
                 </div>
-                
+
             </div>
             <!--assignment breakdown-->
             <div class="flex flex-column">
                 <span style="font-size:small; font-weight:500;">
                     Individual Assignments
-                </span> 
+                </span>
                 <div class="mt-1" style="display: inherit;">
                     <div *ngFor="let _ of [].constructor(courseDetail.workload.assignment)" class="flex flex-row mr-1">
                         <div class="breakdown-assignment"></div>
@@ -182,7 +184,50 @@
         </div>
     </div>
     <ng-template pTemplate="footer" *ngIf="showAddButton">
-        <p-toggleButton (onChange)="addRemoveWishlist()" [(ngModel)]="wishlisted" offLabel="Add to Wishlist" onLabel="Remove from Wishlist" offIcon="pi pi-heart" onIcon="pi pi-heart-fill" [style]="{ width: 'fit-content' }" class="pr-5 wishlist-course"></p-toggleButton>
-        <p-toggleButton (onChange)="addRemoveCourse()" [(ngModel)]="added" offLabel="Add Course to Planner" onLabel="Remove Course from Planner" offIcon="pi pi-calendar-plus" onIcon="pi pi-calendar-times" [style]="{ width: 'fit-content' }" class="add-course"></p-toggleButton>
+        <p-toggleButton (onChange)="addRemoveWishlist()" [(ngModel)]="wishlisted" offLabel="Add to Wishlist"
+            onLabel="Remove from Wishlist" offIcon="pi pi-heart" onIcon="pi pi-heart-fill"
+            [style]="{ width: 'fit-content' }" class="pr-5 wishlist-course"></p-toggleButton>
+        <!-- <p-toggleButton [(ngModel)]="added" offLabel="Add Course to Scheduler" 
+            onLabel="Remove Course from Scheduler" offIcon="pi pi-calendar-plus" onIcon="pi pi-calendar-times" 
+            [style]="{ width: 'fit-content' }" class="add-course" (onChange)="menu.toggle($event)">
+        </p-toggleButton> -->
+        <button #btn type="button" pButton icon="pi pi-calendar-plus" label="Add/Remove Course on Scheduler"
+            (click)="menu.toggle($event)" class="add-course"></button>
+        <p-tieredMenu [styleClass]="'custom-tiered-menu'" [style]="{ 'z-index': '10001'}" #menu
+            [model]="addCourseOptions" [popup]="true"></p-tieredMenu>
+        <!-- <p-tieredMenu #menu [model]="addCourseOptions" [popup]="true" [styleClass]="'custom-tiered-menu'" [style]="{ 'z-index': '10001'}">
+            <ng-template let-item pTemplate="item">
+              <li [ngClass]="{'bg-color': isExistingItem(item.label)}">
+                <a class="p-menuitem-link">
+                  <span *ngIf="item.icon" [class]="item.icon"></span>
+                  <span [ngClass]="isExistingItem(item.label)? 'bg-color p-menuitem-text': 'bg-no-color p-menuitem-text'">{{item.name}}</span>
+                </a>
+              </li>
+            </ng-template>
+          </p-tieredMenu> -->
+        <p-dialog [modal]="true" header="Add to Schedule" [(visible)]="displayListbox" [style]="{ width: '30vw', height: '300px' }">
+            <div class="flex py-2 justify-content-center align-items-center">
+                <p-listbox [(ngModel)]="addedSchedules" optionLabel="name" [listStyle]="{ 'max-height': '250px' }"
+                    [options]="userSchedules" [multiple]="true" [metaKeySelection]="false" (onChange)="addToSchedule(addedSchedules)"></p-listbox>
+                <!-- <p-button (click)="saveInput()" [label]="buttonLabel" [icon]="buttonIcon" [disabled]="saving"
+                    styleClass="p-button-sm save-button pl-2"></p-button> -->
+            </div>
+        </p-dialog>
+        <p-dialog [modal]="true" header="Create Schedule" [(visible)]="showInputBoxFlag" [style]="{ width: '30vw' }"
+            (onHide)="inputText = ''">
+            <div class="flex py-2 justify-content-center align-items-center">
+                <span class="p-float-label">
+                    
+                    <div class="flex flex-column">
+                        <input pInputText id="scheduleName" [(ngModel)]="inputText" aria-describedby="scheduleName-help" />
+                        <label htmlFor="scheduleName">Schedule Name</label>
+                    <small *ngIf="validScheduleName(inputText)" id="scheduleName-help" class="p-error">Schedule Name exists.</small>
+                    </div>
+                    
+                </span>
+                <p-button (click)="saveInput()" [label]="buttonLabel" [icon]="buttonIcon" [disabled]="saving || validScheduleName(inputText)"
+                    styleClass="p-button-sm save-button pl-2"></p-button>
+            </div>
+        </p-dialog>
     </ng-template>
 </p-sidebar>

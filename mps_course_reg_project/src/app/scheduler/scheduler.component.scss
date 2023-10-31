@@ -3,8 +3,13 @@
         width: 100%;
         height: 90%;
 
+        .fc-timegrid-slot {
+            height: 50px !important
+        }
+
         .fc {
-            height: 90%;
+            height: 100%;
+            width: 100%;
         }
         .fc-timegrid-axis {
             border: none;
@@ -18,9 +23,9 @@
             border-top-style: none;
         }
 
-        .fc .fc-timegrid-col.fc-day-today {
-            background-color: transparent;
-        }
+        // .fc .fc-timegrid-col.fc-day-today {
+        //     background-color: transparent;
+        // }
         .dark-on-hover {
             filter: brightness(0.9);
             cursor: pointer;

@@ -5,6 +5,39 @@
       visibility: hidden;
     }
 
+    .p-tieredmenu-overlay {
+      position: fixed;
+      display: flex !important;
+      width: fit-content;
+      justify-content: start;
+    }
+
+    .save-button {
+      padding: 8px;
+      margin-left: 15px;
+    }
+
+    .p-dialog .p-dialog-content {
+      height: 150px;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    .p-tieredmenu .p-submenu-list {
+      left: -100% !important;
+      /* To open the submenu to the left */
+    }
+
+    .custom-tiered-menu .p-tieredmenu-submenu .p-submenu-list {
+      left: -16px;
+      /* Adjust this value based on the space you need */
+    }
+
+    .p-submenu-icon {
+      display: none;
+    }
+
     .p-inline-message.p-inline-message-info {
       width: 100%;
       justify-content: start;
@@ -13,7 +46,7 @@
       color: white;
     }
 
-    .p-inline-message-icon{
+    .p-inline-message-icon {
       color: white;
     }
 
@@ -29,7 +62,7 @@
       height: 20px;
       background-color: #0085CA;
       display: inline-block;
-      justify-content: between;
+      justify-content: space-between;
     }
 
     .breakdown-assignment {
@@ -37,7 +70,7 @@
       height: 20px;
       background-color: rgba(#0085CA, 0.5);
       display: inline-block;
-      justify-content: between;
+      justify-content: space-between;
     }
 
     .breakdown-project {
@@ -58,24 +91,34 @@
       width: fit-content;
       font-size: small;
     }
+
+    .add-course {
+      background: transparent;
+        border-color: #6EB43F;
+        color: #6EB43F;
+        width: fit-content;
+        font-size: small;
+        height: 41px;
+    }
+
     .add-course {
       .p-togglebutton.p-button.p-highlight {
         background: transparent;
         border-color: brown;
         color: brown;
       }
-  
+
       .p-togglebutton.p-button.p-highlight .p-button-icon-left,
       .p-togglebutton.p-button.p-highlight .p-button-icon-right {
         color: brown;
       }
-  
+
       .p-togglebutton.p-button {
         background: transparent;
         border-color: #6EB43F;
         color: #6EB43F;
       }
-  
+
       .p-togglebutton.p-button .p-button-icon-left,
       .p-togglebutton.p-button .p-button-icon-right {
         color: #6EB43F;
@@ -88,24 +131,24 @@
         border-color: rgb(168, 35, 126);
         color: rgb(168, 35, 126);
       }
-  
+
       .p-togglebutton.p-button.p-highlight .p-button-icon-left,
       .p-togglebutton.p-button.p-highlight .p-button-icon-right {
         color: rgb(168, 35, 126);
       }
-  
+
       .p-togglebutton.p-button {
         background: transparent;
         border-color: rgb(236, 107, 195);
         color: rgb(236, 107, 195);
       }
-  
+
       .p-togglebutton.p-button .p-button-icon-left,
       .p-togglebutton.p-button .p-button-icon-right {
         color: rgb(236, 107, 195);
       }
     }
-    
+
 
   }
 }

@@ -29,10 +29,10 @@ export class WeeklyScheduleComponent implements OnChanges, OnInit {
 
   formatData(classData: any) {
     this.formattedCalendar = [];
-    classData = classData.map((item: any) => ({
-      ...item,
-      color: this.getRandomColor()
-    }));
+    // classData = classData.map((item: any) => ({
+    //   ...item,
+    //   color: this.getRandomColor() //remove this after calendar is saved
+    // }));
     for (let i = 0; i < classData.length; i++) {
       let cal: any = classData[i];
       let lectDetail = cal.lectureDetail.dayTimes;

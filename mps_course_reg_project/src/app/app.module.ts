@@ -21,6 +21,10 @@ import { PasswordModule } from 'primeng/password';
 import { MenubarModule } from 'primeng/menubar';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { SidebarModule } from 'primeng/sidebar';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { TreeSelectModule } from 'primeng/treeselect';
+import { ListboxModule } from 'primeng/listbox';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenuModule } from 'primeng/menu';
@@ -76,12 +80,16 @@ import { WeeklyScheduleComponent } from './home-page/weekly-schedule/weekly-sche
     FormsModule,
     BrowserAnimationsModule,
     FullCalendarModule,
+    ProgressSpinnerModule,
     ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ButtonModule,
     InputTextModule,
+    TieredMenuModule,
+    TreeSelectModule,
+    ListboxModule,
     PasswordModule,
     PanelModule,
     MenubarModule,

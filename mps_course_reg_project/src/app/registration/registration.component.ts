@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { user_schedules } from "../data";
 import { UtilService } from '../util.service';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/api';
@@ -29,6 +28,9 @@ export class RegistrationComponent implements OnInit {
     { label: "Waitlisted Courses", key: 'W' }
   ]
   selectedMenuItem: any = this.menuItems[0];
+  schedules:any = [];
+  scheduleData:any;
+  selectedScheduleData: any = null;
 
   errorMessage: Message[] = []
 
@@ -53,6 +55,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.util.getUserInfo();
+    this.schedules = this.user.schedules;
     this.registrationStartDateTime = moment(this.user.registrationStartDateTime, "YYYY-MM-DD HH:mm:ss").format();
     this.registrationEndDateTime = moment(this.user.registrationEndDateTime, "YYYY-MM-DD HH:mm:ss").format();
     this.nowDateTime = moment();
@@ -65,14 +68,11 @@ export class RegistrationComponent implements OnInit {
     this.populateCourses()
   }
 
-  scheduleData = user_schedules;
-  selectedScheduleData: any = null;
-
-  schedules: any[] = [
-    { name: "Schedule A", value: "a" },
-    { name: "Schedule B", value: "b" },
-    { name: "Schedule C", value: "c" },
-  ]
+  // schedules: any[] = [
+  //   { name: "Schedule A", value: "a" },
+  //   { name: "Schedule B", value: "b" },
+  //   { name: "Schedule C", value: "c" },
+  // ]
   selectedSchedule: any;
 
   registerLoading: boolean = false;
@@ -208,8 +208,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   scheduleChange() {
-    let scheduleId: any = this.selectedSchedule["value"];
-    this.selectedScheduleData = this.scheduleData[scheduleId]
+    this.selectedScheduleData = this.selectedSchedule["data"]
   }
 
   formatDateTime(dateTime: any) {
