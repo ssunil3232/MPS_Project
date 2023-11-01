@@ -5,58 +5,17 @@
       visibility: hidden;
     }
 
-    .p-tieredmenu-overlay {
-      position: fixed;
-      display: flex !important;
-      width: fit-content;
-      justify-content: start;
-    }
-
-    .p-float-label label {
-      left: 15px;
-      color: darkgray;
-    }
-
-    .save-button {
-      padding: 8px;
-      margin-left: 15px;
-    }
-
-    .p-error {
-      margin-top: 6px;
-    }
-
-    .p-dialog .p-dialog-content {
-      height: 150px;
-      align-items: center;
-      display: flex;
-      justify-content: center;
-    }
-
-    .p-tieredmenu .p-submenu-list {
-      left: -100% !important;
-      /* To open the submenu to the left */
-    }
-
-    .custom-tiered-menu .p-tieredmenu-submenu .p-submenu-list {
-      left: -16px;
-      /* Adjust this value based on the space you need */
-    }
-
-    .p-submenu-icon {
-      display: none;
-    }
-
-    .p-inline-message.p-inline-message-info {
-      width: 100%;
-      justify-content: start;
-      background: #F8981D;
+    .email-button {
+      background: #B31B1B;
+      color: white;
       border: none;
-      color: white;
+      border-radius: 5px;
     }
 
-    .p-inline-message-icon {
-      color: white;
+    .sidebar-button {
+      outline: none;
+      border: none;
+      background: transparent;
     }
 
     .line {
@@ -71,7 +30,7 @@
       height: 20px;
       background-color: #0085CA;
       display: inline-block;
-      justify-content: space-between;
+      justify-content: between;
     }
 
     .breakdown-assignment {
@@ -79,7 +38,7 @@
       height: 20px;
       background-color: rgba(#0085CA, 0.5);
       display: inline-block;
-      justify-content: space-between;
+      justify-content: between;
     }
 
     .breakdown-project {
@@ -90,28 +49,16 @@
       justify-content: between;
     }
 
-    .p-listbox .p-listbox-list .p-listbox-item {
-      justify-content: center;
-    }
-
     .p-sidebar-footer {
       height: 70px;
       display: flex;
-      justify-content: end;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .p-togglebutton {
       width: fit-content;
       font-size: small;
-    }
-
-    .add-course {
-      background: transparent;
-        border-color: #6EB43F;
-        color: #6EB43F;
-        width: fit-content;
-        font-size: small;
-        height: 41px;
     }
 
     .add-course {

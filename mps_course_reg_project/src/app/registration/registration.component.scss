@@ -1,0 +1,125 @@
+:host {
+  width: 100%;
+  height: 100%;
+
+  ::ng-deep {
+    // .home-body {
+    //     height: 96%;
+    //   }
+
+    .p-dropdown {
+      border-radius: 0px;
+      border-left: none;
+    }
+
+    .schedule-list {
+      height: 350px;
+      overflow: scroll;
+    }
+
+    .tab-menu {
+      position: relative;
+    }
+
+    .credits-label{
+      position: absolute;
+      top: 20px;
+      right: 15px;
+      color: darkgray;
+      font-weight: 600;
+    }
+
+    .p-dropdown .p-component .p-focus {
+      outline: none;
+    }
+
+    .p-dropdown:not(.p-disabled).p-focus {
+      box-shadow: none;
+      border-color: #ced4da;
+    }
+
+    .p-dropdown:not(.p-disabled):hover {
+      box-shadow: none;
+      border-color: #ced4da;
+    }
+
+    .p-inputwrapper-focus {
+      box-shadow: none;
+      border-color: #ced4da;
+    }
+
+    .p-dropdown-trigger {
+      outline: none;
+    }
+
+    .p-dropdown:active {
+      outline: none;
+    }
+
+    .selection-button {
+      border: 1px solid #ced4da;
+      border-right: none;
+    }
+
+    .calender {
+      color: #a4a7aa;
+    }
+
+    .info-button {
+      background-color: transparent;
+      color: #a4a7aa;
+      border: none;
+      .p-button-label {
+        font-weight: 400;
+      }
+      
+    }
+
+    .info-button:hover {
+      background-color: #dbdcde;
+      color: #7d7f81;
+      border: none;
+      .p-button-label {
+        font-weight: 400;
+      }
+      
+    }
+
+    .p-ripple.p-element.p-button.p-component {
+      background: transparent;
+      //color: white;
+      border: none;
+      border-radius: 0px;
+    }
+
+    .register-button {
+      background: #B31B1B;
+      color: white;
+      border: none;
+      border-radius: 0px;
+    }
+
+    .line{
+      height: 1px;
+      width: 100%;
+      background: var(--surface-border);
+    }
+    .line-2{
+      height: 2px;
+      width: 100%;
+      background: #dee2e6;
+    }
+
+    .registration-window {
+      border: 1px solid var(--surface-border);
+      padding-left: 13px;
+      padding-right: 13px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      height: 150px;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

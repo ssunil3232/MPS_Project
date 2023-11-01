@@ -1,1 +1,77 @@
-<p>registration works!</p>
+<div class="grid flex w-full home-body">
+    <div class="col-9 pr-5">
+        <div class="flex flex-row justify-content-between">
+            <div class="flex flex-row align-items-end">
+                <h1 class="mt-0 ml-1 mb-0">Registration</h1>
+                <span class="ml-2 font-medium text-700 mb-1"> - {{user.currentTerm}}</span>
+            </div>
+            
+            <div class="flex flex-row" style="height: fit-content">
+                <div class="flex align-items-center px-2 selection-button" style="height: 45px;">
+                    <span class="pi pi-calendar calender"></span>
+                </div>
+                <p-dropdown [options]="schedules" [(ngModel)]="selectedSchedule" optionLabel="name"
+                    placeholder="Select Schedule" (onChange)="scheduleChange()">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="flex align-items-center gap-2" *ngIf="selectedSchedule">
+                            <div>{{ selectedSchedule.name }}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-schedule pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div>{{ schedule.name }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <p-button class="ml-2 register-button" label="Register" [loading]="registerLoading" (onClick)="registering()"></p-button>
+            </div>
+        </div>
+        <div class="flex flex-column schedule-list">
+            <div class="grid flex w-full ml-2" *ngIf="selectedScheduleData !== null; else scheduleBlock">
+                <div class="mt-3 flex w-full mr-4" *ngFor="let item of selectedScheduleData">
+                    <schedule-card [courseDetail]="item" (courseSelection)="courseSelected($event)" class="flex w-full" ></schedule-card>
+                </div>
+                <p-messages *ngIf="errorMessage.length !== 0" [(value)]="errorMessage" [enableService]="false"></p-messages>
+            </div>
+            <ng-template #scheduleBlock >
+                <div class="grid flex w-full ml-2 pt-8 text-600 justify-content-center">
+                    Please select a schedule from the dropdown
+                </div>
+            </ng-template>
+            
+        </div>
+        <div class="official-waitlist tab-menu">
+            <div class="line-2 mt-3"></div>
+            <p-tabMenu [model]="menuItems" [activeItem]="selectedMenuItem" (activeItemChange)="onActiveItemChange($event)">
+            </p-tabMenu>
+            <span class="credits-label">{{calculateTotalCredits()}} Credits</span>
+            <div *ngIf="selectedMenuItem.key === 'R'">
+                <div  class="mt-2" *ngFor="let item of registeredCourses">
+                    <registered-card [courseDetail]="item" (courseRemoval)="courseRemoval($event)" class="flex w-full" ></registered-card>
+                </div>
+            </div>
+            <div *ngIf="selectedMenuItem.key === 'W'">
+                <div  class="mt-2" *ngFor="let item of waitlistedCourses">
+                    <waitlisted-card [courseDetail]="item" (courseRemoval)="courseRemoval($event)" class="flex w-full" ></waitlisted-card>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="flex flex-col w-full">
+            <div class="registration-window flex-col align-items-center">
+                <span class="text-700">Your registration window is:</span>
+                <div class="line my-3"></div>
+                <span class="font-medium line-height-3">{{formatDateTime(registrationStartDateTime)}} - </span>
+                <span class="font-medium line-height-3">{{formatDateTime(registrationEndDateTime)}}</span>
+            </div>
+        </div>
+        <div class="flex-col mt-4">
+            <div class="flex flex-row justify-content-center">
+                <button pButton pRipple label="Registration FAQ" icon="pi pi-info-circle" class="info-button" (click)="openHelper()"></button>
+                <registration-helper [sidebarVisible]="sidebarVisible" (onClose)="sidebarVisible = false"></registration-helper>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,6 +6,11 @@
     align-items: start;
   }
 
+  .quick-links {
+    color: #a4a3a3;
+    text-decoration: none;
+  }
+
   .p-button.p-button-success,
   .p-buttonset.p-button-success>.p-button,
   .p-splitbutton.p-button-success>.p-button {
@@ -14,7 +19,6 @@
       background: #D9D9D9;
       border: 1px solid #D9D9D9;
     }
-
 
 
   }

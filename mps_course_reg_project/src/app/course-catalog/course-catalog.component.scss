@@ -8,8 +8,19 @@
     }
 
     .text-field {
-      color:darkgrey;
+      color: darkgrey;
       font-size: small;
+    }
+
+    .p-autocomplete-input.p-inputtext {
+        width: 100%;
+        background: #ECF1F4 20%;
+        border: none;
+    }
+
+
+    .p-autocomplete {
+      width: 100%;
     }
 
     .search-field {
@@ -18,10 +29,54 @@
     }
 
     .p-inputtext:enabled:focus {
-        outline: 0 none;
-        outline-offset: 0;
-        box-shadow: 0 0 0 1px #BFDBFE;
-        border-color: #b9d0f4;
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0 1px #BFDBFE;
+      border-color: #b9d0f4;
+    }
+
+    .p-accordion .p-accordion-header .p-accordion-header-link {
+      height: 10px;
+    }
+
+    .filter-accordian {
+      width: 100%;
+    }
+
+    .filter-chips {
+      width: 100%;
+      display: flex;
+    }
+
+    .p-chips .p-component {
+      width: 100%;
+      display: flex;
+    }
+
+    .p-inputtext .p-chips-multiple-container {
+      width: 100%;
+      display: flex;
+    }
+
+    .p-accordion-tab {
+      margin: 0px;
+    }
+
+    .p-accordion-header-link {
+      border-radius: 0px;
+    }
+
+    .main-filter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    .no-ripple {
+      outline: none !important;
+      border: none !important;
+      box-shadow: none !important;
     }
   }
 }

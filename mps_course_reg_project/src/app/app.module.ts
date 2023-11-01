@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../authentication/helpers/token.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -19,7 +19,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
 import { MenubarModule } from 'primeng/menubar';
+import { TabMenuModule } from 'primeng/tabmenu';
 import { SidebarModule } from 'primeng/sidebar';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { TreeSelectModule } from 'primeng/treeselect';
+import { ListboxModule } from 'primeng/listbox';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenuModule } from 'primeng/menu';
@@ -32,6 +37,23 @@ import { DialogModalComponent } from './common/components/dialog-modal/dialog-mo
 import { TableModule } from 'primeng/table';
 import { CourseDetailComponent } from './course-catalog/course-detail/course-detail.component';
 import { CourseFullDetailComponent } from './course-catalog/course-full-detail/course-full-detail.component';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { AccordionModule } from 'primeng/accordion';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ChipsModule } from 'primeng/chips';
+import { CardModule } from 'primeng/card';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ScheduleCardComponent } from './registration/schedule-card/schedule-card.component';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { RegisteredCardComponent } from './registration/registered-card/registered-card.component';
+import { WaitlistedCardComponent } from './registration/waitlisted-card/waitlisted-card.component';
+import { RegistrationHelperComponent } from './registration/registration-helper/registration-helper.component';
+import { WeeklyScheduleComponent } from './home-page/weekly-schedule/weekly-schedule.component';
 
 @NgModule({
   declarations: [
@@ -47,31 +69,55 @@ import { CourseFullDetailComponent } from './course-catalog/course-full-detail/c
     SideNavComponent,
     DialogModalComponent,
     CourseDetailComponent,
-    CourseFullDetailComponent
+    CourseFullDetailComponent,
+    ScheduleCardComponent,
+    RegisteredCardComponent,
+    WaitlistedCardComponent,
+    RegistrationHelperComponent,
+    WeeklyScheduleComponent
   ],
   imports: [
     FormsModule,
     BrowserAnimationsModule,
+    FullCalendarModule,
+    ProgressSpinnerModule,
     ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ButtonModule,
     InputTextModule,
+    TieredMenuModule,
+    TreeSelectModule,
+    ListboxModule,
     PasswordModule,
     PanelModule,
     MenubarModule,
     SidebarModule,
+    TabMenuModule,
     ToggleButtonModule,
     DropdownModule,
     MenuModule,
+    ConfirmDialogModule,
+    CardModule,
+    MessageModule,
+    ToastModule,
+    MessagesModule,
     MatSidenavModule,
     VirtualScrollerModule,
     DialogModule,
+    MultiSelectModule,
+    PanelMenuModule,
+    AccordionModule,
+    AutoCompleteModule,
+    CheckboxModule,
+    ChipsModule,
     TableModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    MessageService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

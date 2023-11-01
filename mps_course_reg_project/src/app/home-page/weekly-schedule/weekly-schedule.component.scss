@@ -1,0 +1,51 @@
+:host{
+    ::ng-deep{
+        width: 100%;
+        height: 90%;
+
+        .fc-timegrid-slot {
+            height: 50px !important
+        }
+
+        .fc {
+            height: 100%;
+            width: 100%;
+        }
+        .fc-timegrid-axis {
+            border: none;
+        }
+        // .fc-timegrid-event-harness {
+        //     height: 75px;
+        // }
+
+        .fc-event-main {
+            box-shadow: 2px 1px 10px 1px rgba(0,0,0,.4);
+        }
+
+        .fc .fc-timegrid-slot-minor {
+            border-top-style: none;
+        }
+
+        // .fc .fc-timegrid-col.fc-day-today {
+        //     background-color: transparent;
+        // }
+        .dark-on-hover {
+            filter: brightness(0.9);
+            cursor: pointer;
+          }
+          .light-on-hover {
+            filter: brightness(1.0);
+            cursor: pointer;
+          }
+        
+          .lighter-on-hover {
+            filter: brightness(1.3);
+            cursor: pointer;
+          }
+
+        .highlighted{
+            background: red;
+        }
+    }
+    
+}

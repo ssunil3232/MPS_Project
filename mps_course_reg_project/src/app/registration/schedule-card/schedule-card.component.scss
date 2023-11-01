@@ -1,0 +1,38 @@
+:host {
+    ::ng-deep {
+      .subject-code {
+        color: #0085CA;
+      }
+  
+      .vacancy-dot {
+        height: 13px;
+        width: 13px;
+        background-color: #48d336;
+        border-radius: 50%;
+        display: inline-block;
+      }
+  
+      .full-dot {
+        height: 13px;
+        width: 13px;
+        background-color: #d81818;
+        border-radius: 50%;
+        display: inline-block;
+      }
+  
+      .sidebar-button {
+        background: transparent;
+        outline: none;
+        border: none;
+        cursor: pointer;
+      }
+  
+      .course-detail {
+        border: 1px solid var(--surface-border);
+        padding-left: 13px;
+        padding-right: 13px;
+        border-radius: 5px;
+      }
+    }
+  }
+  

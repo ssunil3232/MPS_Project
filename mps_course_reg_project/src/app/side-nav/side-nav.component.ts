@@ -13,7 +13,6 @@ export class SideNavComponent implements OnInit, OnChanges {
   @Input() sidebarVisible: boolean = false;
 
   ngOnChanges(changes: SimpleChanges): void {
-      console.log(changes)
   }
 
   ngOnInit() {
@@ -71,6 +70,5 @@ export class SideNavComponent implements OnInit, OnChanges {
   }
 
   getToolTip(event:any){
-    console.log(event)
   }
 }

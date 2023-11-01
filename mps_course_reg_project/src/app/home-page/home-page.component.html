@@ -32,9 +32,17 @@
                 </div>
 
             </div>
-            <div class="pl-3  pt-5 grid flex w-full">
+            <div class="pl-3  pt-5 flex-column flex w-full">
                 <span class="font-semibold">This week's schedule</span>
-                <p-table [value]="schedule" [tableStyle]="{'width': '100%'}" [scrollable]="true" scrollHeight="290px"
+                <div *ngIf="registeredClasses.length !== 0; else weeklySchedule" style="height: 300px;">
+                    <weekly-schedule [classes]="registeredClasses"></weekly-schedule>
+                </div>
+                <ng-template #weeklySchedule >
+                    <div class="grid flex w-full ml-2 pt-8 text-600 justify-content-center">
+                        No classes registered
+                    </div>
+                </ng-template>
+                <!-- <p-table [value]="schedule" [tableStyle]="{'width': '100%'}" [scrollable]="true" scrollHeight="290px"
                     class="w-full pt-3 pr-5" rowGroupMode="subheader" groupRowsBy="courseId">
                     <ng-template pTemplate="header">
                         <tr>
@@ -50,7 +58,7 @@
                     <ng-template pTemplate="groupheader" let-schedule>
                         <tr pRowGroupHeader>
                             <td colspan="4">
-                                <!-- <button type="button" pButton pRipple [pRowToggler]="schedule" class="p-button-text p-button-rounded p-button-plain mr-2" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button> -->
+                                
                                 <span class="font-bold ml-2">{{schedule.courseId}}</span>
                             </td>
                         </tr>
@@ -74,13 +82,13 @@
                             </td>
                         </tr>
                     </ng-template>
-                </p-table>
+                </p-table> -->
 
             </div>
         </div>
     </div>
     <div class="col-4">
-        <div class="grid flex h-full">
+        <div class="grid flex">
             <div class="col-12 flex align-items-start virtual-scroll-component" style="height: fit-content;">
                 <p-virtualScroller [value]="tasks" class="w-full pb-1"
                     [style]="{width: '100%', height: 'fit-content'}" scrollHeight="130px" [itemSize]="50">
@@ -105,7 +113,7 @@
                     </ng-template>
                 </p-virtualScroller>
             </div>
-            <div class="col-12 flex align-items-start virtual-scroll-component" style="height: fit-content;">
+            <!-- <div class="col-12 flex align-items-start virtual-scroll-component" style="height: fit-content;">
                 <p-virtualScroller [value]="quickLinks" class="w-full pb-1"
                     [style]="{width: '100%', height: 'fit-content'}" scrollHeight="130px" [itemSize]="50">
                     <ng-template pTemplate="header">Quick links</ng-template>
@@ -115,7 +123,15 @@
                         </div>
                     </ng-template>
                 </p-virtualScroller>
+            </div> -->
+           
+            <div class="flex flex-column text-xs pl-3 pt-5" style="height: fit-content;">
+                <h2 style="color: #8b8989">Quick links</h2>
+                <a class="quick-links" href="https://registrar.cornell.edu/">Cornell University Registrar</a>
+                <a class="quick-links" href="https://registrar.cornell.edu/academic-calendar">Academic Calendar</a>
+                <a class="quick-links" href="https://scl.cornell.edu/residential-life/housing">Residential Education</a>
             </div>
+
         </div>
         <dialog-modal [isVisible]="dialogOpen" [message]="dialogBody" (onClose)="dialogOpen = false"></dialog-modal>
     </div>

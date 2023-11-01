@@ -20,12 +20,13 @@ export class HomePageComponent implements OnInit {
   dialogBody: DialogMessage = {title: '', message: ''};
   schedule: any; 
   selectedItem!: Schedule;
+  registeredClasses: any = [];
 
   userDetails: any = {}
 
   constructor(
     public router: Router,
-    readonly util: UtilService,
+    public util: UtilService,
     private pendingTaskService: PendingTasksService,
     private announcementService: AnnouncementsService,
     private quickLinksService: QuickLinksService
@@ -35,6 +36,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDetails = this.util.getUserInfo();
+    this.registeredClasses = this.userDetails.registeredClasses;
     this.schedule = this.userDetails.schedule;
     this.tasks = this.pendingTaskService.getPendingTasks();
     this.announcements = this.announcementService.getAnnoucements();
