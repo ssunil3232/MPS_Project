@@ -12,9 +12,18 @@
       justify-content: start;
     }
 
+    .p-float-label label {
+      left: 15px;
+      color: darkgray;
+    }
+
     .save-button {
       padding: 8px;
       margin-left: 15px;
+    }
+
+    .p-error {
+      margin-top: 6px;
     }
 
     .p-dialog .p-dialog-content {
@@ -79,6 +88,10 @@
       background-color: rgba(#0085CA, 0.15);
       display: inline-block;
       justify-content: between;
+    }
+
+    .p-listbox .p-listbox-list .p-listbox-item {
+      justify-content: center;
     }
 
     .p-sidebar-footer {

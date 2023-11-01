@@ -2,6 +2,7 @@ export const course_catalog = {
     size: 5,
     data: [
         {
+            name: "INFO 1050 - Information, Ethics",
             subjectCode: "INFO",
             courseCode: "1050",
             title: "Information, Ethics, Law, and Policy",
@@ -68,6 +69,7 @@ export const course_catalog = {
             added: false
         },
         {
+            name: "INFO 1200 - Information, Ethics",
             subjectCode: "INFO",
             courseCode: "1200",
             title: "Information, Ethics, Law, and Policy",
@@ -134,6 +136,7 @@ export const course_catalog = {
             added: false
         },
         {
+            name: "INFO 1200 - Information, Ethics",
             subjectCode: "INFO",
             courseCode: "1200",
             title: "Information, Ethics, Law, and Policy",
@@ -200,6 +203,7 @@ export const course_catalog = {
             added: false
         },
         {
+            name: "INFO 1250 - Information, Ethics",
             subjectCode: "INFO",
             courseCode: "1250",
             title: "Computer Graphics",

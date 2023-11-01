@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { course_catalog } from '../data';
 import { UtilService } from '../util.service';
 import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
@@ -9,12 +9,31 @@ import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
   styleUrls: ['./course-catalog.component.scss']
 })
 export class CourseCatalogComponent implements OnInit {
-
+  @ViewChild('autoCompleteInput') autoCompleteInput!: ElementRef;
+  
   searchValue: any;
   searchPlaceholder = "Enter course number, instructor name, major, keywords";
+  showPlaceholder: boolean = true;
   courseList = course_catalog;
 
   ngOnInit(): void {
+  }
+
+  focusInput() {
+    this.autoCompleteInput.nativeElement.focus();
+  }
+
+  filteredItems:any[] = [];
+
+  filterCourses(event: any) {
+    this.filteredItems = this.courseList.data.filter((item:any) =>
+      item.name.toLowerCase().includes(event.query.toLowerCase())
+    );
+  }
+
+  loseFocus(){
+    this.showPlaceholder = true;
+    this.searchValue = null;
   }
 
   constructor(public util: UtilService) { }

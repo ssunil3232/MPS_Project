@@ -1,4 +1,4 @@
-<p-sidebar [(visible)]="sidebarVisible" position="right" [style]="{width: '50%'}" [baseZIndex]="10000"
+<p-sidebar #sideBar [(visible)]="sidebarVisible" position="right" [style]="{width: '50%'}" [baseZIndex]="10000"
     (onHide)="onDialogClose()">
     <ng-template pTemplate="header">
 
@@ -205,15 +205,16 @@
               </li>
             </ng-template>
           </p-tieredMenu> -->
-        <p-dialog [modal]="true" header="Add to Schedule" [(visible)]="displayListbox" [style]="{ width: '30vw', height: '300px' }">
-            <div class="flex py-2 justify-content-center align-items-center">
-                <p-listbox [(ngModel)]="addedSchedules" optionLabel="name" [listStyle]="{ 'max-height': '250px' }"
+        <p-dialog [appendTo]="sideBar" [modal]="true" header="Add to Schedule" [(visible)]="displayListbox" [style]="{ width: '30vw', height: '300px' }" [draggable]="false">
+            <div class="flex py-2 justify-content-center align-items-start w-full flex-column">
+                <small class="pb-2 text-600">Select Schedule to add to:</small>
+                <p-listbox [(ngModel)]="addedSchedules" optionLabel="name" [listStyle]="{ 'max-height': '250px' }" class="w-full"
                     [options]="userSchedules" [multiple]="true" [metaKeySelection]="false" (onChange)="addToSchedule(addedSchedules)"></p-listbox>
                 <!-- <p-button (click)="saveInput()" [label]="buttonLabel" [icon]="buttonIcon" [disabled]="saving"
                     styleClass="p-button-sm save-button pl-2"></p-button> -->
             </div>
         </p-dialog>
-        <p-dialog [modal]="true" header="Create Schedule" [(visible)]="showInputBoxFlag" [style]="{ width: '30vw' }"
+        <p-dialog [modal]="true" header="Create Schedule" [(visible)]="showInputBoxFlag" [style]="{ width: '30vw' }" [draggable]="false"
             (onHide)="inputText = ''">
             <div class="flex py-2 justify-content-center align-items-center">
                 <span class="p-float-label">
@@ -221,11 +222,11 @@
                     <div class="flex flex-column">
                         <input pInputText id="scheduleName" [(ngModel)]="inputText" aria-describedby="scheduleName-help" />
                         <label htmlFor="scheduleName">Schedule Name</label>
-                    <small *ngIf="validScheduleName(inputText)" id="scheduleName-help" class="p-error">Schedule Name exists.</small>
+                    <small *ngIf="validScheduleName(inputText) || startsWithWhiteSpace(inputText) || endsWithWhiteSpace(inputText)" id="scheduleName-help" class="p-error">{{errorMessage}}</small>
                     </div>
                     
                 </span>
-                <p-button (click)="saveInput()" [label]="buttonLabel" [icon]="buttonIcon" [disabled]="saving || validScheduleName(inputText)"
+                <p-button (click)="saveInput()" [label]="buttonLabel" [icon]="buttonIcon" [disabled]="saving || validScheduleName(inputText) || startsWithWhiteSpace(inputText) || isOnlyWhitespace(inputText) || endsWithWhiteSpace(inputText)"
                     styleClass="p-button-sm save-button pl-2"></p-button>
             </div>
         </p-dialog>

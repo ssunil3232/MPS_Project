@@ -1,48 +1,154 @@
-:host{
-    ::ng-deep{
-        width: 100%;
-        height: 90%;
+:host {
+  ::ng-deep {
+    width: 100%;
+    height: 90%;
 
-        .fc-timegrid-slot {
-            height: 50px !important
-        }
-
-        .fc {
-            height: 100%;
-            width: 100%;
-        }
-        .fc-timegrid-axis {
-            border: none;
-        }
-
-        .fc-event-main {
-            box-shadow: 2px 1px 10px 1px rgba(0,0,0,.4);
-        }
-
-        .fc .fc-timegrid-slot-minor {
-            border-top-style: none;
-        }
-
-        // .fc .fc-timegrid-col.fc-day-today {
-        //     background-color: transparent;
-        // }
-        .dark-on-hover {
-            filter: brightness(0.9);
-            cursor: pointer;
-          }
-          .light-on-hover {
-            filter: brightness(1.0);
-            cursor: pointer;
-          }
-        
-          .lighter-on-hover {
-            filter: brightness(1.3);
-            cursor: pointer;
-          }
-
-        .highlighted{
-            background: red;
-        }
+    .fc-timegrid-slot {
+      height: 50px !important;
     }
-    
+
+    // .fc-timegrid-col {
+    //     width: 180px;
+    // }
+
+    // .fc-col-header-cell {
+    //     width: 180px;
+    // }
+
+    .p-error {
+      margin-top: 6px;
+    }
+
+    // .p-autocomplete-input {
+    //   width: 350px;
+    // }
+    .p-autocomplete-input.p-inputtext {
+      width: 400px;
+      background: #ECF1F4 20%;
+      border: none;
+    }
+
+    .p-dialog .p-dialog-content {
+      height: 150px;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    .p-float-label label {
+      left: 15px;
+      color: darkgray;
+    }
+
+    .create-button {
+      border-radius: 50%;
+      background: #6EB43F;
+      color: white;
+      border: none;
+      width: 30px;
+      height: 40px;
+      justify-content: center;
+    }
+
+    .edit-button {
+      border-radius: 50%;
+      background: #aa31e2;
+      color: white;
+      border: none;
+      width: 30px;
+      height: 40px;
+      justify-content: center;
+    }
+
+    .delete-button {
+      border-radius: 50%;
+      background: #d21608;
+      color: white;
+      border: none;
+      width: 30px;
+      height: 40px;
+      justify-content: center;
+    }
+
+    .p-dropdown {
+      border-radius: 0px;
+      border-left: none;
+    }
+
+    .p-dropdown .p-component .p-focus {
+      outline: none;
+    }
+
+    .p-dropdown:not(.p-disabled).p-focus {
+      box-shadow: none;
+      border-color: #ced4da;
+    }
+
+    .p-dropdown:not(.p-disabled):hover {
+      box-shadow: none;
+      border-color: #ced4da;
+    }
+
+    .p-inputwrapper-focus {
+      box-shadow: none;
+      border-color: #ced4da;
+    }
+
+    .p-dropdown-trigger {
+      outline: none;
+    }
+
+    .p-dropdown:active {
+      outline: none;
+    }
+
+    .selection-button {
+      border: 1px solid #ced4da;
+      border-right: none;
+    }
+
+    .calender {
+      color: #a4a7aa;
+    }
+
+    .fc {
+      height: 65%;
+      width: 100%;
+    }
+
+    .fc-timegrid-axis {
+      border: none;
+    }
+
+    .fc-event-main {
+      box-shadow: 2px 1px 10px 1px rgba(0, 0, 0, .4);
+    }
+
+    .fc .fc-timegrid-slot-minor {
+      border-top-style: none;
+    }
+
+    // .fc .fc-timegrid-col.fc-day-today {
+    //     background-color: transparent;
+    // }
+    .dark-on-hover {
+      filter: brightness(0.9);
+      cursor: pointer;
+    }
+
+    .light-on-hover {
+      filter: brightness(1.0);
+      cursor: pointer;
+    }
+
+    .lighter-on-hover {
+      filter: brightness(1.3);
+      cursor: pointer;
+    }
+
+    .highlighted {
+      background: red;
+    }
+  }
+
 }

@@ -1,8 +1,98 @@
+<div class="flex flex-row justify-content-between align-items-center">
+      <h1>Plan Course Schedule</h1>
+      <!-- <div class="flex flex-row">
+            <div class="mr-2">
+                  dropdown
+            </div>
+            <div>
+                  create new
+            </div>
+      </div> -->
+      <div class="flex flex-row" style="height: fit-content">
+            <div class="flex align-items-center px-2 selection-button" style="height: 45px;">
+                  <span class="pi pi-calendar calender"></span>
+            </div>
+            <p-dropdown [options]="schedules" [(ngModel)]="selectedSchedule" optionLabel="name"
+                  placeholder="Select Schedule" (onChange)="scheduleChange()" class="mr-2">
+                  <ng-template pTemplate="selectedItem">
+                        <div class="flex align-items-center gap-2" *ngIf="selectedSchedule">
+                              <div>{{ selectedSchedule.name }}</div>
+                        </div>
+                  </ng-template>
+                  <ng-template let-schedule pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                              <div>{{ schedule.name }}</div>
+                        </div>
+                  </ng-template>
+            </p-dropdown>
+            <p-button styleClass="create-button" class="flex align-items-center pr-1" (click)="showInputBoxFlag = true">
+                  <!-- <span class="mr-2 font-normal">Create New</span> -->
+                  <i class="pi pi-plus"></i>
+            </p-button>
+            <p-dialog [modal]="true" header="Create Schedule" [(visible)]="showInputBoxFlag" [style]="{ width: '30vw' }"
+                  (onHide)="inputText = ''" [draggable]="false">
+                  <div class="flex py-2 justify-content-center align-items-center">
+                        <span class="p-float-label pr-2">
+
+                              <div class="flex flex-column">
+                                    <input pInputText id="scheduleName" [(ngModel)]="inputText"
+                                          aria-describedby="scheduleName-help" />
+                                    <label htmlFor="scheduleName">Schedule Name</label>
+                                    <small *ngIf="validScheduleName(inputText) || startsWithWhiteSpace(inputText) || endsWithWhiteSpace(inputText)"
+                                          id="scheduleName-help" class="p-error">{{errorMessage}}</small>
+                              </div>
+                        </span>
+                        <p-button (click)="saveInput()" [label]="buttonLabel" [icon]="buttonIcon"
+                              [disabled]="saving || validScheduleName(inputText) || startsWithWhiteSpace(inputText) || isOnlyWhitespace(inputText) || endsWithWhiteSpace(inputText)"
+                              styleClass="p-button-sm save-button pl-2"></p-button>
+                  </div>
+            </p-dialog>
+            <!-- <p-button styleClass="edit-button" class="flex align-items-center pr-1" (click)="showEditBoxFlag = true">
+                  
+                  <i class="pi pi-pencil"></i>
+            </p-button>
+            <p-dialog [modal]="true" header="Edit Schedule Name" (onShow)="inputText = selectedSchedule.name" [(visible)]="showEditBoxFlag" [style]="{ width: '30vw' }"
+                  (onHide)="inputText = selectedSchedule.name" [draggable]="false">
+                  <div class="flex py-2 justify-content-center align-items-center">
+                        <span class="p-float-label pr-2">
+
+                              <div class="flex flex-column">
+                                    <input pInputText id="scheduleName" [(ngModel)]="inputText"
+                                          aria-describedby="scheduleName-help" />
+                                    <label htmlFor="scheduleName">Schedule Name</label>
+                                    <small *ngIf="validScheduleName(inputText) || startsWithWhiteSpace(inputText) || endsWithWhiteSpace(inputText)"
+                                          id="scheduleName-help" class="p-error">{{errorMessage}}</small>
+                              </div>
+                        </span>
+                        <p-button (click)="saveInput()" [label]="buttonLabel" [icon]="buttonIcon"
+                              [disabled]="saving || validScheduleName(inputText) || startsWithWhiteSpace(inputText) || isOnlyWhitespace(inputText) || endsWithWhiteSpace(inputText)"
+                              styleClass="p-button-sm save-button pl-2"></p-button>
+                  </div>
+            </p-dialog> -->
+            <p-button styleClass="delete-button" class="flex align-items-center" (click)="confirmDelete()">
+                  <!-- <span class="mr-2 font-normal">Create New</span> -->
+                  <i class="pi pi-trash"></i>
+            </p-button>
+            <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+      </div>
+      <div style="width: 400px;">
+            <span class="p-input-icon-left w-full">
+                  <p-autoComplete class="relative flex" [ngStyle]="{'width': '350px'}" [(ngModel)]="searchValue"
+                        [suggestions]="filteredItems" (completeMethod)="filterCourses($event)"
+                        (onFocus)="showPlaceholder = false" (onBlur)="loseFocus()" field="name"></p-autoComplete>
+                  <div *ngIf="showPlaceholder" class="flex flex-row absolute text-600" style="top:30%; left:10%;">
+                        <i class="pi pi-search mr-2"></i>
+                        <small>Enter course # to add more classes</small>
+                  </div>
+            </span>
+      </div>
+</div>
 <full-calendar [options]="calendarOptions">
-    <ng-template #eventContent let-arg>
-            <span style="font-size: smaller;">{{arg.event.extendedProps.subjectCode}}{{arg.event.extendedProps.courseCode}} {{arg.event.title}}</span><br>
-            <span style="font-size: smaller;">{{arg.event.extendedProps.prefix}} {{arg.event.extendedProps.id}}</span>&nbsp;
-            <b style="font-size: small;">{{arg.timeText}}</b>    
-        
+      <ng-template #eventContent let-arg>
+            <span style="font-size: smaller;">{{arg.event.extendedProps.subjectCode}}{{arg.event.extendedProps.courseCode}}
+                  {{arg.event.title}}</span><br>
+            <span style="font-size: smaller;">{{arg.event.extendedProps.prefix}}
+                  {{arg.event.id}}</span>&nbsp;
+            <b style="font-size: small;">{{arg.timeText}}</b>
       </ng-template>
 </full-calendar>

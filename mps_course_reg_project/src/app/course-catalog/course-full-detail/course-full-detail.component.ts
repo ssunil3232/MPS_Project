@@ -80,6 +80,21 @@ export class CourseFullDetailComponent implements OnChanges {
     this.showInputBoxFlag = true;
   }
 
+  errorMessage: any = '';
+  isOnlyWhitespace(str:any) {
+    return /^\s*$/.test(str);
+  }
+
+  startsWithWhiteSpace(str:any) {
+    this.errorMessage = "Trailing white space detected."
+    return /^\s/.test(str);
+  }
+
+  endsWithWhiteSpace(str:any) {
+    this.errorMessage = "Trailing white space detected."
+    return /\s$/.test(str);
+  }
+
   validScheduleName(name:any){
     let exists = false;
     this.userSchedules.filter((item:any)=> {
@@ -87,6 +102,7 @@ export class CourseFullDetailComponent implements OnChanges {
         exists = true;
       }
     });
+    this.errorMessage = "Schedule Name exists.";
     return exists;
   }
 
@@ -102,6 +118,9 @@ export class CourseFullDetailComponent implements OnChanges {
       this.buttonIcon = 'pi pi-check';
       //check if valid
       //if invalid save, show message that existing name
+      this.startsWithWhiteSpace(this.inputText);
+      this.endsWithWhiteSpace(this.inputText);
+      this.isOnlyWhitespace(this.inputText);
       this.validScheduleName(this.inputText);
 
     }, 2000);
