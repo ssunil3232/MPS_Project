@@ -7,6 +7,22 @@
       height: 50px !important;
     }
 
+    .export-button {
+      background: transparent;
+      border: 1px solid #dbd6d6;
+      border-radius: 5px;
+    }
+
+    .p-selectbutton{
+      .p-button{
+        border-radius: 0px;
+      }
+      .p-highlight{
+        background: #B31B1B;
+        border: 1px solid #B31B1B;
+      }
+    }
+
     // .fc-timegrid-col {
     //     width: 180px;
     // }

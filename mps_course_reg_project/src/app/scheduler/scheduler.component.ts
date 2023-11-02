@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, forwardRef } from '@angular/core';
+import { Calendar, CalendarOptions, EventApi } from '@fullcalendar/core';
 import * as moment from 'moment';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -7,7 +7,10 @@ import interactionPlugin from '@fullcalendar/interaction'; // for selectable
 import { UtilService } from '../util.service';
 import { course_catalog } from "../data";
 import { ConfirmationService, MessageService } from 'primeng/api';
-import * as cloneDeep from 'lodash';
+import * as FullCalendar from '@fullcalendar/angular';
+import { FullCalendarComponent } from '@fullcalendar/angular';
+import { cloneDeep } from 'lodash';
+
 @Component({
   selector: 'app-scheduler',
   templateUrl: './scheduler.component.html',
@@ -15,6 +18,7 @@ import * as cloneDeep from 'lodash';
 })
 export class SchedulerComponent implements OnInit {
   @ViewChild('autoCompleteInput') autoCompleteInput!: ElementRef;
+  @ViewChild('fullcalendar', { static: false }) fullcalendar?: FullCalendarComponent;
 
   schedules: any = [];
   calendarOptions: CalendarOptions = {}
@@ -25,7 +29,7 @@ export class SchedulerComponent implements OnInit {
   color = '#';
   scheduleData: any;
   showInputBoxFlag: boolean = false;
-  showEditBoxFlag: boolean = false;
+  // showEditBoxFlag: boolean = false;
   showDeleteBoxFlag: boolean = false;
   inputText: string = '';
   saving: boolean = false; // Indicates if data is being saved
@@ -34,14 +38,64 @@ export class SchedulerComponent implements OnInit {
   searchValue: any;
   errorMessage: any = '';
   showPlaceholder: boolean = true;
-
+  filteredItems: any[] = [];
+  formattedCalendar: any = []
+  selectedSchedule: any;
   course_catalog = course_catalog.data;
+  coloredCourses:any;
+  term:any;
+  creditSum:any = 0;
+
+  stateOptions: any[] = [{label: 'Horisonal View', value: 'horizontal'}, {label: 'Vertical View', value: 'vertical'}];
+
+  value: string = 'horizontal';
+
+  constructor(
+    public util: UtilService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+    public changeDetectorRef: ChangeDetectorRef
+  ) {
+    this.calendarOptions = {
+      initialView: 'timeGridWeek',
+      allDaySlot: false,
+      slotMinTime: "07:00:00",
+      slotMaxTime: "20:00:00",
+      nowIndicator: false,
+      eventMinHeight: 75,
+      expandRows: true,
+      businessHours: false,
+      slotLabelFormat: {
+        minute: 'numeric',
+        hour: 'numeric',
+        hour12: false,
+
+      },
+      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+      headerToolbar: {
+        left: '',
+        center: '',
+        right: ''
+      },
+      eventMouseEnter: function (mouseEnterInfo) {
+        mouseEnterInfo.el.classList.remove('light-on-hover');
+        mouseEnterInfo.el.classList.add('dark-on-hover');
+      },
+      eventMouseLeave: function (mouseLeaveInfo) {
+        mouseLeaveInfo.el.classList.remove('dark-on-hover');
+        mouseLeaveInfo.el.classList.add('light-on-hover');
+      },
+      dayHeaderContent: (args) => {
+        return moment(args.date).format('ddd')
+      },
+      weekends: false,
+      events: []
+    }
+  }
 
   focusInput() {
     this.autoCompleteInput.nativeElement.focus();
   }
-
-  filteredItems: any[] = [];
 
   filterCourses(event: any) {
     this.filteredItems = this.course_catalog.filter((item: any) =>
@@ -53,7 +107,6 @@ export class SchedulerComponent implements OnInit {
     this.showPlaceholder = true;
     this.searchValue = null;
   }
-
 
   isOnlyWhitespace(str: any) {
     return /^\s*$/.test(str);
@@ -90,27 +143,22 @@ export class SchedulerComponent implements OnInit {
       this.buttonLabel = 'Save';
       this.buttonIcon = 'pi pi-check';
       //check if valid
-      //if invalid save, show message that existing name
-
+      //if invalid, show error message --> in html
+      //else if valid
       if (!(this.startsWithWhiteSpace(this.inputText) || this.endsWithWhiteSpace(this.inputText)
         || this.validScheduleName(this.inputText) || this.isOnlyWhitespace(this.inputText))
       ) {
-        
-        //repopulate schedules after saving schedule body to user schedules
-        //temporary fix
-        console.log('initial this.schedules:', this.schedules);
         let saveObject = {
           name: this.inputText,
           id: this.inputText,
           data: []
         };
-
         this.schedules.push(saveObject);
-        this.selectedSchedule = this.schedules[this.schedules.length-1];
+        //save schedules to backend and repopulate schedules
+        //this.populateSchedules()
+        //temporary fix
+        this.selectedSchedule = this.schedules[this.schedules.length - 1];
         this.scheduleChange()
-        //this.scheduleData = this.selectedSchedule.data;
-        // this.calendarConfig();
-        // this.changeDetectorRef.detectChanges();
       }
       this.showInputBoxFlag = false;
       this.inputText = ""
@@ -127,22 +175,12 @@ export class SchedulerComponent implements OnInit {
     return this.color;
   }
 
-  constructor(
-    public util: UtilService,
-    private confirmationService: ConfirmationService,
-    private messageService: MessageService,
-    private changeDetectorRef: ChangeDetectorRef
-  ) { }
-
   confirmDelete() {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete this schedule?',
       header: 'Delete schedule',
       icon: 'pi pi-info-circle',
       accept: () => {
-        //if remove here--> send to backedn and then on success print the dialog
-        //send to previous screen to rerun fetch of user registered classes
-        //this.courseRemoval.emit();
         this.removeSchedule()
         this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Deleted schedule.' });
       },
@@ -156,6 +194,8 @@ export class SchedulerComponent implements OnInit {
       if (item.id !== this.selectedSchedule.id)
         return item;
     });
+    //send to backend to update schedule & repopulate
+    //this.populateSchedules()
     if (this.schedules.length !== 0) {
       Object.assign(this.selectedSchedule, this.schedules[0]);
       this.scheduleData = this.selectedSchedule.data;
@@ -164,11 +204,31 @@ export class SchedulerComponent implements OnInit {
       this.selectedSchedule = null;
       this.scheduleData = [];
     }
-    this.calendarConfig();
-    this.changeDetectorRef.detectChanges();
+    this.calendarConfig(this.scheduleData);
   }
 
-  formattedCalendar: any = []
+  scheduleChange() {
+    this.scheduleData = this.selectedSchedule["data"]
+    this.calendarConfig(this.scheduleData);
+  }
+
+  updateCourses(event: any) {
+    //check if course exists
+    let existing: any = [];
+    existing = this.selectedSchedule["data"].filter((item: any) => {
+      if (item.courseCode === event.courseCode && item.subjectCode === event.subjectCode) {
+        return item
+      }
+    });
+    console.log("ebee", existing)
+    if (existing.length > 0) {
+
+    }
+    else {
+      this.selectedSchedule["data"].push(event)
+      this.scheduleChange()
+    }
+  }
 
   formatData(classData: any) {
     this.formattedCalendar = [];
@@ -184,6 +244,8 @@ export class SchedulerComponent implements OnInit {
           }
         }
       });
+      //save to backend
+      this.coloredCourses = classData;
       for (let i = 0; i < classData.length; i++) {
         let cal: any = classData[i];
         let lectDetail = cal.lectureDetail.dayTimes;
@@ -232,99 +294,75 @@ export class SchedulerComponent implements OnInit {
         this.formattedCalendar.push(tutObj);
       }
     }
-  }
-  selectedSchedule: any;
-
-  scheduleChange() {
-    this.scheduleData = this.selectedSchedule["data"]
-    console.log("this.scheduleData", this.scheduleData)
-    this.calendarConfig();
-    this.changeDetectorRef.detectChanges();
+    console.log("formattedCalendar", this.formattedCalendar)
   }
 
-  calendarConfig() {
-    this.formatData(this.scheduleData)
-    setTimeout(function () {
-      window.dispatchEvent(new Event('resize'))
-    }, 1);
+  calendarConfig(scheduleData: any) {
+      this.formatData(scheduleData);
+      if (this.fullcalendar) {
+        this.fullcalendar?.getApi().destroy();
+      }
+      setTimeout(function () {
+        window.dispatchEvent(new Event('resize'))
+      }, 1);
 
-    this.calendarOptions = {
-      initialView: 'timeGridWeek',
-      allDaySlot: false,
-      slotMinTime: "07:00:00",
-      slotMaxTime: "20:00:00",
-      nowIndicator: false,
-      eventMinHeight: 75,
-      expandRows: true,
-      businessHours: false,
-      slotLabelFormat: {
-        minute: 'numeric',
-        hour: 'numeric',
-        hour12: false,
+      let newOption: any = {
+        ...this.calendarOptions,
+        events: this.formattedCalendar,
+      }
+      console.log("newOption", newOption)
 
-      },
-      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-      headerToolbar: {
-        left: '',
-        center: '',
-        right: ''
-      },
-      dayHeaderContent: (args) => {
-        return moment(args.date).format('ddd')
-      },
-      weekends: false,
-      events: this.formattedCalendar,
-      eventMouseEnter: function (mouseEnterInfo) {
-        mouseEnterInfo.el.classList.remove('light-on-hover');
-        mouseEnterInfo.el.classList.add('dark-on-hover');
-      },
-      eventMouseLeave: function (mouseLeaveInfo) {
-        mouseLeaveInfo.el.classList.remove('dark-on-hover');
-        mouseLeaveInfo.el.classList.add('light-on-hover');
-      },
-      eventDidMount: function (event: any) {
-        //console.log("eveee", event)
-        //let xxx = 
-        if (event.getCurrentData) {
-          // Apply a lighter hue to constrained events
-          // event.css('background-color', 'red');
-        }
-      },
-      eventDragStart: function (event: any) {
-        // Identify and highlight constraint sections
-        // You may add a CSS class to these sections
-        let info = event.getEventSources
-        //console.log("eveee", event)
-        //$('.fc-event-draggable').addClass('highlighted');
-
-
-      },
-      eventClick: function (info) {
-        // let cal = info.view.calendar.getEvents();
-        // let currentId = info.event.id;
-        // for (let i = 0; i < cal.length; i++) {
-        //   if (cal[i].id === currentId) {
-        //     console.log("calaaa", cal[i].id)
-        //     //cal[i].borderColor = "red";
-        //   }
-        // }
-        //console.log("info", cal)
-
-        //info.el.classList.add('dark-on-hover');
-        //let allcourses = calendarOptions.getEventById('a')
-      },
-    };
-
+      this.calendarOptions = {
+        ...this.calendarOptions,
+        events: this.formattedCalendar,
+        eventDidMount: function (event: any) {
+          if (event.getCurrentData) {
+            // Apply a lighter hue to constrained events
+            // event.css('background-color', 'red');
+          }
+        },
+        eventClick: function (info) {
+          // let cal = info.view.calendar.getEvents();
+          // let currentId = info.event.id;
+          // for (let i = 0; i < cal.length; i++) {
+          //   if (cal[i].id === currentId) {
+          //     console.log("calaaa", cal[i].id)
+          //     //cal[i].borderColor = "red";
+          //   }
+          // }
+          //console.log("info", cal)
+          //info.el.classList.add('dark-on-hover');
+          //let allcourses = calendarOptions.getEventById('a')
+        },
+      };
+      this.calculateCredits()
+      this.fullcalendar?.getApi().render();
+      this.changeDetectorRef.detectChanges();
   }
 
-
-  ngOnInit() {
+  populateSchedules() {
     //post request to fetch user schedules
     let user: any = this.util.getUserInfo();
+    this.term = user.currentTerm;
     this.schedules = user.schedules;
+  }
+
+  calculateCredits(){
+    let sumCredits:any = 0;
+    console.log("sched",this.selectedSchedule)
+    for(let i=0; i<this.selectedSchedule.data.length; i++){
+      let course:any = this.selectedSchedule.data[i];
+      sumCredits += course.credits;
+    }
+    this.creditSum = sumCredits;
+    console.log("creditSum",this.creditSum)
+  }
+
+  ngOnInit() {
+    this.populateSchedules();
     this.selectedSchedule = this.schedules[0]
     this.scheduleData = this.selectedSchedule.data;
-    this.calendarConfig();
+    this.calendarConfig(this.scheduleData);
   }
 
 }

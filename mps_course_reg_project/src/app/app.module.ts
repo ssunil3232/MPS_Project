@@ -20,6 +20,7 @@ import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
 import { MenubarModule } from 'primeng/menubar';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { SidebarModule } from 'primeng/sidebar';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { TreeSelectModule } from 'primeng/treeselect';
@@ -54,6 +55,7 @@ import { RegisteredCardComponent } from './registration/registered-card/register
 import { WaitlistedCardComponent } from './registration/waitlisted-card/waitlisted-card.component';
 import { RegistrationHelperComponent } from './registration/registration-helper/registration-helper.component';
 import { WeeklyScheduleComponent } from './home-page/weekly-schedule/weekly-schedule.component';
+import { CourseWidgetsComponent } from './scheduler/course-widgets/course-widgets.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ import { WeeklyScheduleComponent } from './home-page/weekly-schedule/weekly-sche
     RegisteredCardComponent,
     WaitlistedCardComponent,
     RegistrationHelperComponent,
-    WeeklyScheduleComponent
+    WeeklyScheduleComponent,
+    CourseWidgetsComponent
   ],
   imports: [
     FormsModule,
@@ -95,6 +98,7 @@ import { WeeklyScheduleComponent } from './home-page/weekly-schedule/weekly-sche
     MenubarModule,
     SidebarModule,
     TabMenuModule,
+    SelectButtonModule,
     ToggleButtonModule,
     DropdownModule,
     MenuModule,

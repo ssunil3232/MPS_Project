@@ -27,6 +27,7 @@ export class UtilService {
       coursesTaken: ["INFO 3200", "INFO 2500"],
       registrationStartDateTime: "2023-08-27 07:30:00",
       registrationEndDateTime: "2023-12-02 07:30:00",
+      currentTerm: "Fall 2023",
       registeredClasses: [
         {
           subjectCode: "INFO",
@@ -721,7 +722,6 @@ export class UtilService {
           ]
         }
       ],
-      currentTerm: "Fall 2023",
       // schedule: [
       //   {id: "19533", courseId: "INFO 5001", type: "LEC", day: "Mon", start: "11:40", end: "12:05", location: "Upson Hall" },
       //   {id: "19533", courseId: "INFO 5001", type: "LEC", day: "Wed", start: "14:30", end: "15:30", location: "Philips Hall" },
