@@ -136,6 +136,74 @@ export const course_catalog = {
             added: false
         },
         {
+            name: "INFO 1090 - Information, Ethics",
+            subjectCode: "INFO",
+            courseCode: "1090",
+            title: "Information, Ethics, Law, and Policy",
+            credits: 3,
+            color: null,
+            restrictions: ["CIS", "MENG"],
+            prerequisites: ["INFO 3200 and INFO 2500", "INFO 2001"],
+            workload: {
+                hours: 10,
+                lecture: 2,
+                assignment: 4,
+                project: 4
+            },
+            offered: ["Fall, Spring"],
+            description: "This course investigates the ethical, legal, and policy foundations of contemporary information technology. Through lectures, readings, discussions, and short assignments, we will address contemporary.",
+            lectureDetail: {
+                prefix: "LEC",
+                lectureId: "001",
+                dayTimes: [
+                    {
+                        day: "Mon",
+                        startTime: "10:25",
+                        endTime: "11:15",
+                        location: "Statler Hall 185-Aud",
+                        selected: true
+                    },
+                    {
+                        day: "Wed",
+                        startTime: "10:25",
+                        endTime: "11:15",
+                        location: "Statler Hall 185-Aud",
+                        selected: true
+                    }
+                ],
+                lecturers: ["Susser, D", "Vidan, G"],
+                classFormat: "In-person",
+                capacity: 20,
+                vacancy: 8
+            },
+            discussionDetail: {
+                prefix: "DIS",
+                discussionId: "201",
+                dayTimes: [
+                    {
+                        day: "Wed",
+                        startTime: "10:10",
+                        endTime: "11:00",
+                        location: "Hollister Hall 401",
+                        selected: true
+                    },
+                    {
+                        day: "Fri",
+                        startTime: "10:10",
+                        endTime: "11:00",
+                        location: "Hollister Hall 401",
+                        selected: false
+                    }
+                ],
+                lecturers: ["Melody, B", "Vidan, G"],
+                classFormat: "In-person",
+                capacity: 50,
+                vacancy: 50
+            },
+            wishlisted: false,
+            added: false
+        },
+        {
             name: "INFO 1200 - Information, Ethics",
             subjectCode: "INFO",
             courseCode: "1200",

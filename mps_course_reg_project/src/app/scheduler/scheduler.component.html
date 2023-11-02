@@ -78,7 +78,7 @@
       <div style="width: 400px;">
             <span class="p-input-icon-left w-full">
                   <p-autoComplete class="relative flex" [ngStyle]="{'width': '350px'}" [(ngModel)]="searchValue"
-                        [suggestions]="filteredItems" (completeMethod)="filterCourses($event)"
+                        [suggestions]="filteredItems" (completeMethod)="filterCourses($event)" (onSelect)="updateCourses(searchValue)"
                         (onFocus)="showPlaceholder = false" (onBlur)="loseFocus()" field="name"></p-autoComplete>
                   <div *ngIf="showPlaceholder" class="flex flex-row absolute text-600" style="top:30%; left:10%;">
                         <i class="pi pi-search mr-2"></i>
@@ -87,7 +87,7 @@
             </span>
       </div>
 </div>
-<full-calendar [options]="calendarOptions">
+<full-calendar #fullcalendar [options]="calendarOptions">
       <ng-template #eventContent let-arg>
             <span style="font-size: smaller;">{{arg.event.extendedProps.subjectCode}}{{arg.event.extendedProps.courseCode}}
                   {{arg.event.title}}</span><br>
@@ -96,3 +96,25 @@
             <b style="font-size: small;">{{arg.timeText}}</b>
       </ng-template>
 </full-calendar>
+<div class="flex flex-row w-full justify-content-between">
+      <div class="flex flex-row flex-wrap" style="display: flex;width: 70%;">
+            <div *ngFor="let item of coloredCourses" style="height: fit-content;">
+                  <course-widgets [courseDetail]="item"></course-widgets>
+            </div>
+      </div>
+      <div>
+            <div class="flex flex-column mt-1">
+                  <div class="flex flex-row align-items-center">
+                        <span class="text-400 font-semibold pr-3">{{term}}, {{creditSum}} Credits</span>
+                        <button class="export-button px-4 py-2 align-items-center">
+                              <i class="pi pi-download pr-2"></i>
+                              <span>
+                                  Export
+                              </span>
+                        </button>
+                  </div>
+                  <p-selectButton class="mt-3" [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value"></p-selectButton>
+            </div>
+
+      </div>
+</div>
