@@ -23,7 +23,7 @@
                         </div>
                     </ng-template>
                 </p-dropdown>
-                <p-button class="ml-2 register-button" label="Register" [loading]="registerLoading" (onClick)="registering()"></p-button>
+                <p-button class="ml-2 register-button" label="Register" [disabled]="!validRegistrationWindow" [loading]="registerLoading" (onClick)="registering()"></p-button>
             </div>
         </div>
         <div class="flex flex-column schedule-list">

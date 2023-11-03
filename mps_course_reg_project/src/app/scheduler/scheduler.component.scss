@@ -76,9 +76,13 @@
       justify-content: center;
     }
 
+    .fc .fc-timegrid-col.fc-day-today {
+      background-color: rgb(246 241 241 / 100%);
+  }
+
     .delete-button {
       border-radius: 50%;
-      background: #d21608;
+      background: #d21608ab;
       color: white;
       border: none;
       width: 30px;

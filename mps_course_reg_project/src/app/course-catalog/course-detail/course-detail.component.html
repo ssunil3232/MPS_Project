@@ -4,7 +4,7 @@
             <h3 class="subject-code" style="text-decoration:underline;">
                 {{courseDetail.subjectCode}}
             </h3>
-            <h3 style="text-decoration:underline;">
+            <h3>
                 {{courseDetail.courseCode}}
             </h3>
             &nbsp;&nbsp;
@@ -14,13 +14,13 @@
         </div>
         <div>
             <span style="font-size:small; font-weight:800;">
-                {{courseDetail.credits}} Credits
+                {{courseDetail.offered}}
             </span>
             &nbsp;
             |
             &nbsp;
             <span style="font-size:small; font-weight:800;">
-                {{courseDetail.offered}}
+                {{courseDetail.credits}} Credits
             </span>
             &nbsp;
             <!-- <span (click)="openFullDetail()" class="subject-code" style="font-size:small; font-weight:800; text-decoration:underline;">
@@ -45,37 +45,32 @@
     <div class="flex flex-row justify-content-between mt-3 grid">
         <div class="flex flex-row col w-full justify-content-between">
             <div class="grid flex flex-row w-full">
-                <div class="flex flex-column col-3">
+                <div class="flex flex-wrap col-2">
                     <span style="font-size:small; font-weight:800;">
                         {{courseDetail.lectureDetail.prefix}} {{courseDetail.lectureDetail.lectureId}}
                     </span>
-                    <div style="font-size: smaller;" class="flex flex-row">
-                        <div class="flex align-items-start justify-content-start flex-column">
-                            {{courseDetail.lectureDetail.lecturers}}
-                        </div>
+                </div>
+                <div class="flex flex-wrap col-2">
+                    <div style="font-size: smaller;">
+                        <span>{{formatDayString(courseDetail.lectureDetail.dayTimes, true)}} </span>
                     </div>
                 </div>
-                <div class="flex flex-column col-3">
-                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.lectureDetail.dayTimes">
-                        <span>{{item.location}}</span>
+                <div class="flex flex-wrap col-3">
+                    <div style="font-size: smaller;">
+                        <span>{{formatTime(courseDetail.lectureDetail.dayTimes[0].startTime)}}-{{formatTime(courseDetail.lectureDetail.dayTimes[0].endTime)}}</span>
                     </div>
                 </div>
-                <div class="flex flex-column col-1">
-                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.lectureDetail.dayTimes">
-                        <span>{{item.day}}</span>
+                <div class="flex flex-wrap col-3">
+                    <div style="font-size: smaller;">
+                        <span>{{formatDayString(courseDetail.lectureDetail.lecturers, false)}}</span>
                     </div>
                 </div>
-                <div class="flex flex-column col-3">
-                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.lectureDetail.dayTimes">
-                        <span>{{formatTime(item.startTime)}}-{{formatTime(item.endTime)}}</span>
-                    </div>
-                </div>
-                <div style="font-size: smaller; color:darkgrey" class="flex align-items-center col-2">
+                <div style="font-size: smaller; color:darkgrey" class="flex align-items-start col-2">
                     {{courseDetail.lectureDetail.classFormat}} expectation
                 </div>
             </div>  
         </div>
-        <div class="flex align-items-center col-fixed justify-content-end m-0 pl-0" style="width: 100px;">
+        <div class="flex align-items-start col-fixed justify-content-end m-0 pl-0" style="width: 100px;">
             <span style="font-size: smaller;">{{checkCapacity(courseDetail.lectureDetail.vacancy,
                 courseDetail.lectureDetail.capacity)}}</span>
             &nbsp;
@@ -83,45 +78,40 @@
         </div>
     </div>
     <!--discussion details-->
-    <div class="flex flex-row justify-content-between mt-1 grid">
-        <div class="flex flex-row col w-full justify-content-between">
-            <div class="grid flex flex-row w-full">
-                <div class="flex flex-column col-3">
+    <div class="flex flex-row justify-content-between mt-1 grid" *ngFor="let course of courseDetail.discussionItems">
+        <div class="flex flex-row col w-full py-0 justify-content-between">
+            <div class="grid flex flex-row py-0 w-full">
+                <div class="flex flex-wrap col-2">
                     <span style="font-size:small; font-weight:800;">
-                        {{courseDetail.discussionDetail.prefix}} {{courseDetail.discussionDetail.discussionId}}
+                        {{course.prefix}} {{course.discussionId}}
                     </span>
-                    <div style="font-size: smaller;" class="flex flex-row">
-                        <div class="flex align-items-start justify-content-start flex-column">
-                            {{courseDetail.discussionDetail.lecturers}}
-                        </div>
+                </div>
+                <div class="flex flex-wrap col-2">
+                    <div style="font-size: smaller;">
+                        <span>{{formatDayString(course.dayTimes, true)}}</span>
                     </div>
                 </div>
-                <div class="flex flex-column col-3">
-                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.discussionDetail.dayTimes">
-                        <span>{{item.location}}</span>
+                <div class="flex flex-wrap col-3">
+                    <div style="font-size: smaller;">
+                        <span>{{formatTime(course.dayTimes[0].startTime)}}-{{formatTime(course.dayTimes[0].endTime)}}</span>
                     </div>
                 </div>
-                <div class="flex flex-column col-1">
-                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.discussionDetail.dayTimes">
-                        <span>{{item.day}}</span>
+                <div class="flex flex-wrap col-3">
+                    <div style="font-size: smaller;">
+                        <span>{{formatDayString(course.lecturers, false)}}</span>
                     </div>
                 </div>
-                <div class="flex flex-column col-3">
-                    <div style="font-size: smaller;" *ngFor="let item of courseDetail.discussionDetail.dayTimes">
-                        <span>{{formatTime(item.startTime)}}-{{formatTime(item.endTime)}}</span>
-                    </div>
-                </div>
-                <div style="font-size: smaller; color:darkgrey" class="flex align-items-center col-2">
-                    {{courseDetail.discussionDetail.classFormat}} expectation
+                <div style="font-size: smaller; color:darkgrey" class="flex align-items-start col-2">
+                    {{course.classFormat}} expectation
                 </div>
             </div>  
         </div>
-        <div class="flex align-items-center col-fixed justify-content-end m-0 pl-0" style="width: 100px;">
-            <span style="font-size:smaller;">{{checkCapacity(courseDetail.discussionDetail.vacancy,
-                courseDetail.discussionDetail.capacity)}}</span>
+        <div class="flex align-items-start col-fixed justify-content-end m-0 pl-0" style="width: 100px;">
+            <span style="font-size:smaller;">{{checkCapacity(course.vacancy,
+                course.capacity)}}</span>
             &nbsp;
             <span
-                [ngClass]="(courseDetail.discussionDetail.vacancy === courseDetail.discussionDetail.capacity) ? 'full-dot' : 'vacancy-dot'"></span>
+                [ngClass]="(course.vacancy === course.capacity) ? 'full-dot' : 'vacancy-dot'"></span>
         </div>
     </div>
 </div>

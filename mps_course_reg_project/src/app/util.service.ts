@@ -68,6 +68,30 @@ export class UtilService {
             capacity: 50,
             vacancy: 11
           },
+          discussionItems: [{
+            prefix: "DIS",
+            discussionId: "201",
+            dayTimes: [
+              {
+                day: "Tue",
+                startTime: "10:10",
+                endTime: "11:00",
+                location: "Hollister Hall 401",
+                selected: true
+              },
+              {
+                day: "Thu",
+                startTime: "10:10",
+                endTime: "11:00",
+                location: "Hollister Hall 401",
+                selected: false
+              }
+            ],
+            lecturers: ["Susser, D", "Vidan, G"],
+            classFormat: "In-person",
+            capacity: 50,
+            vacancy: 50,
+          },],
           discussionDetail: {
             prefix: "DIS",
             discussionId: "201",
@@ -137,6 +161,32 @@ export class UtilService {
             capacity: 50,
             vacancy: 11
           },
+          discussionItems: [
+            {
+              prefix: "DIS",
+              discussionId: "201",
+              dayTimes: [
+                {
+                  day: "Tue",
+                  startTime: "10:10",
+                  endTime: "11:00",
+                  location: "Hollister Hall 401",
+                  selected: true
+                },
+                {
+                  day: "Thu",
+                  startTime: "10:10",
+                  endTime: "11:00",
+                  location: "Hollister Hall 401",
+                  selected: false
+                }
+              ],
+              lecturers: ["Susser, D", "Vidan, G"],
+              classFormat: "In-person",
+              capacity: 50,
+              vacancy: 50,
+            },
+          ],
           discussionDetail: {
             prefix: "DIS",
             discussionId: "201",
@@ -211,6 +261,32 @@ export class UtilService {
                 capacity: 50,
                 vacancy: 11
               },
+              discussionItems: [
+                {
+                  prefix: "DIS",
+                  discussionId: "201",
+                  dayTimes: [
+                    {
+                      day: "Tue",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: true
+                    },
+                    {
+                      day: "Thu",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: false
+                    }
+                  ],
+                  lecturers: ["Susser, D", "Vidan, G"],
+                  classFormat: "In-person",
+                  capacity: 50,
+                  vacancy: 50,
+                },
+              ],
               discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",
@@ -278,6 +354,32 @@ export class UtilService {
                 capacity: 20,
                 vacancy: 8
               },
+              discussionItems: [
+                {
+                  prefix: "DIS",
+                  discussionId: "201",
+                  dayTimes: [
+                    {
+                      day: "Wed",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: true
+                    },
+                    {
+                      day: "Fri",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: false
+                    }
+                  ],
+                  lecturers: ["Melody, B", "Vidan, G"],
+                  classFormat: "In-person",
+                  capacity: 50,
+                  vacancy: 50
+                },
+              ],
               discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",
@@ -345,6 +447,32 @@ export class UtilService {
                 capacity: 50,
                 vacancy: 11
               },
+              discussionItems: [
+                {
+                  prefix: "DIS",
+                  discussionId: "201",
+                  dayTimes: [
+                    {
+                      day: "Tue",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: true
+                    },
+                    {
+                      day: "Thu",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: false
+                    }
+                  ],
+                  lecturers: ["Susser, D", "Vidan, G"],
+                  classFormat: "In-person",
+                  capacity: 50,
+                  vacancy: 50
+                },
+              ],
               discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",
@@ -412,6 +540,32 @@ export class UtilService {
                 capacity: 50,
                 vacancy: 14
               },
+              discussionItems: [
+                {
+                  prefix: "DIS",
+                  discussionId: "201",
+                  dayTimes: [
+                    {
+                      day: "Tue",
+                      startTime: "15:10",
+                      endTime: "16:00",
+                      location: "Hollister Hall 401",
+                      selected: true
+                    },
+                    {
+                      day: "Thu",
+                      startTime: "15:10",
+                      endTime: "16:00",
+                      location: "Hollister Hall 401",
+                      selected: false
+                    }
+                  ],
+                  lecturers: ["Susser, D", "Vidan, G"],
+                  classFormat: "In-person",
+                  capacity: 50,
+                  vacancy: 50
+                },
+              ],
               discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",
@@ -485,6 +639,32 @@ export class UtilService {
                 capacity: 50,
                 vacancy: 11
               },
+              discussionItems: [
+                {
+                  prefix: "DIS",
+                  discussionId: "201",
+                  dayTimes: [
+                    {
+                      day: "Tue",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: true
+                    },
+                    {
+                      day: "Thu",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: false
+                    }
+                  ],
+                  lecturers: ["Susser, D", "Vidan, G"],
+                  classFormat: "In-person",
+                  capacity: 50,
+                  vacancy: 50,
+                },
+              ],
               discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",
@@ -552,6 +732,32 @@ export class UtilService {
                 capacity: 20,
                 vacancy: 8
               },
+              discussionItems: [
+                {
+                  prefix: "DIS",
+                  discussionId: "201",
+                  dayTimes: [
+                    {
+                      day: "Wed",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: true
+                    },
+                    {
+                      day: "Fri",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: false
+                    }
+                  ],
+                  lecturers: ["Melody, B", "Vidan, G"],
+                  classFormat: "In-person",
+                  capacity: 50,
+                  vacancy: 50
+                },
+              ],
               discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",
@@ -625,6 +831,32 @@ export class UtilService {
                 capacity: 50,
                 vacancy: 11
               },
+              discussionItems: [
+                {
+                  prefix: "DIS",
+                  discussionId: "201",
+                  dayTimes: [
+                    {
+                      day: "Tue",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: true
+                    },
+                    {
+                      day: "Thu",
+                      startTime: "10:10",
+                      endTime: "11:00",
+                      location: "Hollister Hall 401",
+                      selected: false
+                    }
+                  ],
+                  lecturers: ["Susser, D", "Vidan, G"],
+                  classFormat: "In-person",
+                  capacity: 50,
+                  vacancy: 50
+                },
+              ],
               discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",
@@ -692,6 +924,32 @@ export class UtilService {
                 capacity: 50,
                 vacancy: 14
               },
+              discussionItems: [
+                {
+                  prefix: "DIS",
+                  discussionId: "201",
+                  dayTimes: [
+                    {
+                      day: "Tue",
+                      startTime: "15:10",
+                      endTime: "16:00",
+                      location: "Hollister Hall 401",
+                      selected: true
+                    },
+                    {
+                      day: "Thu",
+                      startTime: "15:10",
+                      endTime: "16:00",
+                      location: "Hollister Hall 401",
+                      selected: false
+                    }
+                  ],
+                  lecturers: ["Susser, D", "Vidan, G"],
+                  classFormat: "In-person",
+                  capacity: 50,
+                  vacancy: 50
+                },
+              ],
               discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",

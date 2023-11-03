@@ -15,6 +15,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { StudentInformationComponent } from './student-information/student-information.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
@@ -83,6 +84,7 @@ import { CourseWidgetsComponent } from './scheduler/course-widgets/course-widget
     FormsModule,
     BrowserAnimationsModule,
     FullCalendarModule,
+    TooltipModule,
     ProgressSpinnerModule,
     ReactiveFormsModule,
     BrowserModule,

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DialogMessage } from '../common/components/dialog-modal/dialog-modal.component';
 import { AnnouncementsService } from './services/announcements.service';
 import { QuickLinksService } from './services/quick-links.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-home-page',
@@ -21,7 +22,7 @@ export class HomePageComponent implements OnInit {
   schedule: any; 
   selectedItem!: Schedule;
   registeredClasses: any = [];
-
+  week:any;
   userDetails: any = {}
 
   constructor(
@@ -41,6 +42,7 @@ export class HomePageComponent implements OnInit {
     this.tasks = this.pendingTaskService.getPendingTasks();
     this.announcements = this.announcementService.getAnnoucements();
     this.quickLinks = this.quickLinksService.getQuickLinks();
+    this.getCurrentWeek();
   }
 
   dialogClick(item:any){
@@ -51,6 +53,13 @@ export class HomePageComponent implements OnInit {
 
   redirectToUrl(item:any){
     (window as any).open(`${item.description}`, "_blank");
+  }
+
+  getCurrentWeek(){
+    let mon = moment().day("Mon").format("MMMM Do");
+    let fri = moment().day("Fri").format("MMMM Do");
+    let year = moment().format("YYYY");
+    this.week = mon+" - "+fri+", "+year;
   }
 
 }
