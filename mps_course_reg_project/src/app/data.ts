@@ -41,6 +41,32 @@ export const course_catalog = {
                 capacity: 50,
                 vacancy: 11
             },
+            discussionItems: [
+                {
+                    prefix: "DIS",
+                    discussionId: "201",
+                    dayTimes: [
+                        {
+                            day: "Tue",
+                            startTime: "10:10",
+                            endTime: "11:00",
+                            location: "Hollister Hall 401",
+                            selected: true
+                        },
+                        {
+                            day: "Thu",
+                            startTime: "10:10",
+                            endTime: "11:00",
+                            location: "Hollister Hall 401",
+                            selected: false
+                        }
+                    ],
+                    lecturers: ["Susser, D", "Vidan, G"],
+                    classFormat: "In-person",
+                    capacity: 50,
+                    vacancy: 50,
+                },
+            ],
             discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",
@@ -108,6 +134,32 @@ export const course_catalog = {
                 capacity: 20,
                 vacancy: 8
             },
+            discussionItems: [
+                {
+                    prefix: "DIS",
+                    discussionId: "201",
+                    dayTimes: [
+                        {
+                            day: "Wed",
+                            startTime: "10:10",
+                            endTime: "11:00",
+                            location: "Hollister Hall 401",
+                            selected: true
+                        },
+                        {
+                            day: "Fri",
+                            startTime: "10:10",
+                            endTime: "11:00",
+                            location: "Hollister Hall 401",
+                            selected: false
+                        }
+                    ],
+                    lecturers: ["Melody, B", "Vidan, G"],
+                    classFormat: "In-person",
+                    capacity: 50,
+                    vacancy: 50
+                },
+            ],
             discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",
@@ -176,6 +228,58 @@ export const course_catalog = {
                 capacity: 20,
                 vacancy: 8
             },
+            discussionItems: [
+                {
+                    prefix: "DIS",
+                    discussionId: "201",
+                    dayTimes: [
+                        {
+                            day: "Wed",
+                            startTime: "10:10",
+                            endTime: "11:00",
+                            location: "Hollister Hall 401",
+                            selected: true
+                        },
+                        {
+                            day: "Fri",
+                            startTime: "10:10",
+                            endTime: "11:00",
+                            location: "Hollister Hall 401",
+                            selected: true
+                        }
+                    ],
+                    lecturers: ["Melody, B", "Vidan, G"],
+                    classFormat: "In-person",
+                    capacity: 50,
+                    vacancy: 50
+                },
+                {
+                    prefix: "DIS",
+                    discussionId: "202",
+                    dayTimes: [
+                        {
+                            day: "Thu",
+                            startTime: "10:10",
+                            endTime: "11:00",
+                            location: "Hollister Hall 401",
+                            selected: false
+                        },
+                        {
+                            day: "Mon",
+                            startTime: "14:10",
+                            endTime: "15:00",
+                            location: "Hollister Hall 401",
+                            selected: false
+                        }
+                    ],
+                    lecturers: ["Melody, B", "Vidan, G"],
+                    classFormat: "In-person",
+                    capacity: 50,
+                    vacancy: 50
+                }
+
+
+            ],
             discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",
@@ -243,6 +347,32 @@ export const course_catalog = {
                 capacity: 50,
                 vacancy: 11
             },
+            discussionItems: [
+                {
+                    prefix: "DIS",
+                    discussionId: "201",
+                    dayTimes: [
+                        {
+                            day: "Tue",
+                            startTime: "10:10",
+                            endTime: "11:00",
+                            location: "Hollister Hall 401",
+                            selected: true
+                        },
+                        {
+                            day: "Thu",
+                            startTime: "10:10",
+                            endTime: "11:00",
+                            location: "Hollister Hall 401",
+                            selected: false
+                        }
+                    ],
+                    lecturers: ["Susser, D", "Vidan, G"],
+                    classFormat: "In-person",
+                    capacity: 50,
+                    vacancy: 50
+                },
+            ],
             discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",
@@ -310,6 +440,56 @@ export const course_catalog = {
                 capacity: 50,
                 vacancy: 14
             },
+            discussionItems: [
+                {
+                    prefix: "DIS",
+                    discussionId: "201",
+                    dayTimes: [
+                        {
+                            day: "Tue",
+                            startTime: "15:10",
+                            endTime: "16:00",
+                            location: "Hollister Hall 401",
+                            selected: true
+                        },
+                        {
+                            day: "Thu",
+                            startTime: "15:10",
+                            endTime: "16:00",
+                            location: "Hollister Hall 401",
+                            selected: false
+                        }
+                    ],
+                    lecturers: ["Susser, D", "Vidan, G"],
+                    classFormat: "In-person",
+                    capacity: 50,
+                    vacancy: 50
+                },
+                {
+                    prefix: "DIS",
+                    discussionId: "211",
+                    dayTimes: [
+                        {
+                            day: "Tue",
+                            startTime: "15:10",
+                            endTime: "16:00",
+                            location: "Hollister Hall 401",
+                            selected: true
+                        },
+                        {
+                            day: "Thu",
+                            startTime: "15:10",
+                            endTime: "16:00",
+                            location: "Hollister Hall 401",
+                            selected: false
+                        }
+                    ],
+                    lecturers: ["Susser, D", "Vidan, G"],
+                    classFormat: "In-person",
+                    capacity: 50,
+                    vacancy: 50
+                },
+            ],
             discussionDetail: {
                 prefix: "DIS",
                 discussionId: "201",

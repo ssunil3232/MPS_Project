@@ -44,4 +44,19 @@ export class WaitlistedCardComponent {
     });
   }
 
+  formatDayString(item:any, isDay:boolean){
+    let returnString = "";
+    for(let i=0; i<item.length; i++){
+      let el:any = item[i];
+      if(isDay)
+        returnString+= el.day;
+      else 
+        returnString+=item[i]
+      if(i !== (item.length-1)){
+        returnString+=", "
+      }
+    }
+    return returnString;
+  }
+
 }

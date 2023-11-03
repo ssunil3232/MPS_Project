@@ -8,7 +8,7 @@
                         (click)="router.navigate(['/course-catalog'])">
                         <div class="flex h-full w-full flex-column align-content-between justify-content-between">
                             <span class="p-button-label">Course Catalog</span>
-                            <i class="pi pi-book p-2 mb-5" style="font-size: 4rem; color: white"></i>
+                            <i class="pi pi-book p-2 mb-5" style="font-size: 4rem; color: #ce9d9d;"></i>
                         </div>
                     </button>
                 </div>
@@ -17,7 +17,7 @@
                         (click)="router.navigate(['/registration'])">
                         <div class="flex h-full w-full flex-column align-content-between justify-content-between">
                             <span class="p-button-label">Registration</span>
-                            <i class="pi pi-shopping-cart p-2 mb-5" style="font-size: 4rem; color: white"></i>
+                            <i class="pi pi-shopping-cart p-2 mb-5" style="font-size: 4rem; color: #ce9d9d;"></i>
                         </div>
                     </button>
                 </div>
@@ -26,14 +26,17 @@
                         (click)="router.navigate(['/student-information'])">
                         <div class="flex h-full w-full flex-column align-content-between justify-content-between">
                             <span class="p-button-label">Student Info</span>
-                            <i class="pi pi-user p-2 mb-5" style="font-size: 4rem; color: white"></i>
+                            <i class="pi pi-user p-2 mb-5" style="font-size: 4rem; color: #ce9d9d;"></i>
                         </div>
                     </button>
                 </div>
 
             </div>
             <div class="pl-3  pt-5 flex-column flex w-full">
-                <span class="font-semibold">This week's schedule</span>
+                <div class="flex flex-row">
+                    <span class="font-semibold pr-3">This Week's Schedule</span>
+                    <span class="font-semibold text-400">{{week}}</span>
+                </div>
                 <div *ngIf="registeredClasses.length !== 0; else weeklySchedule" style="height: 300px;">
                     <weekly-schedule [classes]="registeredClasses"></weekly-schedule>
                 </div>
@@ -94,9 +97,9 @@
                     [style]="{width: '100%', height: 'fit-content'}" scrollHeight="130px" [itemSize]="50">
                     <ng-template pTemplate="header">Pending Tasks</ng-template>
                     <ng-template pTemplate="tasks" let-item>
-                        <div class="flex flex-column justify-content-start p-1 h-full" (click)="dialogClick(item)">
+                        <div class="flex flex-column justify-content-start p-1 h-full" style="color: #868383;;" (click)="dialogClick(item)">
                             {{ item.name }}
-                            <span class="task-description" style="font-size: small;"> {{ item.description }}</span>
+                            <span class="task-description" style="font-size: small; color: #868383;"> {{ item.description }}</span>
                         </div>
                     </ng-template>
                 </p-virtualScroller>
@@ -106,9 +109,9 @@
                     [style]="{width: '100%', height: 'fit-content'}" scrollHeight="130px" [itemSize]="50">
                     <ng-template pTemplate="header">Announcements</ng-template>
                     <ng-template pTemplate="announcements" let-item>
-                        <div class="flex flex-column justify-content-start p-1 h-full" (click)="dialogClick(item)">
+                        <div class="flex flex-column justify-content-start p-1 h-full" style="color: #868383;" (click)="dialogClick(item)">
                             {{ item.name }}
-                            <span class="task-description" style="font-size: small;"> {{ item.description }}</span>
+                            <span class="task-description" style="font-size: small; color: #868383;"> {{ item.description }}</span>
                         </div>
                     </ng-template>
                 </p-virtualScroller>
@@ -126,10 +129,10 @@
             </div> -->
            
             <div class="flex flex-column text-xs pl-3 pt-5" style="height: fit-content;">
-                <h2 style="color: #8b8989">Quick links</h2>
-                <a class="quick-links" href="https://registrar.cornell.edu/">Cornell University Registrar</a>
-                <a class="quick-links" href="https://registrar.cornell.edu/academic-calendar">Academic Calendar</a>
-                <a class="quick-links" href="https://scl.cornell.edu/residential-life/housing">Residential Education</a>
+                <h2 style="color: #888888">Quick links</h2>
+                <a style="color: #0085CA" class="quick-links" href="https://registrar.cornell.edu/">Cornell University Registrar</a>
+                <a style="color: #0085CA" class="quick-links" href="https://registrar.cornell.edu/academic-calendar">Academic Calendar</a>
+                <a style="color: #0085CA" class="quick-links" href="https://scl.cornell.edu/residential-life/housing">Residential Education</a>
             </div>
 
         </div>

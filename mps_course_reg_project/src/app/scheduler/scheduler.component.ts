@@ -46,7 +46,7 @@ export class SchedulerComponent implements OnInit {
   term:any;
   creditSum:any = 0;
 
-  stateOptions: any[] = [{label: 'Horisonal View', value: 'horizontal'}, {label: 'Vertical View', value: 'vertical'}];
+  stateOptions: any[] = [{label: 'Horizonal View', value: 'horizontal'}, {label: 'Vertical View', value: 'vertical'}];
 
   value: string = 'horizontal';
 

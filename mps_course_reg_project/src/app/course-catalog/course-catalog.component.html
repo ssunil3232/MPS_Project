@@ -17,7 +17,7 @@
                           <small>Enter course number, instructor name, major, keywords...</small>
                     </div>
                 </span>
-                <span class="mt-3 text-field flex w-full justify-content-end">{{courseList.size}} Courses found</span>
+                <span class="mt-3 text-field flex w-full justify-content-start">{{courseList.size}} Courses found</span>
                 <div class="mt-3 flex w-full" *ngFor="let item of courseList.data">
                     <course-detail [courseDetail]="item" class="flex w-full" (addedCourse)="addedCourse($event)"
                         (wishlistedCourse)="wishlistedCourse($event)"></course-detail>
