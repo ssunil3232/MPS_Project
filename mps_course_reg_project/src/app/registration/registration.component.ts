@@ -84,7 +84,11 @@ export class RegistrationComponent implements OnInit {
 
   checkingPrerequisite(){
     let user:any = this.util.getUserInfo();
-    let coursesTaken:any = user.coursesTaken;
+    let courseHistory = user.courseHistory;
+    let coursesTaken: any = [];
+    courseHistory.forEach((element:any) => {
+      coursesTaken = [...coursesTaken, ...element.courses]
+    });
     let containsBoth = true;
     let containsItem = true;
     for(let i=0; i<this.selectedCoursesToRegister.length; i++) {
@@ -140,7 +144,6 @@ export class RegistrationComponent implements OnInit {
         setTimeout(() => {
           //post request
           //based on capacity evaluation,
-          console.log("this.selectedCoursesToRegister", this.selectedCoursesToRegister)
 
           let returnData = registration_course;
           //success

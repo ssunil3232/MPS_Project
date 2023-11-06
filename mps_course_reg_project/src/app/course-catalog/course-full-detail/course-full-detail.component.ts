@@ -107,7 +107,6 @@ export class CourseFullDetailComponent implements OnChanges {
   }
 
   saveInput() {
-    console.log('Saved:', this.inputText);
     this.saving = true; 
     this.buttonLabel = 'Saving'; 
     this.buttonIcon = 'pi pi-spin pi-spinner';
@@ -168,7 +167,11 @@ export class CourseFullDetailComponent implements OnChanges {
 
   checkingPrerequisite() {
     let user: any = this.util.getUserInfo();
-    let coursesTaken: any = user.coursesTaken;
+    let courseHistory = user.courseHistory;
+    let coursesTaken: any = [];
+    courseHistory.forEach((element:any) => {
+      coursesTaken = [...coursesTaken, ...element.courses]
+    });
     let coursePrerequisite: any = this.courseDetail.prerequisites;
     let containsBoth = true;
     let containsItem = true;
