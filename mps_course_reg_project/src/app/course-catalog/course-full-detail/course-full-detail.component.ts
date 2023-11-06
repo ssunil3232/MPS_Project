@@ -107,7 +107,6 @@ export class CourseFullDetailComponent implements OnChanges {
   }
 
   saveInput() {
-    console.log('Saved:', this.inputText);
     this.saving = true; 
     this.buttonLabel = 'Saving'; 
     this.buttonIcon = 'pi pi-spin pi-spinner';

@@ -140,7 +140,6 @@ export class RegistrationComponent implements OnInit {
         setTimeout(() => {
           //post request
           //based on capacity evaluation,
-          console.log("this.selectedCoursesToRegister", this.selectedCoursesToRegister)
 
           let returnData = registration_course;
           //success

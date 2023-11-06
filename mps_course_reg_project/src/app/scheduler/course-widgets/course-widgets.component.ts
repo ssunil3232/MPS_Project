@@ -11,7 +11,6 @@ export class CourseWidgetsComponent implements OnInit {
   sidebarVisible: boolean = false;
 
   ngOnInit(): void {
-      console.log("courses", this.courseDetail)
   }
 
   openFullDetail(){
