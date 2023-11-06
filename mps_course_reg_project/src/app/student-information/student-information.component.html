@@ -1,1 +1,98 @@
-<p>Under construction...</p>
+<div class="grid flex w-full home-body">
+    <div class="col-9 pr-5">
+        <div class="flex flex-row justify-content-between">
+            <div class="flex flex-row align-items-end">
+                <h1 class="mt-0 ml-1 mb-0">Student Information</h1>
+            </div>
+            <div class="flex flex-row" style="height: fit-content">
+                <p-dropdown [ngStyle]="{'width': '180px'}" [options]="semesters" [(ngModel)]="selectedSemester" [editable]="true" (onChange)="getSemesterCredits()" optionLabel="term"></p-dropdown>
+            </div>
+        </div>
+        <!--first part-->
+        <div class="w-full flex flex-column pl-2 mt-5">
+            <div class="flex flex-row">
+                <span class="font-semibold" style="width: 250px;">Student Name</span>
+                <span class="text-700">{{user.name}}</span>
+            </div>
+            <div class="line my-3"></div>
+            <div class="flex flex-row">
+                <span class="font-semibold" style="width: 250px;">NetID</span>
+                <span class="text-700">{{user.netid}}</span>
+            </div>
+            <div class="line my-3"></div>
+            <div class="flex flex-row">
+                <span class="font-semibold" style="width: 250px;">Program</span>
+                <span class="text-700">{{user.program}}</span>
+            </div>
+            <div class="line my-3"></div>
+            <div class="flex flex-row">
+                <span class="font-semibold" style="width: 250px;">Class Level</span>
+                <span class="text-700">{{user.classLevel}} Student</span>
+            </div>
+            <div class="line my-3"></div>
+            <div class="flex flex-row">
+                <span class="font-semibold" style="width: 250px;">Admit Term</span>
+                <span class="text-700">{{user.admit}}</span>
+            </div>
+            <div class="line my-3"></div>
+            <div class="flex flex-row">
+                <span class="font-semibold" style="width: 250px;">Expected Graduation</span>
+                <span class="text-700">{{user.graduation}}</span>
+            </div>
+            <div class="line my-3"></div>
+            <div class="flex flex-row">
+                <span class="font-semibold" style="width: 250px;">Holds</span>
+                <span class="text-700">{{user.holds}}</span>
+            </div>
+            <div class="line my-3"></div>
+        </div>
+        <!--part 2-->
+        <div class="w-full flex flex-column pl-2 mt-3">
+            <div class="header text-lg font-semibold">
+                <span>Term Statistics</span>
+                <span class="text-500 ml-3">{{selectedSemester.term}}</span>
+            </div>
+            <div class="line my-3"></div>
+            <div *ngFor="let item of selectedSemester.courses" class="flex my-1 flex-row justify-content-between">
+                <span class="text-700">{{item.subjectCode}} {{item.courseCode}} - {{item.title}}</span>
+                <span class="text-700">{{item.credits}} Credits</span>
+            </div>
+            <div class="flex my-1 flex-row justify-content-between">
+                <span class="font-semibold">Total Semester Credits</span>
+                <span class="font-semibold">{{creditSum}} credits</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="flex flex-col w-full">
+            <div class="registration-window flex-col align-items-center">
+                <span class="font-medium mt-3">Academic Program</span>
+                <div class="line my-3"></div>
+                <span class="text-700 line-height-3 mb-3">{{user.program}}</span>
+            </div>
+        </div>
+        <div class="flex flex-col w-full mt-2">
+            <div class="registration-window flex-col align-items-center">
+                <span class="font-medium mt-3">Advisor Info</span>
+                <div class="line my-3"></div>
+                <span class="text-700 line-height-3">{{user.advisorInfo.name}}</span>
+                <p-button [label]="user.advisorInfo.email" styleClass="p-button-link mb-3" (click)="openEmailDraft()"></p-button>
+            </div>
+        </div>
+        <div class="flex flex-col w-full mt-2">
+            <div class="registration-window flex-col align-items-center">
+                <span class="font-medium mt-3">Enrollment Actions</span>
+                <div class="line my-3"></div>
+                <p-button label="Request Official Transcript" class="enrollment-action"></p-button>
+                <p-button label="Request Enrollment Verification" class="enrollment-action"></p-button>
+                <p-button label="View Course History" class="mb-3 enrollment-action"></p-button>
+            </div>
+        </div>
+        <div class="flex flex-column text-xs pl-3 pt-5" style="height: fit-content;">
+            <h2 style="color: #888888">Quick links</h2>
+            <a style="color: #0085CA" class="quick-links" href="https://registrar.cornell.edu/">Cornell University Registrar</a>
+            <a style="color: #0085CA" class="quick-links" href="https://registrar.cornell.edu/academic-calendar">Academic Calendar</a>
+            <a style="color: #0085CA" class="quick-links" href="https://scl.cornell.edu/residential-life/housing">Residential Education</a>
+        </div>
+    </div>
+</div>
