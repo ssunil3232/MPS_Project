@@ -13,6 +13,24 @@
       border: none;
       background: transparent;
     }
+
+    .p-togglebutton.p-button:focus {
+      outline: none;
+      border: none;
+       
+        box-shadow: none;
+    
+    }
+
+    .rotated {
+      transition: all 0.5s;
+      transform: rotate(-180deg);
+    }
+    .rotated-opp {
+      transition: all 0.5s;
+      transform: rotate(180deg);
+    }
+
     .menu-bar .p-togglebutton.p-button.p-highlight  {
       font-size: 1.5rem; 
       color:white;

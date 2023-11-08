@@ -1,7 +1,8 @@
 <p-menubar>
     <ng-template pTemplate="start">
-        <p-toggleButton id="menu-button" class="menu-bar mr-2" (onChange)="onToggle($event)" [(ngModel)]="sidebarVisible" onIcon="pi pi-bars"
-            offIcon="pi pi-bars"></p-toggleButton>
+        <p-toggleButton id="menu-button" class="menu-bar mr-2" (onChange)="onToggle($event)" [(ngModel)]="sidebarVisible" 
+        [onIcon]="onIconClass"
+            [offIcon]="offIconClass"></p-toggleButton>
         <img style="width: 50px; height: 50px" class="img-responsive mr-3" src="assets/cornell_logo.png">
         <h3>{{universityName}}</h3>
     </ng-template>
