@@ -16,8 +16,8 @@
   .p-splitbutton.p-button-success>.p-button {
     .course-catalog {
       color: black;
-      background: #D9D9D9;
-      border: 1px solid #D9D9D9;
+      background: #D9D9D9 !important;
+      border: none !important; //1px solid #D9D9D9;
     }
 
 
@@ -146,16 +146,19 @@
     .course-catalog {
       background: #F7F7F7;
       color: black;
+      box-shadow: none;
     }
 
     .registration {
       background: #F7F7F7;
       color: black;
+      box-shadow: none;
     }
 
     .personal-info {
       background: #F7F7F7;
       color: black;
+      box-shadow: none;
     }
   }
 }
