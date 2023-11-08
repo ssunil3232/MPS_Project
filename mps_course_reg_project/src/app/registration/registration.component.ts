@@ -18,7 +18,7 @@ export class RegistrationComponent implements OnInit {
 
   meetsPrereq: boolean = false;
   meetsRestrictions: boolean = false;
-  restrictionMessage:any;
+  restrictionMessage: any;
 
   registeredCourses: any = [] //need to remove once we can populate from backend
   waitlistedCourses: any = []  //this too
@@ -28,8 +28,8 @@ export class RegistrationComponent implements OnInit {
     { label: "Waitlisted Courses", key: 'W' }
   ]
   selectedMenuItem: any = this.menuItems[0];
-  schedules:any = [];
-  scheduleData:any;
+  schedules: any = [];
+  scheduleData: any;
   selectedScheduleData: any = null;
 
   errorMessage: Message[] = []
@@ -45,7 +45,7 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  openHelper(){
+  openHelper() {
     this.sidebarVisible = true;
   }
 
@@ -82,34 +82,34 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  checkingPrerequisite(){
-    let user:any = this.util.getUserInfo();
+  checkingPrerequisite() {
+    let user: any = this.util.getUserInfo();
     let courseHistory = user.courseHistory;
     let coursesTaken: any = [];
-    courseHistory.forEach((element:any) => {
+    courseHistory.forEach((element: any) => {
       coursesTaken = [...coursesTaken, ...element.courses]
     });
     let containsBoth = true;
     let containsItem = true;
-    for(let i=0; i<this.selectedCoursesToRegister.length; i++) {
-      let course:any = this.selectedCoursesToRegister[i];
-      let coursePrerequisite:any = course.prerequisites;
-      for(let i=0; i<coursePrerequisite.length; i++){
-        let item:any = coursePrerequisite[i];
+    for (let i = 0; i < this.selectedCoursesToRegister.length; i++) {
+      let course: any = this.selectedCoursesToRegister[i];
+      let coursePrerequisite: any = course.prerequisites;
+      for (let i = 0; i < coursePrerequisite.length; i++) {
+        let item: any = coursePrerequisite[i];
         if (item.includes('and')) {
-          const elements = item.split('and').map((it:any) => it.trim());
-          containsBoth = elements.every((it:any) => coursesTaken.includes(it));
+          const elements = item.split('and').map((it: any) => it.trim());
+          containsBoth = elements.every((it: any) => coursesTaken.includes(it));
         }
         else {
           containsItem = coursesTaken.includes(item);
         }
       }
-      if(containsBoth || containsItem)
+      if (containsBoth || containsItem)
         this.meetsPrereq = true;
 
-      if(!this.meetsPrereq)
+      if (!this.meetsPrereq)
         break;
-    
+
     }
   }
 
@@ -127,9 +127,9 @@ export class RegistrationComponent implements OnInit {
   //   }
   // }
 
-  calculateTotalCredits(){
+  calculateTotalCredits() {
     let sum = 0;
-    for(let i=0; i< this.registeredCourses.length; i++){
+    for (let i = 0; i < this.registeredCourses.length; i++) {
       let course = this.registeredCourses[i];
       sum += course.credits;
     }
@@ -147,31 +147,34 @@ export class RegistrationComponent implements OnInit {
 
           let returnData = registration_course;
           //success
-          let success = returnData.filter((obj: any) => obj["status"] === "success")
+          let success = returnData.filter((obj: any) => obj["status"] === "registered")
           if (success.length > 0) {
             let successLength = success[0]["data"].length;
-            //check if the courses in it are in the registered courses and return only the ones not yet.
+            //save the this.registeredCourses to user's registeredClasses
             this.registeredCourses = [...this.registeredCourses, ...success[0]["data"]];
-            this.showToast({ severity: 'success', message: successLength + success[0]["message"] });
+            this.showToast({ severity: 'success', message: successLength + ' course registered successfully.' });
           }
 
           //waitlist
-          let waitlist = returnData.filter((obj: any) => obj["status"] === "waitlist")
+          let waitlist = returnData.filter((obj: any) => obj["status"] === "waitlisted")
           if (waitlist.length > 0) {
             let waitlistLength = waitlist[0]["data"].length;
+            //save the this.waitlistedCourses to user's waitlistedClasses
             this.waitlistedCourses = [...this.waitlistedCourses, ...waitlist[0]["data"]];
-            this.showToast({ severity: 'warn', message: waitlistLength + waitlist[0]["message"] });
+            this.showToast({ severity: 'warn', message: waitlistLength + ' course added to waitlist.' });
           }
 
           //unsuccess
           let unsuccess = returnData.filter((obj: any) => obj["status"] === "unsuccess")
           this.errorMessage = [];
           if (unsuccess.length > 0) {
-            for(let i=0; i< unsuccess[0]["message"].length; i++){
-              let error = unsuccess[0]["message"][i];
-              this.errorMessage.push({ severity: 'error', detail: error });
+            let unsuccessData = unsuccess[0].data;
+            this.selectedScheduleData = unsuccessData;
+            // for(let i=0; i< unsuccess[0]["message"].length; i++){
+            //   let error = unsuccess[0]["message"][i];
+            //   this.errorMessage.push({ severity: 'error', detail: error });
 
-            }
+            // }
             //this.errorMessage = [{ severity: 'error', detail: unsuccess[0]["message"] }];
           }
           //on success, waitlist --> remove from scheduler view? but would that impact scheduler? if i
@@ -187,6 +190,20 @@ export class RegistrationComponent implements OnInit {
       }
     }
 
+  }
+
+  getErrorMessage(item: any) {
+    console.log("selectedScheduleData", this.selectedScheduleData)
+    let errorM: any = [];
+    let error = ""
+    this.errorMessage.filter((el: any) => {
+      if (el.item.subjectCode === item.subjectCode && el.item.courseCode === item.courseCode) {
+        error = el.message;
+        console.log("error", error)
+        errorM.push({ severity: 'error', detail: error })
+      }
+    });
+    return errorM;
   }
 
   selectedCoursesToRegister: any = []
@@ -206,7 +223,7 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  courseRemoval(event:any){
+  courseRemoval(event: any) {
     //to rerun user fetch
   }
 
