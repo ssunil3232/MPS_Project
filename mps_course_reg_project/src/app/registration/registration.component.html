@@ -46,12 +46,12 @@
             </p-tabMenu>
             <span class="credits-label">{{calculateTotalCredits()}} Credits</span>
             <div *ngIf="selectedMenuItem.key === 'R'">
-                <div  class="mt-2" *ngFor="let item of registeredCourses">
+                <div  class="mt-2 mr-4 ml-2" *ngFor="let item of registeredCourses">
                     <registered-card [courseDetail]="item" (courseRemoval)="courseRemoval($event)" class="flex w-full" ></registered-card>
                 </div>
             </div>
             <div *ngIf="selectedMenuItem.key === 'W'">
-                <div  class="mt-2" *ngFor="let item of waitlistedCourses">
+                <div  class="mt-2 mr-4 ml-2" *ngFor="let item of waitlistedCourses">
                     <waitlisted-card [courseDetail]="item" (courseRemoval)="courseRemoval($event)" class="flex w-full" ></waitlisted-card>
                 </div>
             </div>
