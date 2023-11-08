@@ -31,7 +31,7 @@
                 <div class="mt-3 flex w-full mr-4" *ngFor="let item of selectedScheduleData">
                     <schedule-card [courseDetail]="item" (courseSelection)="courseSelected($event)" class="flex w-full" ></schedule-card>
                 </div>
-                <p-messages *ngIf="errorMessage.length !== 0" [(value)]="errorMessage" [enableService]="false"></p-messages>
+                <!-- <p-messages *ngIf="errorMessage.length !== 0" [(value)]="errorMessage" [enableService]="false"></p-messages> -->
             </div>
             <ng-template #scheduleBlock >
                 <div class="grid flex w-full ml-2 pt-8 text-600 justify-content-center">
@@ -46,12 +46,12 @@
             </p-tabMenu>
             <span class="credits-label">{{calculateTotalCredits()}} Credits</span>
             <div *ngIf="selectedMenuItem.key === 'R'">
-                <div  class="mt-2" *ngFor="let item of registeredCourses">
+                <div  class="mt-2 mr-4 ml-2" *ngFor="let item of registeredCourses">
                     <registered-card [courseDetail]="item" (courseRemoval)="courseRemoval($event)" class="flex w-full" ></registered-card>
                 </div>
             </div>
             <div *ngIf="selectedMenuItem.key === 'W'">
-                <div  class="mt-2" *ngFor="let item of waitlistedCourses">
+                <div  class="mt-2 mr-4 ml-2" *ngFor="let item of waitlistedCourses">
                     <waitlisted-card [courseDetail]="item" (courseRemoval)="courseRemoval($event)" class="flex w-full" ></waitlisted-card>
                 </div>
             </div>

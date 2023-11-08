@@ -169,7 +169,7 @@ export class UtilService {
       waitlistedClasses: [
         {
           subjectCode: "INFO",
-          courseCode: "1200",
+          courseCode: "1250",
           title: "Information, Ethics, Law, and Policy",
           credits: 3,
           position: 11,
@@ -260,7 +260,6 @@ export class UtilService {
           wishlisted: true,
           added: false
         },
-
       ],
       schedules: [
         {

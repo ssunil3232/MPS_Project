@@ -1,22 +1,39 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
+import { Message } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'schedule-card',
   templateUrl: './schedule-card.component.html',
   styleUrls: ['./schedule-card.component.scss']
 })
-export class ScheduleCardComponent {
+export class ScheduleCardComponent implements OnChanges{
 
   @Input() courseDetail:any;
 
   @Output() courseSelection = new EventEmitter<any>();
 
+  constructor(
+    private messageService: MessageService
+  ) {
+
+  }
+
   sidebarVisible: boolean = false;
   courseSelected: boolean = false;
+  errorDetail = { severity: 'error', detail: "" }
+  errorMessage: Message[] = []
 
   openFullDetail(){
     this.sidebarVisible = true;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+      if(this.courseDetail.errorMessage){
+        this.errorDetail.detail = this.courseDetail.errorMessage;
+        this.errorMessage = [this.errorDetail];
+      }
   }
 
   checkCapacity(a:any, b:any){
