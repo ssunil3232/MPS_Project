@@ -183,15 +183,12 @@
         </div>
     </div>
     <ng-template pTemplate="footer" *ngIf="showAddButton">
-        <p-toggleButton (onChange)="addRemoveWishlist()" [(ngModel)]="wishlisted" offLabel="Add to Wishlist"
+        <!-- <p-toggleButton (onChange)="addRemoveWishlist()" [(ngModel)]="wishlisted" offLabel="Add to Wishlist"
             onLabel="Remove from Wishlist" offIcon="pi pi-heart" onIcon="pi pi-heart-fill"
-            [style]="{ width: 'fit-content' }" class="pr-5 wishlist-course"></p-toggleButton>
-        <!-- <p-toggleButton [(ngModel)]="added" offLabel="Add Course to Scheduler" 
-            onLabel="Remove Course from Scheduler" offIcon="pi pi-calendar-plus" onIcon="pi pi-calendar-times" 
-            [style]="{ width: 'fit-content' }" class="add-course" (onChange)="menu.toggle($event)">
-        </p-toggleButton> -->
+            [style]="{ width: 'fit-content' }" class="pr-5 wishlist-course"></p-toggleButton> -->
+
         <button #btn type="button" pButton icon="pi pi-calendar-plus" label="Add/Remove Course on Scheduler"
-            (click)="menu.toggle($event)" class="add-course"></button>
+            (click)="menu.toggle($event)" [ngClass]="added ? 'added-course' : 'add-course'"></button>
         <p-tieredMenu [styleClass]="'custom-tiered-menu'" [style]="{ 'z-index': '10001'}" #menu
             [model]="addCourseOptions" [popup]="true"></p-tieredMenu>
         <!-- <p-tieredMenu #menu [model]="addCourseOptions" [popup]="true" [styleClass]="'custom-tiered-menu'" [style]="{ 'z-index': '10001'}">

@@ -31,6 +31,23 @@
     //     width: 180px;
     // }
 
+    .p-accordion-header-link {
+      background: #F8FAFC;
+      z-index: 1100;
+      width: 300px;
+      height: 40px;
+    }
+
+    .p-accordion .p-accordion-content {
+      position: relative;
+      z-index: 1100;
+      height: 550px;
+    }
+
+    .delete-dialog .p-dialog-content {
+        height: 100px !important;
+    }
+
     .p-error {
       margin-top: 6px;
     }

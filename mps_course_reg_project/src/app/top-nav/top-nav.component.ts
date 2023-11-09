@@ -12,8 +12,8 @@ export class TopNavComponent implements OnInit {
   @Input() universityName: any = "";
   @Output() toggle = new EventEmitter<any>();
 
-  onIconClass: string = 'pi pi-angle-left';
-  offIconClass: string = 'pi pi-angle-right';
+  onIconClass: string = 'pi pi-angle-right';
+  offIconClass: string = 'pi pi-angle-left';
 
 
   ngOnInit() {
@@ -22,6 +22,8 @@ export class TopNavComponent implements OnInit {
         icon: 'pi pi-user'
       }
     ]
+    this.onIconClass = 'pi pi-angle-right';
+    this.offIconClass = 'pi pi-angle-left';
   }
 
   onToggle(event:any){

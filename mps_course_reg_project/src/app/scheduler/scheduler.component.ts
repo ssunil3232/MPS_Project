@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, forwardRef } from '@angular/core';
-import { Calendar, CalendarOptions, EventApi } from '@fullcalendar/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CalendarOptions } from '@fullcalendar/core';
 import * as moment from 'moment';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -7,9 +7,7 @@ import interactionPlugin from '@fullcalendar/interaction'; // for selectable
 import { UtilService } from '../util.service';
 import { course_catalog } from "../data";
 import { ConfirmationService, MessageService } from 'primeng/api';
-import * as FullCalendar from '@fullcalendar/angular';
 import { FullCalendarComponent } from '@fullcalendar/angular';
-import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-scheduler',
@@ -28,6 +26,7 @@ export class SchedulerComponent implements OnInit {
   letters = '0123456789ABCDEF';
   color = '#';
   scheduleData: any;
+  userWishlistData:any;
   showInputBoxFlag: boolean = false;
   // showEditBoxFlag: boolean = false;
   showDeleteBoxFlag: boolean = false;
@@ -212,6 +211,17 @@ export class SchedulerComponent implements OnInit {
     this.calendarConfig(this.scheduleData);
   }
 
+  removeCourse(event:any){
+    console.log("removed", event);
+    this.selectedSchedule["data"] = this.selectedSchedule["data"].filter((item: any) => {
+      if (!(item.courseCode === event.courseCode && item.subjectCode === event.subjectCode)) {
+        return item
+      }
+    });
+    //update selected schedule in the backend
+    this.scheduleChange();
+  }
+
   updateCourses(event: any) {
     //check if course exists
     let existing: any = [];
@@ -246,7 +256,8 @@ export class SchedulerComponent implements OnInit {
         }
       });
       //save to backend
-      this.coloredCourses = classData;
+      this.scheduleData = classData;
+      this.selectedSchedule.data = this.scheduleData; 
       //get resource Ids
       
       for (let i = 0; i < classData.length; i++) {

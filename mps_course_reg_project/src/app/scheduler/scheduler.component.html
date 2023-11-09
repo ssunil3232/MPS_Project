@@ -1,13 +1,5 @@
 <div class="flex flex-row justify-content-between align-items-center">
       <h1>Plan Course Schedule</h1>
-      <!-- <div class="flex flex-row">
-            <div class="mr-2">
-                  dropdown
-            </div>
-            <div>
-                  create new
-            </div>
-      </div> -->
       <div class="flex flex-row" style="height: fit-content">
             <div class="flex align-items-center px-2 selection-button" style="height: 45px;">
                   <span class="pi pi-calendar calender"></span>
@@ -73,7 +65,7 @@
                   <!-- <span class="mr-2 font-normal">Create New</span> -->
                   <i class="pi pi-trash"></i>
             </p-button>
-            <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+            <p-confirmDialog class="delete-dialog" [style]="{width: '30vw'}"></p-confirmDialog>
       </div>
       <div style="width: 400px;">
             <span class="p-input-icon-left w-full">
@@ -87,6 +79,28 @@
             </span>
       </div>
 </div>
+<!-- <div class="justify-content-end absolute mb-5 flex w-full" style="left: -15px;">
+      <p-accordion [ngStyle]="{'width': '300px'}">
+            <p-accordionTab>
+                <ng-template pTemplate="header">
+                    <div class="flex align-items-center">
+                        <i class="pi pi-heart-fill ml-2 mr-2" style="color: #B31B1B"></i>
+                        <span class="vertical-align-middle font-normal"  style="color: #B31B1B">Wishlist Courses</span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                   <div *ngFor="">
+
+                   </div>
+                    <p class="m-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                        laborum.
+                    </p>
+                </ng-template>
+            </p-accordionTab>
+      </p-accordion>
+</div> -->
 <full-calendar #fullcalendar [options]="calendarOptions">
       <ng-template #eventContent let-arg>
             <span style="font-size: smaller;">{{arg.event.extendedProps.subjectCode}}{{arg.event.extendedProps.courseCode}}
@@ -98,8 +112,8 @@
 </full-calendar>
 <div class="flex flex-row w-full justify-content-between">
       <div class="flex flex-row flex-wrap" style="display: flex;width: 70%;">
-            <div *ngFor="let item of coloredCourses" style="height: fit-content;">
-                  <course-widgets [courseDetail]="item"></course-widgets>
+            <div *ngFor="let item of selectedSchedule.data" style="height: fit-content;">
+                  <course-widgets [courseDetail]="item" (removedCourse)="removeCourse($event)"></course-widgets>
             </div>
       </div>
       <div>

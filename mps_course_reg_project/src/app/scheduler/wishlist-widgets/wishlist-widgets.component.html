@@ -1,0 +1,30 @@
+<div class="widget-body justify-content-between flex flex-row m-1">
+    <div class="flex flex-row">
+        <div class="flex flex-column">
+            <div class="flex flex-row justify-content-between">
+                <div class="flex flex-row">
+                    <span class="font-medium text-xs">{{courseDetail.subjectCode}}</span>&nbsp;
+                    <span class="font-medium text-xs">{{courseDetail.courseCode}}</span>
+                </div>
+                
+            </div>
+            <span class="text-xs">
+                {{courseDetail.title}}
+            </span>
+        </div> 
+    </div>
+    <div class="flex flex-column relative">
+        <div class="flex flex-row align-items-start justify-content-center" style="width: 100px;">
+            <span class="text-400 text-xs">
+                {{courseDetail.credits}} Credits
+            </span>
+            <button class="add-button" (click)="addingCourse()"> 
+                <i class="pi pi-plus-circle" style="color: darkgrey;"></i>
+            </button>
+        </div>
+        <div class="flex align-items-center col-fixed justify-content-center my-0 pr-3 py-0" style="width: 100px;">
+            <span [ngClass]="(courseDetail.lectureDetail.vacancy === courseDetail.lectureDetail.capacity) ? 'full-dot' : 'vacancy-dot'"></span>
+        </div>
+    </div>
+    
+</div>

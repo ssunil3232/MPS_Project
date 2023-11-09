@@ -16,8 +16,8 @@
             </span>
         </div> 
     </div>
-    <div class="flex flex-column" style="width: 100px;">
-        <div class="flex flex-row align-items-start justify-content-center" style="width: 100px;">
+    <div class="flex flex-column relative">
+        <div class="flex flex-row align-items-start justify-content-end" style="width: 100px;">
             <span class="text-400 text-xs">
                 {{courseDetail.credits}} Credits
             </span>
@@ -29,8 +29,14 @@
             </button>
             <course-full-detail [sidebarVisible]="sidebarVisible" [courseDetail]="courseDetail"
                 (onClose)="sidebarVisible = false" [showAddButton]="false"></course-full-detail>
+            <button class="remove-button" (click)="handleRemove()" [ngStyle]="{ 'right': '-10px', 'top': '40px', 'position': 'absolute' }">
+                <i class="pi pi-trash text-400"></i>
+            </button>
+            <!-- <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog> -->
+            <!-- <p-button class="remove-button" icon="pi pi-trash absolute text-400" styleClass="p-button-rounded p-button-text" [ngStyle]="{ 'right': '-15px', 'top': '25px', 'position': 'absolute' }"></p-button> -->
+            <!-- <i class="pi pi-trash absolute text-400" style="right: 0px; top: 40px;"></i> -->
         </div>
-        <div class="flex align-items-center col-fixed justify-content-center my-0 pr-3 py-0" style="width: 100px;">
+        <div class="flex align-items-center col-fixed justify-content-center my-0 pr-0 py-0" style="width: 100px;">
             <span [ngClass]="(courseDetail.lectureDetail.vacancy === courseDetail.lectureDetail.capacity) ? 'full-dot' : 'vacancy-dot'"></span>
         </div>
     </div>
