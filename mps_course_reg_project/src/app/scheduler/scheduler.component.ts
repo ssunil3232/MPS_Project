@@ -32,9 +32,9 @@ export class SchedulerComponent implements OnInit {
   // showEditBoxFlag: boolean = false;
   showDeleteBoxFlag: boolean = false;
   inputText: string = '';
-  saving: boolean = false; // Indicates if data is being saved
-  buttonLabel: string = 'Save'; // Initial button label
-  buttonIcon: string = 'pi pi-check'; // Initial button icon
+  saving: boolean = false;
+  buttonLabel: string = 'Save';
+  buttonIcon: string = 'pi pi-check';
   searchValue: any;
   errorMessage: any = '';
   showPlaceholder: boolean = true;
@@ -42,11 +42,11 @@ export class SchedulerComponent implements OnInit {
   formattedCalendar: any = []
   selectedSchedule: any;
   course_catalog = course_catalog.data;
-  coloredCourses:any;
-  term:any;
-  creditSum:any = 0;
+  coloredCourses: any;
+  term: any;
+  creditSum: any = 0;
 
-  stateOptions: any[] = [{label: 'Horizonal View', value: 'horizontal'}, {label: 'Vertical View', value: 'vertical'}];
+  stateOptions: any[] = [{ label: 'Horizonal View', value: 'horizontal' }, { label: 'Vertical View', value: 'vertical' }];
 
   value: string = 'horizontal';
 
@@ -220,7 +220,6 @@ export class SchedulerComponent implements OnInit {
         return item
       }
     });
-    console.log("ebee", existing)
     if (existing.length > 0) {
 
     }
@@ -230,8 +229,10 @@ export class SchedulerComponent implements OnInit {
     }
   }
 
-  formatData(classData: any) {
+  resources:any = []
+  formatDataStructure(classData: any) {
     this.formattedCalendar = [];
+    this.resources = []
     if (classData.length > 0) {
       classData = classData.map((item: any) => {
         if (item.color !== null) {
@@ -246,98 +247,83 @@ export class SchedulerComponent implements OnInit {
       });
       //save to backend
       this.coloredCourses = classData;
+      //get resource Ids
+      
       for (let i = 0; i < classData.length; i++) {
         let cal: any = classData[i];
+        let resourceId = cal.subjectCode+cal.courseCode
+        this.resources.push({id: resourceId});
+        //for lecture items
         let lectDetail = cal.lectureDetail.dayTimes;
+        let lecObj: any = { ...cal };
+        lecObj["id"] = cal.lectureDetail.prefix+" "+cal.lectureDetail.lectureId;
+        lecObj["editable"] = false;
+        let daysArray: any = []
         for (let j = 0; j < lectDetail.length; j++) {
           let item: any = lectDetail[j];
-          if (item.selected) {
-            let lecObj: any = { ...cal };
-            lecObj["id"] = cal.lectureDetail.lectureId;
-            lecObj["prefix"] = cal.lectureDetail.prefix;
-            lecObj["editable"] = false;
-            let [starthours, startminutes] = item.startTime.split(':').map(Number);
-            let dayStart = moment().day(this.days[item.day]).hour(starthours).minute(startminutes).second(0).millisecond(0);
-            let [endhours, endminutes] = item.endTime.split(':').map(Number);
-            let dayEnd = moment().day(this.days[item.day]).hour(endhours).minute(endminutes).second(0).millisecond(0);
-            lecObj["start"] = dayStart.format('YYYY-MM-DDTHH:mm:SS');
-            lecObj["end"] = dayEnd.format('YYYY-MM-DDTHH:mm:SS');
-            this.formattedCalendar.push(lecObj);
-          }
+          lecObj["startTime"] = item.startTime;
+          lecObj["endTime"] = item.endTime;
+          daysArray.push(this.days[item.day])
         }
+        lecObj["daysOfWeek"] = daysArray;
+        this.formattedCalendar.push(lecObj);
 
-        let tutDetail = cal.discussionDetail.dayTimes;
+        //for discussion items
         let tutObj: any = { ...cal }
-        tutObj["id"] = cal.discussionDetail.discussionId;
-        tutObj["prefix"] = cal.discussionDetail.prefix;
-        tutObj["editable"] = true;
-        let constraintsArray: any = []
-        for (let j = 0; j < tutDetail.length; j++) {
-          let item: any = tutDetail[j];
-          if (item.selected) {
-            let [starthours, startminutes] = item.startTime.split(':').map(Number);
-            let dayStart = moment().day(this.days[item.day]).hour(starthours).minute(startminutes).second(0).millisecond(0);
-            let [endhours, endminutes] = item.endTime.split(':').map(Number);
-            let dayEnd = moment().day(this.days[item.day]).hour(endhours).minute(endminutes).second(0).millisecond(0);
-            tutObj["start"] = dayStart.format('YYYY-MM-DDTHH:mm:SS');
-            tutObj["end"] = dayEnd.format('YYYY-MM-DDTHH:mm:SS');
+        for (let k = 0; k < cal.discussionItems.length; k++) {
+          let discusionItem = cal.discussionItems[k];
+          let tutDetail = discusionItem.dayTimes;
+          tutObj["editable"] = true;
+
+          let constraintsArray: any = [];
+          if (discusionItem.selected) {
+            let daysArray: any = []
+            tutObj["id"] = discusionItem.prefix+" "+discusionItem.discussionId;
+            tutObj["resourceId"]=resourceId;
+            for (let j = 0; j < tutDetail.length; j++) {
+              let item: any = tutDetail[j];
+              daysArray.push(this.days[item.day])
+              tutObj["startTime"] = item.startTime;
+              tutObj["endTime"] = item.endTime;
+            }
+            tutObj["daysOfWeek"] = daysArray;
           }
           else {
+            let daysArray: any = []
             let constraint: any = {}
-            constraint["startTime"] = item.startTime;
-            constraint["endTime"] = item.endTime;
-            constraint["daysOfWeek"] = [this.days[item.day]];
+            for (let j = 0; j < tutDetail.length; j++) {
+              let item: any = tutDetail[j];
+              daysArray.push(this.days[item.day])
+              constraint["resourceId"]=resourceId;
+              constraint["id"] = discusionItem.prefix+" "+discusionItem.discussionId;
+              constraint["startTime"] = item.startTime;
+              constraint["endTime"] = item.endTime;
+            }
+            constraint["daysOfWeek"] = daysArray;
             constraintsArray.push(constraint);
           }
-        }
-        tutObj["constraint"] = constraintsArray;
-        this.formattedCalendar.push(tutObj);
+          tutObj["constraint"] = constraintsArray;
+        }      
+        this.formattedCalendar.push(tutObj)
       }
     }
-    console.log("formattedCalendar", this.formattedCalendar)
   }
 
   calendarConfig(scheduleData: any) {
-      this.formatData(scheduleData);
-      if (this.fullcalendar) {
-        this.fullcalendar?.getApi().destroy();
-      }
-      setTimeout(function () {
-        window.dispatchEvent(new Event('resize'))
-      }, 1);
-
-      let newOption: any = {
-        ...this.calendarOptions,
-        events: this.formattedCalendar,
-      }
-      console.log("newOption", newOption)
-
-      this.calendarOptions = {
-        ...this.calendarOptions,
-        events: this.formattedCalendar,
-        eventDidMount: function (event: any) {
-          if (event.getCurrentData) {
-            // Apply a lighter hue to constrained events
-            // event.css('background-color', 'red');
-          }
-        },
-        eventClick: function (info) {
-          // let cal = info.view.calendar.getEvents();
-          // let currentId = info.event.id;
-          // for (let i = 0; i < cal.length; i++) {
-          //   if (cal[i].id === currentId) {
-          //     console.log("calaaa", cal[i].id)
-          //     //cal[i].borderColor = "red";
-          //   }
-          // }
-          //console.log("info", cal)
-          //info.el.classList.add('dark-on-hover');
-          //let allcourses = calendarOptions.getEventById('a')
-        },
-      };
-      this.calculateCredits()
-      this.fullcalendar?.getApi().render();
-      this.changeDetectorRef.detectChanges();
+    this.formatDataStructure(scheduleData);
+    if (this.fullcalendar) {
+      this.fullcalendar?.getApi().destroy();
+    }
+    setTimeout(function () {
+      window.dispatchEvent(new Event('resize'))
+    }, 1);
+    this.calendarOptions = {
+      ...this.calendarOptions,
+      events: this.formattedCalendar,
+    };
+    this.calculateCredits()
+    this.fullcalendar?.getApi().render();
+    this.changeDetectorRef.detectChanges();
   }
 
   populateSchedules() {
@@ -347,15 +333,13 @@ export class SchedulerComponent implements OnInit {
     this.schedules = user.schedules;
   }
 
-  calculateCredits(){
-    let sumCredits:any = 0;
-    console.log("sched",this.selectedSchedule)
-    for(let i=0; i<this.selectedSchedule.data.length; i++){
-      let course:any = this.selectedSchedule.data[i];
+  calculateCredits() {
+    let sumCredits: any = 0;
+    for (let i = 0; i < this.selectedSchedule.data.length; i++) {
+      let course: any = this.selectedSchedule.data[i];
       sumCredits += course.credits;
     }
     this.creditSum = sumCredits;
-    console.log("creditSum",this.creditSum)
   }
 
   ngOnInit() {
