@@ -57,6 +57,7 @@ import { WaitlistedCardComponent } from './registration/waitlisted-card/waitlist
 import { RegistrationHelperComponent } from './registration/registration-helper/registration-helper.component';
 import { WeeklyScheduleComponent } from './home-page/weekly-schedule/weekly-schedule.component';
 import { CourseWidgetsComponent } from './scheduler/course-widgets/course-widgets.component';
+import { WishlistWidgetsComponent } from './scheduler/wishlist-widgets/wishlist-widgets.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { CourseWidgetsComponent } from './scheduler/course-widgets/course-widget
     WaitlistedCardComponent,
     RegistrationHelperComponent,
     WeeklyScheduleComponent,
-    CourseWidgetsComponent
+    CourseWidgetsComponent,
+    WishlistWidgetsComponent
   ],
   imports: [
     FormsModule,

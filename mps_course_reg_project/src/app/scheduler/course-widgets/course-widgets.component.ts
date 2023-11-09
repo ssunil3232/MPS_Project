@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'course-widgets',
@@ -8,7 +9,16 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CourseWidgetsComponent implements OnInit {
 
   @Input() courseDetail:any
+  @Output() removedCourse = new EventEmitter<any>();
   sidebarVisible: boolean = false;
+
+
+  constructor(
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+  ){
+
+  }
 
   ngOnInit(): void {
   }
@@ -23,6 +33,24 @@ export class CourseWidgetsComponent implements OnInit {
     }
     else 
       return a+"/"+b+" Open";
+  }
+
+  handleRemove(){
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to remove this course?',
+      header: 'Remove course',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.removeCourse()
+        this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Removed course.' });
+      },
+      reject: () => {
+      }
+    });
+  }
+
+  removeCourse() {
+    this.removedCourse.emit(this.courseDetail)
   }
 
 }

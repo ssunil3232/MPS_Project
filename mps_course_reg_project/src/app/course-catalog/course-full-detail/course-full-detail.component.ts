@@ -11,8 +11,6 @@ export class CourseFullDetailComponent implements OnChanges {
   @Input() sidebarVisible: boolean = false;
   @Input() showAddButton?: boolean = true;
   @Output() onClose = new EventEmitter<any>();
-  @Output() onWishlistChange = new EventEmitter<any>();
-  @Output() onAddChange = new EventEmitter<any>();
   @Input() courseDetail: any;
   //@ViewChild('menu') menu: any;
   added: boolean = false;
@@ -21,7 +19,8 @@ export class CourseFullDetailComponent implements OnChanges {
   meetsRestrictions: boolean = false;
   restrictionMessage: any;
   prerequisites: any;
-  userSchedules:any;
+  userSchedules: any;
+  userWishlist: any;
   addedSchedules: any = []
 
   showInputBoxFlag: boolean = false;
@@ -32,16 +31,16 @@ export class CourseFullDetailComponent implements OnChanges {
 
   displayListbox: boolean = false;
 
-  addCourseOptions: any[]  = [
+  addCourseOptions: any[] = [
     {
       label: 'Schedules',
       icon: "pi pi-calendar",
-      command: (event:any) => this.displayListbox = true,
+      command: (event: any) => this.displayListbox = true,
     },
     {
       label: 'New schedule',
       icon: "pi pi-plus",
-      command: (event:any) => this.createSchedule()
+      command: (event: any) => this.createSchedule()
     }
   ];
 
@@ -58,11 +57,11 @@ export class CourseFullDetailComponent implements OnChanges {
   //   }
   // }
 
-  isExistingItem(subjectCode:any, courseCode:any) {
-    this.userSchedules.filter((item:any)=> {
-      let data:any = item.data;
-      data.filter((dataEl:any)=> {
-        if(dataEl.subjectCode === subjectCode && dataEl.courseCode === courseCode){
+  isExistingItem(subjectCode: any, courseCode: any) {
+    this.userSchedules.filter((item: any) => {
+      let data: any = item.data;
+      data.filter((dataEl: any) => {
+        if (dataEl.subjectCode === subjectCode && dataEl.courseCode === courseCode) {
           this.addedSchedules.push(item);
         }
       })
@@ -70,35 +69,36 @@ export class CourseFullDetailComponent implements OnChanges {
     })
   }
 
-  addToSchedule(event:any){
+  addToSchedule(event: any) {
     console.log("event", event)
+    this.addedSchedules.length > 0 ? this.added = true : this.added = false;
     //update the following schedules in user profile
     //run user schedules fetch and isExisting check
   }
 
-  createSchedule(){
+  createSchedule() {
     this.showInputBoxFlag = true;
   }
 
   errorMessage: any = '';
-  isOnlyWhitespace(str:any) {
+  isOnlyWhitespace(str: any) {
     return /^\s*$/.test(str);
   }
 
-  startsWithWhiteSpace(str:any) {
+  startsWithWhiteSpace(str: any) {
     this.errorMessage = "Trailing white space detected."
     return /^\s/.test(str);
   }
 
-  endsWithWhiteSpace(str:any) {
+  endsWithWhiteSpace(str: any) {
     this.errorMessage = "Trailing white space detected."
     return /\s$/.test(str);
   }
 
-  validScheduleName(name:any){
+  validScheduleName(name: any) {
     let exists = false;
-    this.userSchedules.filter((item:any)=> {
-      if(item.name === name){
+    this.userSchedules.filter((item: any) => {
+      if (item.name === name) {
         exists = true;
       }
     });
@@ -107,8 +107,8 @@ export class CourseFullDetailComponent implements OnChanges {
   }
 
   saveInput() {
-    this.saving = true; 
-    this.buttonLabel = 'Saving'; 
+    this.saving = true;
+    this.buttonLabel = 'Saving';
     this.buttonIcon = 'pi pi-spin pi-spinner';
 
     setTimeout(() => {
@@ -126,7 +126,7 @@ export class CourseFullDetailComponent implements OnChanges {
     this.showInputBoxFlag = false;
     this.inputText = ""
   }
-  
+
 
 
   constructor(public util: UtilService) { }
@@ -134,11 +134,12 @@ export class CourseFullDetailComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
       let user: any = this.util.getUserInfo();
+      this.userWishlist = user.wishlist;
       this.userSchedules = user.schedules;
       this.isExistingItem(this.courseDetail.subjectCode, this.courseDetail.courseCode);
       let courseD = this.courseDetail;
-      this.added = courseD.added;
-      this.wishlisted = courseD.wishlisted;
+      this.addedSchedules.length > 0 ? this.added = true : this.added = false;
+      this.checkIfWishlisted() ? this.wishlisted = true : this.wishlisted = false;
       this.prerequisites = courseD.prerequisites;
       this.checkingPrerequisite();
       this.checkRestrictions();
@@ -150,6 +151,16 @@ export class CourseFullDetailComponent implements OnChanges {
       }, '');
 
     }
+  }
+
+  checkIfWishlisted() {
+    let exists = false;
+    this.userWishlist.filter((item: any) => {
+      if (item.courseCode === this.courseDetail.courseCode && item.subjectCode === this.courseDetail.subjectCode) {
+        exists = true;
+      }
+    });
+    return exists;
   }
 
   onDialogClose() {
@@ -169,7 +180,7 @@ export class CourseFullDetailComponent implements OnChanges {
     let user: any = this.util.getUserInfo();
     let courseHistory = user.courseHistory;
     let coursesTaken: any = [];
-    courseHistory.forEach((element:any) => {
+    courseHistory.forEach((element: any) => {
       coursesTaken = [...coursesTaken, ...element.courses]
     });
     let coursePrerequisite: any = this.courseDetail.prerequisites;
@@ -204,23 +215,26 @@ export class CourseFullDetailComponent implements OnChanges {
   }
 
   addRemoveWishlist() {
-    this.onWishlistChange.emit({ wishlisted: this.wishlisted, course: this.courseDetail });
+    //update user's wishlist records
+    if(this.wishlisted){
+      this.userWishlist.push(this.courseDetail);
+    }
+    else{
+      this.userWishlist = this.userWishlist.filter((item:any)=> !(item.courseCode === this.courseDetail.courseCode && this.courseDetail.subjectCode === item.subjectCode));
+    }
+    //send to backend
   }
 
-  addRemoveCourse() {
-    this.onAddChange.emit({ added: this.added, course: this.courseDetail });
-  }
-
-  formatDayString(item:any, isDay:boolean){
+  formatDayString(item: any, isDay: boolean) {
     let returnString = "";
-    for(let i=0; i<item.length; i++){
-      let el:any = item[i];
-      if(isDay)
-        returnString+= el.day;
-      else 
-        returnString+=item[i]
-      if(i !== (item.length-1)){
-        returnString+=", "
+    for (let i = 0; i < item.length; i++) {
+      let el: any = item[i];
+      if (isDay)
+        returnString += el.day;
+      else
+        returnString += item[i]
+      if (i !== (item.length - 1)) {
+        returnString += ", "
       }
     }
     return returnString;
