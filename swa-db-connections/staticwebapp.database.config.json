@@ -41,6 +41,17 @@
           "role": "anonymous"
         }
       ]
+    },
+    "department_college": {
+      "source": "department_college",
+      "permissions": [
+        {
+          "actions": [
+            "*"
+          ],
+          "role": "anonymous"
+        }
+      ]
     }
   }
 }
