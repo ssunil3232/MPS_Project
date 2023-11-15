@@ -5,7 +5,8 @@
                 <h1 class="mt-0 ml-1 mb-0">Student Information</h1>
             </div>
             <div class="flex flex-row" style="height: fit-content">
-                <p-dropdown [ngStyle]="{'width': '180px'}" [options]="semesters" [(ngModel)]="selectedSemester" [editable]="true" (onChange)="getSemesterCredits()" optionLabel="term"></p-dropdown>
+                <p-dropdown [ngStyle]="{'width': '180px'}" [options]="semesters" [(ngModel)]="selectedSemester"
+                    [editable]="true" (onChange)="getSemesterCredits()" optionLabel="term"></p-dropdown>
             </div>
         </div>
         <!--first part-->
@@ -76,7 +77,8 @@
                 <span class="font-medium mt-3">Advisor Info</span>
                 <div class="line my-3"></div>
                 <span class="text-700 line-height-3">{{user.advisorInfo.name}}</span>
-                <p-button [label]="user.advisorInfo.email" styleClass="p-button-link mb-3" (click)="openEmailDraft()"></p-button>
+                <p-button [label]="user.advisorInfo.email" styleClass="p-button-link mb-3"
+                    (click)="openEmailDraft()"></p-button>
             </div>
         </div>
         <div class="flex flex-col w-full mt-2">
@@ -90,9 +92,19 @@
         </div>
         <div class="flex flex-column text-xs pl-3 pt-5" style="height: fit-content;">
             <h2 style="color: #888888">Quick links</h2>
-            <a style="color: #0085CA" class="quick-links" href="https://registrar.cornell.edu/">Cornell University Registrar</a>
-            <a style="color: #0085CA" class="quick-links" href="https://registrar.cornell.edu/academic-calendar">Academic Calendar</a>
-            <a style="color: #0085CA" class="quick-links" href="https://scl.cornell.edu/residential-life/housing">Residential Education</a>
+            <a style="color: #0085CA" class="quick-links" href="https://registrar.cornell.edu/">Cornell University
+                Registrar</a>
+            <a style="color: #0085CA" class="quick-links"
+                href="https://registrar.cornell.edu/academic-calendar">Academic Calendar</a>
+            <a style="color: #0085CA" class="quick-links"
+                href="https://scl.cornell.edu/residential-life/housing">Residential Education</a>
         </div>
     </div>
 </div>
+
+<script>
+    const endpoint = '/data-api/rest/department';
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    console.table(data.value);
+</script>
