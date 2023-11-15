@@ -101,3 +101,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    const endpoint = '/data-api/rest/department';
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    console.log(data.value);
+    console.log('test');
+</script>
