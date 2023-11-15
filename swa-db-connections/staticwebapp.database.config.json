@@ -52,6 +52,17 @@
           "role": "anonymous"
         }
       ]
+    },
+    "class_data": {
+      "source": "class_data",
+      "permissions": [
+        {
+          "actions": [
+            "*"
+          ],
+          "role": "anonymous"
+        }
+      ]
     }
   }
 }
