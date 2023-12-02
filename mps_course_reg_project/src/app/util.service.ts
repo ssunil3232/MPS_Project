@@ -72,7 +72,7 @@ export class UtilService {
         }
       ],
       registrationStartDateTime: "2023-08-27 07:30:00",
-      registrationEndDateTime: "2023-12-02 07:30:00",
+      registrationEndDateTime: "2023-12-22 07:30:00",
       currentTerm: "Fall 2023",
       registeredClasses: [
         {
