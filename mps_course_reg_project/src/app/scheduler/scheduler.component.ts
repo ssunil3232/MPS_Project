@@ -26,7 +26,7 @@ export class SchedulerComponent implements OnInit {
   letters = '0123456789ABCDEF';
   color = '#';
   scheduleData: any;
-  userWishlistData:any;
+  userWishlistData: any;
   showInputBoxFlag: boolean = false;
   // showEditBoxFlag: boolean = false;
   showDeleteBoxFlag: boolean = false;
@@ -48,6 +48,12 @@ export class SchedulerComponent implements OnInit {
   stateOptions: any[] = [{ label: 'Horizonal View', value: 'horizontal' }, { label: 'Vertical View', value: 'vertical' }];
 
   value: string = 'horizontal';
+
+  empty_schedule = {
+    name: "Schedule 0",
+    id: "0",
+    data: []
+  };
 
   constructor(
     public util: UtilService,
@@ -197,12 +203,15 @@ export class SchedulerComponent implements OnInit {
     //this.populateSchedules()
     if (this.schedules.length !== 0) {
       Object.assign(this.selectedSchedule, this.schedules[0]);
-      this.scheduleData = this.selectedSchedule.data;
+      this.scheduleData = [...this.selectedSchedule.data];
     }
     else {
-      this.selectedSchedule = null;
-      this.scheduleData = [];
+      this.schedules = []
+      this.schedules.push(this.empty_schedule)
+      Object.assign(this.selectedSchedule, this.schedules[0]);
+      this.scheduleData = [...this.selectedSchedule.data];
     }
+    this.changeDetectorRef.detectChanges();
     this.calendarConfig(this.scheduleData);
   }
 
@@ -211,7 +220,7 @@ export class SchedulerComponent implements OnInit {
     this.calendarConfig(this.scheduleData);
   }
 
-  removeCourse(event:any){
+  removeCourse(event: any) {
     console.log("removed", event);
     this.selectedSchedule["data"] = this.selectedSchedule["data"].filter((item: any) => {
       if (!(item.courseCode === event.courseCode && item.subjectCode === event.subjectCode)) {
@@ -239,7 +248,7 @@ export class SchedulerComponent implements OnInit {
     }
   }
 
-  resources:any = []
+  resources: any = []
   formatDataStructure(classData: any) {
     this.formattedCalendar = [];
     this.resources = []
@@ -257,17 +266,17 @@ export class SchedulerComponent implements OnInit {
       });
       //save to backend
       this.scheduleData = classData;
-      this.selectedSchedule.data = this.scheduleData; 
+      this.selectedSchedule.data = this.scheduleData;
       //get resource Ids
-      
+
       for (let i = 0; i < classData.length; i++) {
         let cal: any = classData[i];
-        let resourceId = cal.subjectCode+cal.courseCode
-        this.resources.push({id: resourceId});
+        let resourceId = cal.subjectCode + cal.courseCode
+        this.resources.push({ id: resourceId });
         //for lecture items
         let lectDetail = cal.lectureDetail.dayTimes;
         let lecObj: any = { ...cal };
-        lecObj["id"] = cal.lectureDetail.prefix+" "+cal.lectureDetail.lectureId;
+        lecObj["id"] = cal.lectureDetail.prefix + " " + cal.lectureDetail.lectureId;
         lecObj["editable"] = false;
         let daysArray: any = []
         for (let j = 0; j < lectDetail.length; j++) {
@@ -289,8 +298,8 @@ export class SchedulerComponent implements OnInit {
           let constraintsArray: any = [];
           if (discusionItem.selected) {
             let daysArray: any = []
-            tutObj["id"] = discusionItem.prefix+" "+discusionItem.discussionId;
-            tutObj["resourceId"]=resourceId;
+            tutObj["id"] = discusionItem.prefix + " " + discusionItem.discussionId;
+            tutObj["resourceId"] = resourceId;
             for (let j = 0; j < tutDetail.length; j++) {
               let item: any = tutDetail[j];
               daysArray.push(this.days[item.day])
@@ -305,8 +314,8 @@ export class SchedulerComponent implements OnInit {
             for (let j = 0; j < tutDetail.length; j++) {
               let item: any = tutDetail[j];
               daysArray.push(this.days[item.day])
-              constraint["resourceId"]=resourceId;
-              constraint["id"] = discusionItem.prefix+" "+discusionItem.discussionId;
+              constraint["resourceId"] = resourceId;
+              constraint["id"] = discusionItem.prefix + " " + discusionItem.discussionId;
               constraint["startTime"] = item.startTime;
               constraint["endTime"] = item.endTime;
             }
@@ -314,7 +323,7 @@ export class SchedulerComponent implements OnInit {
             constraintsArray.push(constraint);
           }
           tutObj["constraint"] = constraintsArray;
-        }      
+        }
         this.formattedCalendar.push(tutObj)
       }
     }
@@ -335,6 +344,8 @@ export class SchedulerComponent implements OnInit {
     this.calculateCredits()
     this.fullcalendar?.getApi().render();
     this.changeDetectorRef.detectChanges();
+
+    //send to backend to update user schedules
   }
 
   populateSchedules() {
